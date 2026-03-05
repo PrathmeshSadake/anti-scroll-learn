@@ -1,0 +1,56 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --color-primary: #f5f5f5;
+  --color-secondary: #6b7280;
+  --color-bg: #ffffff;
+  --color-card: #f9fafb;
+  --color-card-border: #e5e7eb;
+  --color-text: #111827;
+  --color-text-secondary: #6b7280;
+  --color-accent: #4b5563;
+  --color-progress: #9ca3af;
+  --color-progress-fill: #374151;
+  --color-btn: #111827;
+  --color-btn-text: #ffffff;
+  --color-btn-hover: #374151;
+  --color-correct: #16a34a;
+  --color-incorrect: #dc2626;
+}
+
+.dark {
+  --color-primary: #fbbf24;
+  --color-secondary: #f59e0b;
+  --color-bg: #0a0a0a;
+  --color-card: #1a1a1a;
+  --color-card-border: #333333;
+  --color-text: #f5f5f5;
+  --color-text-secondary: #a3a3a3;
+  --color-accent: #fbbf24;
+  --color-progress: #333333;
+  --color-progress-fill: #fbbf24;
+  --color-btn: #fbbf24;
+  --color-btn-text: #0a0a0a;
+  --color-btn-hover: #f59e0b;
+  --color-correct: #22c55e;
+  --color-incorrect: #ef4444;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  height: 100%;
+  height: 100dvh;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+#__next, main {
+  height: 100%;
+  height: 100dvh;
+  overflow: hidden;
+}
