@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useCallback } from "react";
+import Link from "next/link";
 import lessons from "@/data/lessons";
 import LessonCard from "@/components/LessonCard";
 import ProgressBar from "@/components/ProgressBar";
@@ -71,7 +72,18 @@ export default function Home() {
       </div>
 
       {/* Footer */}
-      <footer className="py-3 text-center">
+      <footer className="pb-3 text-center space-y-2">
+        <Link
+          href="/variants"
+          className="inline-block px-4 py-2 rounded-lg text-xs font-semibold transition-colors"
+          style={{
+            backgroundColor: "var(--color-card)",
+            color: "var(--color-accent)",
+            border: "1px solid var(--color-card-border)",
+          }}
+        >
+          View Gen AI Course Variants →
+        </Link>
         <p
           className="text-xs"
           style={{ color: "var(--color-text-secondary)" }}
