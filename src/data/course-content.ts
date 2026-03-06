@@ -10,6 +10,7 @@ export interface CourseModule {
   icon: IconType;
   estimatedMinutes: number;
   outcomes: string[];
+  image?: string;
   cards: ModuleCard[];
 }
 
@@ -38,6 +39,7 @@ const level1Modules: CourseModule[] = [
     moduleType: "Core Concept",
     icon: "cpu",
     estimatedMinutes: 1,
+    image: "/images/llm.png",
     outcomes: [
       "Define generative AI vs traditional AI",
       "Identify 3 real-world Gen AI applications",
@@ -146,6 +148,7 @@ const level1Modules: CourseModule[] = [
     moduleType: "Core Concept",
     icon: "brain",
     estimatedMinutes: 1,
+    image: "/images/llm.png",
     outcomes: [
       "Explain tokens, context windows, and next-token prediction",
       "Understand why LLMs hallucinate",
@@ -271,6 +274,7 @@ const level1Modules: CourseModule[] = [
     moduleType: "Core Concept",
     icon: "hash",
     estimatedMinutes: 1,
+    image: "/images/llm.png",
     outcomes: [
       "Understand what tokens are and how text is tokenized",
       "Know why context window size matters for your prompts",
@@ -354,6 +358,7 @@ const level1Modules: CourseModule[] = [
     moduleType: "Core Concept + Interactive",
     icon: "pencil",
     estimatedMinutes: 1,
+    image: "/images/llm.png",
     outcomes: [
       "Write a clear, structured prompt using role-task-format",
       "Apply zero-shot vs few-shot prompting",
@@ -486,6 +491,7 @@ const level2Modules: CourseModule[] = [
     moduleType: "Core Concept",
     icon: "book",
     estimatedMinutes: 1,
+    image: "/images/rag.png",
     outcomes: [
       "Explain the retrieve-augment-generate pipeline",
       "Understand vector embeddings and semantic search",
@@ -619,6 +625,7 @@ const level2Modules: CourseModule[] = [
     moduleType: "Core Concept",
     icon: "compass",
     estimatedMinutes: 1,
+    image: "/images/vector.png",
     outcomes: [
       "Understand what vector embeddings represent",
       "Explain how semantic search differs from keyword search",
@@ -742,6 +749,7 @@ const level2Modules: CourseModule[] = [
     moduleType: "Comparison Module",
     icon: "target",
     estimatedMinutes: 1,
+    image: "/images/rag.png",
     outcomes: [
       "Compare all three approaches across cost, speed, accuracy",
       "Choose the right approach for a given scenario",
@@ -869,7 +877,7 @@ export const courseLevels: CourseLevel[] = [
     description:
       "Master the core concepts behind generative AI, tokens, context windows, and prompt engineering.",
     icon: "brain",
-    accentColor: "#8B5CF6",
+    accentColor: "#1E3A5F",
     modules: level1Modules,
   },
   {
@@ -879,7 +887,7 @@ export const courseLevels: CourseLevel[] = [
     description:
       "Learn how retrieval-augmented generation connects LLMs to your documents for grounded, accurate answers.",
     icon: "book",
-    accentColor: "#3B82F6",
+    accentColor: "#1E3A5F",
     modules: level2Modules,
   },
 ];

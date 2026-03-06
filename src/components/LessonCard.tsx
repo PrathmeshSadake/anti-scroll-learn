@@ -32,7 +32,7 @@ export default function LessonCard({ lesson, onComplete }: LessonCardProps) {
 
   return (
     <div
-      className="w-full max-w-lg mx-auto rounded-2xl p-6 flex flex-col"
+      className="w-full max-w-lg mx-auto rounded-2xl p-4 flex flex-col"
       style={{
         backgroundColor: "var(--color-card)",
         border: "1px solid var(--color-card-border)",
@@ -40,7 +40,7 @@ export default function LessonCard({ lesson, onComplete }: LessonCardProps) {
       }}
     >
       {/* Topic badge */}
-      <div className="mb-4">
+      <div className="mb-2">
         <span
           className="inline-block px-3 py-1 text-xs font-semibold rounded-full"
           style={{
@@ -53,10 +53,10 @@ export default function LessonCard({ lesson, onComplete }: LessonCardProps) {
       </div>
 
       {step === "learn" && (
-        <div className="flex flex-col flex-1 justify-between">
+        <div className="flex flex-col justify-between">
           <div>
             <h2
-              className="text-2xl font-bold mb-4"
+              className="text-2xl font-bold mb-2"
               style={{ color: "var(--color-text)" }}
             >
               {lesson.title}
@@ -106,7 +106,7 @@ export default function LessonCard({ lesson, onComplete }: LessonCardProps) {
       )}
 
       {step === "quiz" && (
-        <div className="flex flex-col flex-1 justify-between">
+        <div className="flex flex-col justify-between">
           <div>
             <h2
               className="text-xl font-bold mb-5"
@@ -157,9 +157,9 @@ export default function LessonCard({ lesson, onComplete }: LessonCardProps) {
       )}
 
       {step === "result" && (
-        <div className="flex flex-col flex-1 items-center justify-center text-center">
+        <div className="flex flex-col items-center justify-center text-center">
           <div
-            className="text-5xl mb-4"
+            className="text-5xl mb-2"
             role="img"
             aria-label={isCorrect ? "Correct" : "Incorrect"}
           >

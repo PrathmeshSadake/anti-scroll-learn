@@ -33,11 +33,11 @@ export default function Home() {
 
   return (
     <main
-      className="h-dvh overflow-hidden flex flex-col"
+      className="h-full overflow-hidden flex flex-col"
       style={{ backgroundColor: "var(--color-bg)" }}
     >
       {/* Header */}
-      <header className="flex items-center justify-between px-5 py-4">
+      <header className="flex items-center justify-between px-5 py-3">
         <h1
           className="text-lg font-bold tracking-tight"
           style={{ color: "var(--color-text)" }}
@@ -49,13 +49,13 @@ export default function Home() {
 
       {/* Progress */}
       {!completed && (
-        <div className="px-5 pb-3">
+        <div className="px-5 pb-2">
           <ProgressBar current={currentIndex + 1} total={totalLessons} />
         </div>
       )}
 
       {/* Content */}
-      <div className="flex-1 flex items-center justify-center px-5 overflow-hidden">
+      <div className="flex items-start justify-center px-5 overflow-hidden">
         {completed ? (
           <CompletionScreen
             score={score}
@@ -72,15 +72,15 @@ export default function Home() {
       </div>
 
       {/* Footer */}
-      <footer className="pb-3 text-center space-y-2">
+      <footer className="shrink-0 pb-2 pt-1 text-center space-y-1">
         <div className="flex items-center justify-center gap-2">
           <Link
             href="/course"
             className="inline-block px-4 py-2 rounded-lg text-xs font-semibold transition-colors"
             style={{
-              background: "linear-gradient(135deg, #8B5CF6, #3B82F6)",
+              background: "#1E3A5F",
               color: "#fff",
-              boxShadow: "0 3px 10px rgba(139, 92, 246, 0.25)",
+              boxShadow: "var(--shadow-md)",
             }}
           >
             Test Course Levels →

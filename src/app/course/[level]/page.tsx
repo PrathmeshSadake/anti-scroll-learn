@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback, use } from "react";
+import { useSearchParams } from "next/navigation";
 import courseLevels from "@/data/course-content";
 import type { CourseModule, CourseLevel } from "@/data/course-content";
 import type { ModuleCard } from "@/data/genai-course";
@@ -15,13 +16,17 @@ export default function CourseLevelPage({
   params: Promise<{ level: string }>;
 }) {
   const resolvedParams = use(params);
+  const searchParams = useSearchParams();
   const levelNum = parseInt(resolvedParams.level, 10) as 1 | 2;
   const levelData: CourseLevel | undefined = courseLevels.find(
     (l) => l.level === levelNum
   );
 
-  const [phase, setPhase] = useState<Phase>("modules");
-  const [moduleIdx, setModuleIdx] = useState(0);
+  const initialModule = parseInt(searchParams.get("module") ?? "0", 10);
+  const initialPhase: Phase = searchParams.has("module") ? "card" : "modules";
+
+  const [phase, setPhase] = useState<Phase>(initialPhase);
+  const [moduleIdx, setModuleIdx] = useState(initialModule);
   const [cardIdx, setCardIdx] = useState(0);
   const [quizAnswer, setQuizAnswer] = useState<number | null>(null);
   const [mounted, setMounted] = useState(false);
@@ -145,7 +150,7 @@ export default function CourseLevelPage({
   if (!levelData) {
     return (
       <div
-        className="h-dvh flex items-center justify-center"
+        className="h-full flex items-center justify-center"
         style={{
           backgroundColor: "var(--color-bg)",
           fontFamily: "var(--font-sans)",
@@ -236,7 +241,7 @@ export default function CourseLevelPage({
                   className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0"
                   style={{
                     background: isDone
-                      ? "linear-gradient(135deg, var(--color-success), #34D399)"
+                      ? levelData.accentColor
                       : `linear-gradient(135deg, ${levelData.accentColor}, ${levelData.accentColor}CC)`,
                     boxShadow: `0 4px 12px ${isDone ? "rgba(5,150,105,0.25)" : levelData.accentColor + "40"}`,
                   }}
@@ -251,7 +256,7 @@ export default function CourseLevelPage({
                   <div className="flex items-center gap-2 mb-0.5">
                     <span
                       className="text-[10px] font-semibold uppercase tracking-wider"
-                      style={{ color: levelData.accentColor }}
+                      style={{ color: "var(--color-primary)" }}
                     >
                       {mod.category}
                     </span>
@@ -295,7 +300,7 @@ export default function CourseLevelPage({
   const renderHook = (card: ModuleCard) => {
     if (card.type !== "hook") return null;
     return (
-      <div className="flex flex-col items-center justify-center text-center min-h-[70dvh] px-2">
+      <div className="flex flex-col items-center justify-center text-center py-6 px-2">
         <div
           className="w-16 h-16 rounded-2xl flex items-center justify-center mb-8"
           style={{
@@ -311,28 +316,28 @@ export default function CourseLevelPage({
         </div>
 
         <div
-          className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-semibold mb-6 uppercase tracking-wider"
+          className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-semibold mb-4 uppercase tracking-wider"
           style={{
-            backgroundColor: "var(--color-primary-ghost)",
-            color: levelData.accentColor,
+            backgroundColor: "var(--color-primary-subtle)",
+            color: "var(--color-primary)",
           }}
         >
           <span
             className="w-1.5 h-1.5 rounded-full"
-            style={{ backgroundColor: levelData.accentColor }}
+            style={{ backgroundColor: "var(--color-primary)" }}
           />
           {currentModule?.category}
         </div>
 
         <h1
-          className="text-[26px] font-bold tracking-tight leading-[1.15] mb-4 px-2"
+          className="text-[22px] font-bold tracking-tight leading-[1.2] mb-3 px-2"
           style={{ color: "var(--color-text)" }}
         >
           {card.headline}
         </h1>
 
         <p
-          className="text-sm leading-relaxed max-w-[340px] mb-10"
+          className="text-sm leading-relaxed max-w-[340px] mb-8"
           style={{ color: "var(--color-text-secondary)" }}
         >
           {card.subheadline}
@@ -342,9 +347,9 @@ export default function CourseLevelPage({
           onClick={nextCard}
           className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full text-sm font-semibold transition-all active:scale-[0.97] cursor-pointer"
           style={{
-            background: `linear-gradient(135deg, ${levelData.accentColor}, ${levelData.accentColor}DD)`,
+            backgroundColor: levelData.accentColor,
             color: "#fff",
-            boxShadow: `0 4px 16px ${levelData.accentColor}50`,
+            boxShadow: `0 4px 16px ${levelData.accentColor}40`,
           }}
         >
           Begin
@@ -359,12 +364,30 @@ export default function CourseLevelPage({
     if (card.type !== "concept") return null;
     return (
       <div className="py-6 px-1">
+        {/* Topic image */}
+        {currentModule?.image && (
+          <div
+            className="w-full mb-6 rounded-2xl overflow-hidden"
+            style={{
+              boxShadow: `0 8px 32px ${levelData.accentColor}1A`,
+              border: `1px solid ${levelData.accentColor}20`,
+            }}
+          >
+            <img
+              src={currentModule.image}
+              alt={currentModule.title}
+              className="w-full h-auto object-contain"
+              style={{ display: "block", aspectRatio: "16/9" }}
+            />
+          </div>
+        )}
+
         <div className="flex items-center gap-3 mb-6">
           <div
             className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0"
             style={{
               backgroundColor: "var(--color-primary-ghost)",
-              color: levelData.accentColor,
+              color: "var(--color-primary)",
             }}
           >
             <Icon name="book" size={18} />
@@ -440,7 +463,7 @@ export default function CourseLevelPage({
               className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0"
               style={{
                 backgroundColor: "var(--color-primary-ghost)",
-                color: levelData.accentColor,
+                color: "var(--color-primary)",
               }}
             >
               <Icon name="layers" size={18} />
@@ -458,7 +481,7 @@ export default function CourseLevelPage({
             className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[10px] font-bold uppercase tracking-wider transition-all active:scale-95 cursor-pointer"
             style={{
               backgroundColor: "var(--color-bg-muted)",
-              color: levelData.accentColor,
+              color: "var(--color-primary)",
               border: `1px solid ${levelData.accentColor}30`,
             }}
           >
@@ -658,7 +681,7 @@ export default function CourseLevelPage({
             className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0"
             style={{
               backgroundColor: "var(--color-primary-ghost)",
-              color: levelData.accentColor,
+              color: "var(--color-primary)",
             }}
           >
             <Icon name="globe" size={18} />
@@ -666,7 +689,7 @@ export default function CourseLevelPage({
           <div>
             <p
               className="text-[10px] font-semibold uppercase tracking-wider"
-              style={{ color: levelData.accentColor }}
+              style={{ color: "var(--color-primary)" }}
             >
               Real World
             </p>
@@ -691,11 +714,11 @@ export default function CourseLevelPage({
             <Icon
               name="target"
               size={14}
-              style={{ color: levelData.accentColor }}
+              style={{ color: "var(--color-primary)" }}
             />
             <span
               className="text-[11px] font-bold uppercase tracking-wider"
-              style={{ color: levelData.accentColor }}
+              style={{ color: "var(--color-primary)" }}
             >
               What they did
             </span>
@@ -759,7 +782,7 @@ export default function CourseLevelPage({
     const isLastModule = moduleIdx >= modules.length - 1;
 
     return (
-      <div className="flex flex-col items-center justify-center text-center min-h-[60dvh] px-2">
+      <div className="flex flex-col items-center justify-center text-center py-8 px-2">
         {/* Celebratory icon with pulse */}
         <div
           className="w-14 h-14 rounded-2xl flex items-center justify-center mb-6"
@@ -776,7 +799,7 @@ export default function CourseLevelPage({
 
         <p
           className="text-[10px] font-semibold uppercase tracking-wider mb-4"
-          style={{ color: levelData.accentColor }}
+          style={{ color: "var(--color-primary)" }}
         >
           Key Takeaway
         </p>
@@ -915,9 +938,8 @@ export default function CourseLevelPage({
           <div
             className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0"
             style={{
-              background:
-                "linear-gradient(135deg, #F59E0B, #EF4444)",
-              boxShadow: "0 4px 12px rgba(245,158,11,0.3)",
+              background: levelData.accentColor,
+              boxShadow: `0 8px 32px ${levelData.accentColor}50`,
             }}
           >
             <Icon name="sparkles" size={18} style={{ color: "#fff" }} />
@@ -925,7 +947,7 @@ export default function CourseLevelPage({
           <div>
             <div
               className="text-[10px] font-bold uppercase tracking-wider"
-              style={{ color: "#F59E0B" }}
+              style={{ color: levelData.accentColor }}
             >
               Interactive Exercise
             </div>
@@ -1100,10 +1122,9 @@ export default function CourseLevelPage({
             onClick={submitAnswer}
             className="w-full flex items-center justify-center gap-2 py-3.5 rounded-xl text-sm font-semibold transition-all active:scale-[0.98] cursor-pointer"
             style={{
-              background:
-                "linear-gradient(135deg, #F59E0B, #EF4444)",
+              background: levelData.accentColor,
               color: "#fff",
-              boxShadow: "0 4px 16px rgba(245,158,11,0.3)",
+              boxShadow: `0 8px 32px ${levelData.accentColor}40`,
             }}
           >
             Check Answer
@@ -1153,7 +1174,7 @@ export default function CourseLevelPage({
   /* ═══════════════ LAYOUT ═══════════════ */
   return (
     <div
-      className="h-dvh flex flex-col overflow-hidden"
+      className="h-full flex flex-col overflow-hidden"
       style={{
         backgroundColor: "var(--color-bg)",
         fontFamily: "var(--font-sans)",
@@ -1161,7 +1182,7 @@ export default function CourseLevelPage({
     >
       {/* Frosted nav */}
       <nav
-        className="fixed top-0 inset-x-0 z-50 flex items-center justify-between px-5 h-14"
+        className="fixed top-0 inset-x-0 z-50 flex items-center justify-between px-5 h-14 mx-auto w-full max-w-[430px]"
         style={{
           backgroundColor:
             "color-mix(in srgb, var(--color-bg) 85%, transparent)",
@@ -1170,39 +1191,14 @@ export default function CourseLevelPage({
           borderBottom: "1px solid var(--color-border-subtle)",
         }}
       >
-        {phase === "modules" ? (
-          <Link
-            href="/course"
-            className="flex items-center gap-1.5 text-sm font-medium"
-            style={{ color: "var(--color-text-secondary)" }}
-          >
-            <Icon name="arrow-left" size={16} />
-            <span>Levels</span>
-          </Link>
-        ) : (
-          <button
-            onClick={backToModules}
-            className="flex items-center gap-1.5 text-sm font-medium cursor-pointer"
-            style={{
-              color: "var(--color-text-secondary)",
-              background: "none",
-              border: "none",
-              padding: 0,
-            }}
-          >
-            <Icon name="arrow-left" size={16} />
-            <span>Modules</span>
-          </button>
-        )}
-
-        {phase === "modules" && (
-          <span
-            className="text-xs font-semibold"
-            style={{ color: "var(--color-text-tertiary)" }}
-          >
-            {completedModules.size}/{modules.length} done
-          </span>
-        )}
+        <Link
+          href="/course"
+          className="flex items-center gap-1.5 text-sm font-medium"
+          style={{ color: "var(--color-text-secondary)" }}
+        >
+          <Icon name="arrow-left" size={16} />
+          <span>Map</span>
+        </Link>
 
         {phase === "card" && currentModule && (
           <span
@@ -1218,7 +1214,7 @@ export default function CourseLevelPage({
       {/* Card progress bar */}
       {phase === "card" && (
         <div
-          className="fixed top-14 left-0 right-0 z-40 h-1"
+          className="fixed top-14 left-0 right-0 z-40 h-1 mx-auto w-full max-w-[430px]"
           style={{ backgroundColor: "var(--color-progress)" }}
         >
           <div
