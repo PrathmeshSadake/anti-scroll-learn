@@ -46,7 +46,16 @@ export interface TakeawayCard {
   nextTeaser: string;
 }
 
-export type ModuleCard = HookCard | ConceptCard | VisualCard | CheckCard | RealWorldCard | TakeawayCard;
+export interface InteractiveCard {
+  type: "interactive";
+  title: string;
+  instruction: string;
+  interactionType: "drag-drop" | "sequence" | "fill-blank";
+  items: { id: string; label: string; correctPosition?: number }[];
+  feedback: { correct: string; incorrect: string };
+}
+
+export type ModuleCard = HookCard | ConceptCard | VisualCard | CheckCard | RealWorldCard | TakeawayCard | InteractiveCard;
 
 export interface Module {
   id: number;

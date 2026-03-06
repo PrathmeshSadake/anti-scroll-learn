@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "skills": {
+    "unrot-design-system": {
+      "source": "buildfastwithai/unrot-design-system",
+      "sourceType": "github",
+      "computedHash": "33a825cc13816b8e313efe34b2b91ff0dc7cdd93bc70423dcddf0163b8736ac7"
+    }
+  }
+}

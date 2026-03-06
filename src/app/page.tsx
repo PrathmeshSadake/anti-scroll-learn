@@ -73,17 +73,30 @@ export default function Home() {
 
       {/* Footer */}
       <footer className="pb-3 text-center space-y-2">
-        <Link
-          href="/variants"
-          className="inline-block px-4 py-2 rounded-lg text-xs font-semibold transition-colors"
-          style={{
-            backgroundColor: "var(--color-card)",
-            color: "var(--color-accent)",
-            border: "1px solid var(--color-card-border)",
-          }}
-        >
-          View Gen AI Course Variants →
-        </Link>
+        <div className="flex items-center justify-center gap-2">
+          <Link
+            href="/course"
+            className="inline-block px-4 py-2 rounded-lg text-xs font-semibold transition-colors"
+            style={{
+              background: "linear-gradient(135deg, #8B5CF6, #3B82F6)",
+              color: "#fff",
+              boxShadow: "0 3px 10px rgba(139, 92, 246, 0.25)",
+            }}
+          >
+            Test Course Levels →
+          </Link>
+          <Link
+            href="/variants"
+            className="inline-block px-4 py-2 rounded-lg text-xs font-semibold transition-colors"
+            style={{
+              backgroundColor: "var(--color-card)",
+              color: "var(--color-accent)",
+              border: "1px solid var(--color-card-border)",
+            }}
+          >
+            View Variants →
+          </Link>
+        </div>
         <p
           className="text-xs"
           style={{ color: "var(--color-text-secondary)" }}

@@ -13,6 +13,7 @@ const CARD_TYPE_LABELS: Record<ModuleCard["type"], string> = {
   check: "Check",
   realworld: "Real World",
   takeaway: "Summary",
+  interactive: "Interactive",
 };
 
 const CARD_TYPE_ICONS: Record<ModuleCard["type"], string> = {
@@ -22,6 +23,7 @@ const CARD_TYPE_ICONS: Record<ModuleCard["type"], string> = {
   check: "target",
   realworld: "globe",
   takeaway: "star",
+  interactive: "sparkles",
 };
 
 const LEVEL_LABELS: Record<number, string> = {
