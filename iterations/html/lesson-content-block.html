@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lesson Content Block</title>
+  <link rel="stylesheet" href="theme.css">
+  <style>
+    .content-blocks {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-lg);
+    }
+    .content-block {
+      background: var(--color-card);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-xl);
+      border: 1px solid var(--color-border);
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-md);
+    }
+    .content-block__icon-row {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-md);
+    }
+    .content-block__icon {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-full);
+      background: var(--color-primary-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: var(--font-xl);
+      flex-shrink: 0;
+    }
+    .content-block__title {
+      font-size: var(--font-lg);
+      font-weight: var(--weight-bold);
+      color: var(--color-text);
+    }
+    .content-block__body {
+      font-size: var(--font-md);
+      color: var(--color-text-secondary);
+      line-height: 1.7;
+    }
+  </style>
+</head>
+<body>
+  <div class="component-preview">
+    <p class="component-title">Lesson Content Block</p>
+    <div class="content-blocks">
+      <section class="content-block">
+        <div class="content-block__icon-row">
+          <div class="content-block__icon">💬</div>
+          <h3 class="content-block__title">What are LLMs?</h3>
+        </div>
+        <p class="content-block__body">Large Language Models (LLMs) are specialized AI models trained on vast amounts of text data.</p>
+      </section>
+      <section class="content-block">
+        <div class="content-block__icon-row">
+          <div class="content-block__icon">🔧</div>
+          <h3 class="content-block__title">Scale is Key</h3>
+        </div>
+        <p class="content-block__body">LLMs achieve their capabilities through enormous scale—often billions or trillions of parameters.</p>
+      </section>
+      <section class="content-block">
+        <div class="content-block__icon-row">
+          <div class="content-block__icon">⚡</div>
+          <h3 class="content-block__title">The Transformer</h3>
+        </div>
+        <p class="content-block__body">Most modern LLMs are based on the Transformer architecture introduced by Google in 2017.</p>
+      </section>
+      <section class="content-block">
+        <div class="content-block__icon-row">
+          <div class="content-block__icon">👁️</div>
+          <h3 class="content-block__title">Attention is All You Need</h3>
+        </div>
+        <p class="content-block__body">Attention allows the model to weigh the importance of different words.</p>
+      </section>
+    </div>
+  </div>
+</body>
+</html>

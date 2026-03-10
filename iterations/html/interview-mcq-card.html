@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MCQ Question Card</title>
+  <link rel="stylesheet" href="theme.css">
+  <style>
+    .mcq-card {
+      background: var(--color-prep-card);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-xl);
+      border: 1px solid var(--color-border);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+
+    .mcq-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .mcq-company-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--spacing-xs);
+      background: var(--color-prep-background);
+      color: var(--color-prep-accent);
+      font-size: var(--font-xs);
+      font-weight: var(--weight-semibold);
+      padding: var(--spacing-xs) var(--spacing-sm);
+      border-radius: var(--radius-full);
+      letter-spacing: 0.3px;
+    }
+
+    .mcq-company-badge .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: var(--radius-full);
+      background: var(--color-prep-accent);
+    }
+
+    .mcq-difficulty {
+      font-size: var(--font-xs);
+      font-weight: var(--weight-semibold);
+      padding: var(--spacing-xs) var(--spacing-sm);
+      border-radius: var(--radius-full);
+    }
+
+    .mcq-difficulty.easy {
+      background: rgba(88, 204, 2, 0.12);
+      color: var(--color-success);
+    }
+
+    .mcq-meta {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+      margin-bottom: var(--spacing-md);
+      flex-wrap: wrap;
+    }
+
+    .mcq-topic {
+      font-size: var(--font-xs);
+      color: var(--color-text-muted);
+      font-weight: var(--weight-medium);
+    }
+
+    .mcq-round {
+      font-size: var(--font-xs);
+      color: var(--color-text-muted);
+      background: var(--color-surface-light);
+      padding: 2px var(--spacing-sm);
+      border-radius: var(--radius-full);
+    }
+
+    .mcq-question {
+      font-size: var(--font-lg);
+      font-weight: var(--weight-semibold);
+      color: var(--color-text);
+      line-height: 1.5;
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .mcq-options {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-sm);
+    }
+
+    .mcq-option {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--spacing-md);
+      padding: var(--spacing-md) var(--spacing-lg);
+      border: 1.5px solid var(--color-border);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      background: var(--color-surface);
+    }
+
+    .mcq-option:hover {
+      border-color: var(--color-prep-accent);
+      background: var(--color-prep-background);
+    }
+
+    .mcq-option.selected {
+      border-color: var(--color-prep-accent);
+      background: var(--color-prep-background);
+    }
+
+    .mcq-option.correct {
+      border-color: var(--color-success);
+      background: rgba(88, 204, 2, 0.08);
+    }
+
+    .mcq-option.incorrect {
+      border-color: var(--color-error);
+      background: rgba(239, 68, 68, 0.08);
+    }
+
+    .mcq-option-letter {
+      width: 28px;
+      height: 28px;
+      border-radius: var(--radius-full);
+      background: var(--color-surface-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: var(--font-sm);
+      font-weight: var(--weight-bold);
+      color: var(--color-text-secondary);
+      flex-shrink: 0;
+      transition: all 0.2s ease;
+    }
+
+    .mcq-option.selected .mcq-option-letter {
+      background: var(--color-prep-accent);
+      color: var(--color-text-inverse);
+    }
+
+    .mcq-option.correct .mcq-option-letter {
+      background: var(--color-success);
+      color: var(--color-text-inverse);
+    }
+
+    .mcq-option.incorrect .mcq-option-letter {
+      background: var(--color-error);
+      color: var(--color-text-inverse);
+    }
+
+    .mcq-option-text {
+      font-size: var(--font-md);
+      color: var(--color-text);
+      line-height: 1.5;
+      padding-top: 3px;
+    }
+
+    .mcq-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: var(--spacing-xl);
+      padding-top: var(--spacing-lg);
+      border-top: 1px solid var(--color-border-light);
+    }
+
+    .mcq-success-rate {
+      font-size: var(--font-xs);
+      color: var(--color-text-muted);
+    }
+
+    .mcq-success-rate strong {
+      color: var(--color-success);
+      font-weight: var(--weight-bold);
+    }
+
+    .mcq-check-btn {
+      background: var(--color-prep-accent);
+      color: var(--color-text-inverse);
+      border: none;
+      padding: var(--spacing-sm) var(--spacing-xl);
+      border-radius: var(--radius-full);
+      font-size: var(--font-sm);
+      font-weight: var(--weight-bold);
+      cursor: pointer;
+      font-family: inherit;
+      transition: opacity 0.2s ease;
+    }
+
+    .mcq-check-btn:hover {
+      opacity: 0.9;
+    }
+  </style>
+</head>
+<body>
+  <div class="component-preview">
+    <p class="component-title">MCQ Question Card</p>
+
+    <div class="mcq-card">
+      <div class="mcq-header">
+        <span class="mcq-company-badge"><span class="dot"></span> Google</span>
+        <span class="mcq-difficulty easy">Easy</span>
+      </div>
+
+      <div class="mcq-meta">
+        <span class="mcq-topic">LLM Fundamentals</span>
+        <span class="mcq-round">Phone Screen</span>
+      </div>
+
+      <p class="mcq-question">What is the primary purpose of tokenization in large language models?</p>
+
+      <div class="mcq-options">
+        <div class="mcq-option" data-index="0" onclick="selectOption(this)">
+          <span class="mcq-option-letter">A</span>
+          <span class="mcq-option-text">Convert text to numerical representations</span>
+        </div>
+        <div class="mcq-option" data-index="1" onclick="selectOption(this)">
+          <span class="mcq-option-letter">B</span>
+          <span class="mcq-option-text">Train the model weights</span>
+        </div>
+        <div class="mcq-option" data-index="2" onclick="selectOption(this)">
+          <span class="mcq-option-letter">C</span>
+          <span class="mcq-option-text">Generate output text</span>
+        </div>
+        <div class="mcq-option" data-index="3" onclick="selectOption(this)">
+          <span class="mcq-option-letter">D</span>
+          <span class="mcq-option-text">Evaluate model performance</span>
+        </div>
+      </div>
+
+      <div class="mcq-footer">
+        <span class="mcq-success-rate"><strong>92%</strong> success rate</span>
+        <button class="mcq-check-btn" onclick="checkAnswer()">Check</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const correctIndex = 0;
+    let selectedIndex = null;
+
+    function selectOption(el) {
+      document.querySelectorAll('.mcq-option').forEach(o => {
+        o.classList.remove('selected', 'correct', 'incorrect');
+      });
+      el.classList.add('selected');
+      selectedIndex = parseInt(el.dataset.index);
+    }
+
+    function checkAnswer() {
+      if (selectedIndex === null) return;
+      document.querySelectorAll('.mcq-option').forEach((o, i) => {
+        o.classList.remove('selected');
+        if (i === correctIndex) o.classList.add('correct');
+        else if (i === selectedIndex) o.classList.add('incorrect');
+      });
+    }
+  </script>
+</body>
+</html>

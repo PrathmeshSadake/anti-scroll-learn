@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module Quiz Item</title>
+  <link rel="stylesheet" href="theme.css">
+  <style>
+    .quiz-items {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-lg);
+    }
+    .demo-label {
+      font-size: var(--font-xs);
+      color: var(--color-text-muted);
+      font-weight: var(--weight-medium);
+      margin-bottom: var(--spacing-sm);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .quiz-item {
+      background: var(--color-card);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-xl);
+      border: 1px solid var(--color-border);
+      display: flex;
+      gap: var(--spacing-md);
+      align-items: flex-start;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .quiz-item:hover {
+      border-color: var(--color-primary-light);
+    }
+    .quiz-item--locked {
+      opacity: 0.65;
+      pointer-events: none;
+    }
+    .quiz-item__icon {
+      width: 48px;
+      height: 48px;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: var(--font-xl);
+      flex-shrink: 0;
+    }
+    .quiz-item__icon--unlocked {
+      background: #fef3c7;
+    }
+    .quiz-item__icon--locked {
+      background: var(--color-surface-light);
+    }
+    .quiz-item__icon--completed {
+      background: #dcfce7;
+    }
+    .quiz-item__content {
+      flex: 1;
+    }
+    .quiz-item__title {
+      font-size: var(--font-md);
+      font-weight: var(--weight-bold);
+      color: var(--color-text);
+      margin-bottom: var(--spacing-xs);
+    }
+    .quiz-item__meta {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-md);
+      font-size: var(--font-sm);
+      color: var(--color-text-muted);
+      font-weight: var(--weight-medium);
+    }
+    .quiz-item__status {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--spacing-xs);
+      font-size: var(--font-xs);
+      font-weight: var(--weight-semibold);
+      padding: 2px var(--spacing-sm);
+      border-radius: var(--radius-full);
+      margin-top: var(--spacing-sm);
+    }
+    .quiz-item__status--unlocked {
+      background: #fef3c7;
+      color: #92400e;
+    }
+    .quiz-item__status--locked {
+      background: var(--color-surface-light);
+      color: var(--color-text-muted);
+    }
+    .quiz-item__status--completed {
+      background: #dcfce7;
+      color: #166534;
+    }
+    .quiz-item__action {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: var(--spacing-sm) var(--spacing-lg);
+      border-radius: var(--radius-full);
+      border: none;
+      font-family: 'DM Sans', sans-serif;
+      font-size: var(--font-sm);
+      font-weight: var(--weight-bold);
+      cursor: pointer;
+      margin-top: var(--spacing-md);
+      transition: all 0.2s ease;
+    }
+    .quiz-item__action--start {
+      background: var(--color-primary);
+      color: var(--color-text-inverse);
+    }
+    .quiz-item__action--start:hover {
+      background: var(--color-primary-dark);
+    }
+    .quiz-item__action--review {
+      background: var(--color-surface-light);
+      color: var(--color-text);
+    }
+  </style>
+</head>
+<body>
+  <div class="component-preview">
+    <p class="component-title">Module Quiz Item</p>
+    <div class="quiz-items">
+      <!-- Unlocked quiz -->
+      <div>
+        <p class="demo-label">Unlocked</p>
+        <div class="quiz-item">
+          <div class="quiz-item__icon quiz-item__icon--unlocked">🧠</div>
+          <div class="quiz-item__content">
+            <h3 class="quiz-item__title">Fundamentals Quiz</h3>
+            <div class="quiz-item__meta">
+              <span>❓ 1 question</span>
+            </div>
+            <span class="quiz-item__status quiz-item__status--unlocked">🔓 Ready to take</span>
+            <br>
+            <button class="quiz-item__action quiz-item__action--start">Start Quiz</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Locked quiz -->
+      <div>
+        <p class="demo-label">Locked</p>
+        <div class="quiz-item quiz-item--locked">
+          <div class="quiz-item__icon quiz-item__icon--locked">🔒</div>
+          <div class="quiz-item__content">
+            <h3 class="quiz-item__title">Fundamentals Quiz</h3>
+            <div class="quiz-item__meta">
+              <span>❓ 1 question</span>
+            </div>
+            <span class="quiz-item__status quiz-item__status--locked">🔒 Complete lessons first</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Completed quiz -->
+      <div>
+        <p class="demo-label">Completed</p>
+        <div class="quiz-item">
+          <div class="quiz-item__icon quiz-item__icon--completed">✅</div>
+          <div class="quiz-item__content">
+            <h3 class="quiz-item__title">Fundamentals Quiz</h3>
+            <div class="quiz-item__meta">
+              <span>❓ 1 question</span>
+              <span>🎯 Score: 1/1</span>
+            </div>
+            <span class="quiz-item__status quiz-item__status--completed">✓ Passed</span>
+            <br>
+            <button class="quiz-item__action quiz-item__action--review">Review Answers</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

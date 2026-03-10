@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lesson Bookmark Button</title>
+  <link rel="stylesheet" href="theme.css">
+  <style>
+    .bookmark-demos {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-xxl);
+    }
+    .demo-label {
+      font-size: var(--font-xs);
+      color: var(--color-text-muted);
+      font-weight: var(--weight-medium);
+      margin-bottom: var(--spacing-sm);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* Standalone button */
+    .bookmark-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--spacing-sm);
+      padding: var(--spacing-md) var(--spacing-xl);
+      border-radius: var(--radius-full);
+      border: 2px solid var(--color-border);
+      background: var(--color-card);
+      cursor: pointer;
+      transition: all 0.25s ease;
+      font-family: 'DM Sans', sans-serif;
+      font-size: var(--font-md);
+      font-weight: var(--weight-semibold);
+      color: var(--color-text-secondary);
+    }
+    .bookmark-btn:hover {
+      border-color: var(--color-primary-light);
+      color: var(--color-primary);
+    }
+    .bookmark-btn--saved {
+      border-color: var(--color-primary);
+      background: var(--color-primary-light);
+      color: var(--color-primary-dark);
+    }
+    .bookmark-btn__icon {
+      font-size: var(--font-xl);
+      transition: transform 0.3s ease;
+    }
+    .bookmark-btn--saved .bookmark-btn__icon {
+      transform: scale(1.15);
+    }
+
+    /* Icon-only variant */
+    .bookmark-icon-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-full);
+      border: none;
+      background: var(--color-surface-light);
+      cursor: pointer;
+      font-size: var(--font-xl);
+      transition: all 0.25s ease;
+    }
+    .bookmark-icon-btn:hover {
+      background: var(--color-primary-light);
+    }
+    .bookmark-icon-btn--saved {
+      background: var(--color-primary-light);
+    }
+
+    /* In-context demo */
+    .context-card {
+      background: var(--color-card);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-xl);
+      border: 1px solid var(--color-border);
+    }
+    .context-card__header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+    .context-card__title {
+      font-size: var(--font-lg);
+      font-weight: var(--weight-bold);
+      color: var(--color-text);
+    }
+    .context-card__topic {
+      font-size: var(--font-sm);
+      color: var(--color-text-muted);
+      margin-top: var(--spacing-xs);
+    }
+    .btn-row {
+      display: flex;
+      gap: var(--spacing-md);
+      align-items: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="component-preview">
+    <p class="component-title">Bookmark Button</p>
+    <div class="bookmark-demos">
+      <!-- Standalone buttons -->
+      <div>
+        <p class="demo-label">Unsaved vs Saved</p>
+        <div class="btn-row">
+          <button class="bookmark-btn" onclick="this.classList.toggle('bookmark-btn--saved'); this.querySelector('.bookmark-btn__icon').textContent = this.classList.contains('bookmark-btn--saved') ? '🔖' : '🏷️';">
+            <span class="bookmark-btn__icon">🏷️</span> Bookmark
+          </button>
+          <button class="bookmark-btn bookmark-btn--saved" onclick="this.classList.toggle('bookmark-btn--saved'); this.querySelector('.bookmark-btn__icon').textContent = this.classList.contains('bookmark-btn--saved') ? '🔖' : '🏷️';">
+            <span class="bookmark-btn__icon">🔖</span> Saved
+          </button>
+        </div>
+      </div>
+
+      <!-- Icon-only -->
+      <div>
+        <p class="demo-label">Icon Only</p>
+        <div class="btn-row">
+          <button class="bookmark-icon-btn" onclick="this.classList.toggle('bookmark-icon-btn--saved'); this.textContent = this.classList.contains('bookmark-icon-btn--saved') ? '🔖' : '🏷️';" aria-label="Bookmark">🏷️</button>
+          <button class="bookmark-icon-btn bookmark-icon-btn--saved" onclick="this.classList.toggle('bookmark-icon-btn--saved'); this.textContent = this.classList.contains('bookmark-icon-btn--saved') ? '🔖' : '🏷️';" aria-label="Remove bookmark">🔖</button>
+        </div>
+      </div>
+
+      <!-- In-context -->
+      <div>
+        <p class="demo-label">In Context</p>
+        <div class="context-card">
+          <div class="context-card__header">
+            <div>
+              <h3 class="context-card__title">Closures</h3>
+              <p class="context-card__topic">⚡ JavaScript</p>
+            </div>
+            <button class="bookmark-icon-btn" onclick="this.classList.toggle('bookmark-icon-btn--saved'); this.textContent = this.classList.contains('bookmark-icon-btn--saved') ? '🔖' : '🏷️';" aria-label="Bookmark">🏷️</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

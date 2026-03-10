@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz Progress Bar</title>
+  <link rel="stylesheet" href="theme.css">
+  <style>
+    .progress-container {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-xxxl);
+    }
+
+    .quiz-progress {
+      background: var(--color-card);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-xl);
+      border: 1px solid var(--color-border);
+    }
+
+    .quiz-progress__header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: var(--spacing-md);
+    }
+
+    .quiz-progress__label {
+      font-size: var(--font-sm);
+      font-weight: var(--weight-semibold);
+      color: var(--color-text);
+    }
+
+    .quiz-progress__count {
+      font-size: var(--font-sm);
+      font-weight: var(--weight-bold);
+      color: var(--color-primary);
+    }
+
+    .quiz-progress__track {
+      width: 100%;
+      height: 8px;
+      background: var(--color-progress-bg);
+      border-radius: var(--radius-full);
+      overflow: hidden;
+    }
+
+    .quiz-progress__fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--color-primary), var(--color-primary-light));
+      border-radius: var(--radius-full);
+      transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+    }
+
+    .quiz-progress__fill::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      animation: shimmer 2s ease-in-out infinite;
+    }
+
+    @keyframes shimmer {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+
+    .quiz-progress__dots {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+      margin-top: var(--spacing-md);
+      justify-content: center;
+    }
+
+    .quiz-progress__dot {
+      width: 10px;
+      height: 10px;
+      border-radius: var(--radius-full);
+      background: var(--color-progress-bg);
+      transition: all 0.3s ease;
+    }
+
+    .quiz-progress__dot--completed {
+      background: var(--color-success);
+    }
+
+    .quiz-progress__dot--current {
+      background: var(--color-primary);
+      width: 24px;
+      border-radius: var(--radius-full);
+    }
+
+    .quiz-progress__dot--incorrect {
+      background: var(--color-error);
+    }
+  </style>
+</head>
+<body>
+  <div class="component-preview">
+    <p class="component-title">Quiz Progress Bar</p>
+    <div class="progress-container">
+      <!-- Progress bar state: question 3 of 5 -->
+      <div class="quiz-progress">
+        <div class="quiz-progress__header">
+          <span class="quiz-progress__label">Question 3 of 5</span>
+          <span class="quiz-progress__count">60%</span>
+        </div>
+        <div class="quiz-progress__track">
+          <div class="quiz-progress__fill" style="width: 60%;"></div>
+        </div>
+        <div class="quiz-progress__dots">
+          <div class="quiz-progress__dot quiz-progress__dot--completed"></div>
+          <div class="quiz-progress__dot quiz-progress__dot--completed"></div>
+          <div class="quiz-progress__dot quiz-progress__dot--current"></div>
+          <div class="quiz-progress__dot"></div>
+          <div class="quiz-progress__dot"></div>
+        </div>
+      </div>
+
+      <!-- Progress bar state: question 4 of 5 (one wrong) -->
+      <div class="quiz-progress">
+        <div class="quiz-progress__header">
+          <span class="quiz-progress__label">Question 4 of 5</span>
+          <span class="quiz-progress__count">80%</span>
+        </div>
+        <div class="quiz-progress__track">
+          <div class="quiz-progress__fill" style="width: 80%;"></div>
+        </div>
+        <div class="quiz-progress__dots">
+          <div class="quiz-progress__dot quiz-progress__dot--completed"></div>
+          <div class="quiz-progress__dot quiz-progress__dot--incorrect"></div>
+          <div class="quiz-progress__dot quiz-progress__dot--completed"></div>
+          <div class="quiz-progress__dot quiz-progress__dot--current"></div>
+          <div class="quiz-progress__dot"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

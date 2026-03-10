@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Course Completion Screen</title>
+  <link rel="stylesheet" href="theme.css">
+  <style>
+    .completion {
+      background: var(--color-card);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid var(--color-border-light);
+      text-align: center;
+    }
+
+    .completion__banner {
+      background: linear-gradient(135deg, var(--color-primary-dark), var(--color-primary), var(--color-primary-light));
+      padding: var(--spacing-huge) var(--spacing-xxl) var(--spacing-xxxl);
+      position: relative;
+    }
+
+    .completion__confetti {
+      font-size: var(--font-display);
+      margin-bottom: var(--spacing-lg);
+      animation: bounce 1s ease infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    .completion__congrats {
+      font-size: var(--font-xxl);
+      font-weight: var(--weight-heavy);
+      color: var(--color-text-inverse);
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .completion__subtitle {
+      font-size: var(--font-md);
+      color: rgba(255, 255, 255, 0.85);
+      font-weight: var(--weight-medium);
+    }
+
+    .completion__body {
+      padding: var(--spacing-xxl);
+    }
+
+    .completion__level-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+      background: var(--color-primary-light);
+      color: var(--color-primary-dark);
+      font-size: var(--font-sm);
+      font-weight: var(--weight-bold);
+      padding: var(--spacing-sm) var(--spacing-lg);
+      border-radius: var(--radius-full);
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .completion__stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: var(--spacing-md);
+      margin-bottom: var(--spacing-xxl);
+    }
+
+    .completion__stat {
+      background: var(--color-surface-light);
+      border-radius: var(--radius-md);
+      padding: var(--spacing-lg) var(--spacing-sm);
+    }
+
+    .completion__stat-value {
+      font-size: var(--font-xxl);
+      font-weight: var(--weight-heavy);
+      color: var(--color-primary);
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .completion__stat-label {
+      font-size: var(--font-xs);
+      color: var(--color-text-muted);
+      font-weight: var(--weight-medium);
+    }
+
+    .completion__achievements {
+      margin-bottom: var(--spacing-xxl);
+    }
+
+    .completion__achievements-label {
+      font-size: var(--font-xs);
+      font-weight: var(--weight-semibold);
+      color: var(--color-text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: var(--spacing-md);
+    }
+
+    .completion__badges {
+      display: flex;
+      justify-content: center;
+      gap: var(--spacing-md);
+    }
+
+    .completion__badge {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--spacing-xs);
+    }
+
+    .completion__badge-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: var(--radius-full);
+      background: var(--color-surface-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: var(--font-xl);
+      border: 2px solid var(--color-accent);
+    }
+
+    .completion__badge-name {
+      font-size: var(--font-xs);
+      color: var(--color-text-secondary);
+      font-weight: var(--weight-medium);
+    }
+
+    .completion__next-btn {
+      width: 100%;
+      padding: var(--spacing-lg);
+      background: var(--color-primary);
+      color: var(--color-text-inverse);
+      border: none;
+      border-radius: var(--radius-md);
+      font-size: var(--font-md);
+      font-weight: var(--weight-semibold);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-family: inherit;
+      margin-bottom: var(--spacing-md);
+    }
+
+    .completion__next-btn:active {
+      transform: scale(0.98);
+      background: var(--color-primary-dark);
+    }
+
+    .completion__review-btn {
+      width: 100%;
+      padding: var(--spacing-lg);
+      background: var(--color-surface-light);
+      color: var(--color-text);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      font-size: var(--font-md);
+      font-weight: var(--weight-medium);
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .completion__review-btn:active {
+      background: var(--color-border-light);
+    }
+  </style>
+</head>
+<body>
+  <div class="component-preview">
+    <p class="component-title">Course Completion Screen</p>
+
+    <article class="completion">
+      <div class="completion__banner">
+        <div class="completion__confetti">🎉</div>
+        <h1 class="completion__congrats">Level Complete!</h1>
+        <p class="completion__subtitle">You've mastered LLM Fundamentals</p>
+      </div>
+
+      <div class="completion__body">
+        <span class="completion__level-badge">⭐ Level 1 — LLM Fundamentals</span>
+
+        <div class="completion__stats">
+          <div class="completion__stat">
+            <p class="completion__stat-value">4</p>
+            <p class="completion__stat-label">Modules</p>
+          </div>
+          <div class="completion__stat">
+            <p class="completion__stat-value">28</p>
+            <p class="completion__stat-label">Cards</p>
+          </div>
+          <div class="completion__stat">
+            <p class="completion__stat-value">92%</p>
+            <p class="completion__stat-label">Accuracy</p>
+          </div>
+        </div>
+
+        <div class="completion__achievements">
+          <p class="completion__achievements-label">Achievements Unlocked</p>
+          <div class="completion__badges">
+            <div class="completion__badge">
+              <div class="completion__badge-icon">🧠</div>
+              <span class="completion__badge-name">AI Basics</span>
+            </div>
+            <div class="completion__badge">
+              <div class="completion__badge-icon">🎯</div>
+              <span class="completion__badge-name">Perfect Quiz</span>
+            </div>
+            <div class="completion__badge">
+              <div class="completion__badge-icon">⚡</div>
+              <span class="completion__badge-name">Speed Run</span>
+            </div>
+          </div>
+        </div>
+
+        <button class="completion__next-btn">Continue to Level 2: RAG →</button>
+        <button class="completion__review-btn">Review Level 1</button>
+      </div>
+    </article>
+  </div>
+</body>
+</html>

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fill in the Blank</title>
+  <link rel="stylesheet" href="theme.css">
+  <style>
+    .fib-card {
+      background: var(--color-prep-card);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-xl);
+      border: 1px solid var(--color-border);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+
+    .fib-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .fib-type-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--spacing-xs);
+      background: var(--color-info);
+      color: var(--color-text-inverse);
+      font-size: var(--font-xs);
+      font-weight: var(--weight-bold);
+      padding: var(--spacing-xs) var(--spacing-sm);
+      border-radius: var(--radius-full);
+      letter-spacing: 0.5px;
+    }
+
+    .fib-company {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--spacing-xs);
+      font-size: var(--font-xs);
+      color: var(--color-text-muted);
+      font-weight: var(--weight-medium);
+    }
+
+    .fib-meta {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+      margin-bottom: var(--spacing-lg);
+      flex-wrap: wrap;
+    }
+
+    .fib-topic {
+      font-size: var(--font-xs);
+      color: var(--color-prep-accent);
+      font-weight: var(--weight-semibold);
+    }
+
+    .fib-difficulty {
+      font-size: var(--font-xs);
+      font-weight: var(--weight-semibold);
+      padding: 2px var(--spacing-sm);
+      border-radius: var(--radius-full);
+      background: rgba(245, 158, 11, 0.12);
+      color: var(--color-warning);
+    }
+
+    .fib-round {
+      font-size: var(--font-xs);
+      color: var(--color-text-muted);
+      background: var(--color-surface-light);
+      padding: 2px var(--spacing-sm);
+      border-radius: var(--radius-full);
+    }
+
+    .fib-sentence {
+      font-size: var(--font-lg);
+      font-weight: var(--weight-medium);
+      color: var(--color-text);
+      line-height: 1.7;
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .fib-blank-wrapper {
+      display: inline-flex;
+      align-items: center;
+      vertical-align: baseline;
+    }
+
+    .fib-input {
+      width: 100px;
+      border: none;
+      border-bottom: 2.5px solid var(--color-prep-accent);
+      background: var(--color-prep-background);
+      padding: var(--spacing-xs) var(--spacing-sm);
+      font-size: var(--font-lg);
+      font-weight: var(--weight-bold);
+      color: var(--color-prep-accent);
+      font-family: inherit;
+      text-align: center;
+      outline: none;
+      border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+      transition: border-color 0.2s ease;
+    }
+
+    .fib-input:focus {
+      border-bottom-color: var(--color-primary);
+    }
+
+    .fib-input.correct {
+      border-bottom-color: var(--color-success);
+      color: var(--color-success);
+      background: rgba(88, 204, 2, 0.08);
+    }
+
+    .fib-input.incorrect {
+      border-bottom-color: var(--color-error);
+      color: var(--color-error);
+      background: rgba(239, 68, 68, 0.08);
+    }
+
+    .fib-actions {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: var(--spacing-lg);
+      padding-top: var(--spacing-lg);
+      border-top: 1px solid var(--color-border-light);
+    }
+
+    .fib-success-rate {
+      font-size: var(--font-xs);
+      color: var(--color-text-muted);
+    }
+
+    .fib-check-btn {
+      background: var(--color-prep-accent);
+      color: var(--color-text-inverse);
+      border: none;
+      padding: var(--spacing-sm) var(--spacing-xl);
+      border-radius: var(--radius-full);
+      font-size: var(--font-sm);
+      font-weight: var(--weight-bold);
+      cursor: pointer;
+      font-family: inherit;
+      transition: opacity 0.2s ease;
+    }
+
+    .fib-check-btn:hover {
+      opacity: 0.9;
+    }
+
+    .fib-answer-reveal {
+      margin-top: var(--spacing-lg);
+      padding: var(--spacing-md);
+      background: var(--color-prep-background);
+      border-radius: var(--radius-md);
+      border-left: 3px solid var(--color-prep-accent);
+      display: none;
+    }
+
+    .fib-answer-reveal.visible {
+      display: block;
+    }
+
+    .fib-answer-label {
+      font-size: var(--font-xs);
+      font-weight: var(--weight-bold);
+      color: var(--color-prep-accent);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .fib-answer-text {
+      font-size: var(--font-sm);
+      color: var(--color-text-secondary);
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+  <div class="component-preview">
+    <p class="component-title">Fill in the Blank</p>
+
+    <div class="fib-card">
+      <div class="fib-header">
+        <span class="fib-type-badge">✏️ Fill in Blank</span>
+        <span class="fib-company">Amazon</span>
+      </div>
+
+      <div class="fib-meta">
+        <span class="fib-topic">Transformers Architecture</span>
+        <span class="fib-difficulty">Intermediate</span>
+        <span class="fib-round">L5 Technical</span>
+      </div>
+
+      <p class="fib-sentence">
+        In the transformer architecture, the attention score is computed as softmax(QK<sup>T</sup> / √<span class="fib-blank-wrapper"><input type="text" class="fib-input" id="fibInput" placeholder="______" autocomplete="off"></span>).
+      </p>
+
+      <div class="fib-answer-reveal" id="fibReveal">
+        <p class="fib-answer-label">Model Answer</p>
+        <p class="fib-answer-text">The scaling factor is √d_k to prevent dot products from growing too large in high-dimensional spaces.</p>
+      </div>
+
+      <div class="fib-actions">
+        <span class="fib-success-rate">44% success rate</span>
+        <button class="fib-check-btn" onclick="checkFib()">Check</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function checkFib() {
+      const input = document.getElementById('fibInput');
+      const reveal = document.getElementById('fibReveal');
+      const answer = input.value.trim().toLowerCase();
+
+      if (answer === 'd_k' || answer === 'dk' || answer === 'd k') {
+        input.classList.remove('incorrect');
+        input.classList.add('correct');
+      } else if (answer.length > 0) {
+        input.classList.remove('correct');
+        input.classList.add('incorrect');
+      }
+      reveal.classList.add('visible');
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Company List</title>
+  <link rel="stylesheet" href="theme.css">
+  <style>
+    .company-showcase {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-xxl);
+    }
+
+    .section-label {
+      font-size: var(--font-xs);
+      font-weight: var(--weight-semibold);
+      color: var(--color-text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: var(--spacing-sm);
+    }
+
+    /* Company grid */
+    .company-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--spacing-sm);
+    }
+
+    .company-card {
+      background: var(--color-prep-card);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-lg);
+      border: 1px solid var(--color-border);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-md);
+    }
+
+    .company-card:hover {
+      border-color: var(--color-prep-accent);
+      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .company-card-logo {
+      width: 48px;
+      height: 48px;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: var(--font-xxl);
+      font-weight: var(--weight-heavy);
+      color: var(--color-text-inverse);
+    }
+
+    .company-card-logo.google { background: #4285F4; }
+    .company-card-logo.meta { background: #1877F2; }
+    .company-card-logo.amazon { background: #FF9900; }
+    .company-card-logo.netflix { background: #E50914; }
+    .company-card-logo.openai { background: #10A37F; }
+    .company-card-logo.uber { background: var(--color-text); }
+
+    .company-card-name {
+      font-size: var(--font-md);
+      font-weight: var(--weight-bold);
+      color: var(--color-text);
+    }
+
+    .company-card-stats {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-xs);
+    }
+
+    .company-card-stat {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: var(--font-xs);
+    }
+
+    .company-card-stat-label {
+      color: var(--color-text-muted);
+    }
+
+    .company-card-stat-value {
+      font-weight: var(--weight-bold);
+      color: var(--color-text);
+    }
+
+    .company-card-difficulty {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-xs);
+    }
+
+    .diff-dots {
+      display: flex;
+      gap: 3px;
+    }
+
+    .diff-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: var(--radius-full);
+      background: var(--color-progress-bg);
+    }
+
+    .diff-dot.filled.easy { background: var(--color-success); }
+    .diff-dot.filled.medium { background: var(--color-warning); }
+    .diff-dot.filled.hard { background: var(--color-error); }
+
+    .company-card-tag {
+      font-size: var(--font-xs);
+      font-weight: var(--weight-semibold);
+      padding: 2px var(--spacing-sm);
+      border-radius: var(--radius-full);
+    }
+
+    .company-card-tag.easy {
+      background: rgba(88, 204, 2, 0.1);
+      color: var(--color-success);
+    }
+
+    .company-card-tag.intermediate {
+      background: rgba(245, 158, 11, 0.1);
+      color: var(--color-warning);
+    }
+
+    /* Wide card variant */
+    .company-wide-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-sm);
+    }
+
+    .company-wide-card {
+      background: var(--color-prep-card);
+      border-radius: var(--radius-md);
+      padding: var(--spacing-md) var(--spacing-lg);
+      border: 1px solid var(--color-border);
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-md);
+      cursor: pointer;
+      transition: border-color 0.2s ease;
+    }
+
+    .company-wide-card:hover {
+      border-color: var(--color-prep-accent);
+    }
+
+    .company-wide-logo {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: var(--font-lg);
+      font-weight: var(--weight-heavy);
+      color: var(--color-text-inverse);
+      flex-shrink: 0;
+    }
+
+    .company-wide-logo.google { background: #4285F4; }
+    .company-wide-logo.meta { background: #1877F2; }
+    .company-wide-logo.amazon { background: #FF9900; }
+    .company-wide-logo.netflix { background: #E50914; }
+    .company-wide-logo.openai { background: #10A37F; }
+    .company-wide-logo.uber { background: var(--color-text); }
+
+    .company-wide-info {
+      flex: 1;
+    }
+
+    .company-wide-name {
+      font-size: var(--font-md);
+      font-weight: var(--weight-semibold);
+      color: var(--color-text);
+    }
+
+    .company-wide-meta {
+      font-size: var(--font-xs);
+      color: var(--color-text-muted);
+    }
+
+    .company-wide-count {
+      font-size: var(--font-xl);
+      font-weight: var(--weight-bold);
+      color: var(--color-prep-accent);
+    }
+
+    .company-wide-arrow {
+      font-size: var(--font-md);
+      color: var(--color-text-muted);
+    }
+
+    /* Summary header */
+    .company-summary {
+      background: var(--color-prep-background);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-lg);
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      text-align: center;
+    }
+
+    .company-summary-stat {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--spacing-xs);
+    }
+
+    .company-summary-value {
+      font-size: var(--font-xxl);
+      font-weight: var(--weight-heavy);
+      color: var(--color-prep-accent);
+    }
+
+    .company-summary-label {
+      font-size: var(--font-xs);
+      color: var(--color-text-muted);
+      font-weight: var(--weight-medium);
+    }
+  </style>
+</head>
+<body>
+  <div class="component-preview">
+    <p class="component-title">Company List</p>
+
+    <div class="company-showcase">
+      <div>
+        <p class="section-label">Summary</p>
+        <div class="company-summary">
+          <div class="company-summary-stat">
+            <span class="company-summary-value">5</span>
+            <span class="company-summary-label">Companies</span>
+          </div>
+          <div class="company-summary-stat">
+            <span class="company-summary-value">5</span>
+            <span class="company-summary-label">Questions</span>
+          </div>
+          <div class="company-summary-stat">
+            <span class="company-summary-value">61%</span>
+            <span class="company-summary-label">Avg Success</span>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <p class="section-label">Grid View</p>
+        <div class="company-grid">
+          <div class="company-card">
+            <div class="company-card-logo google">G</div>
+            <p class="company-card-name">Google</p>
+            <div class="company-card-stats">
+              <div class="company-card-stat">
+                <span class="company-card-stat-label">Questions</span>
+                <span class="company-card-stat-value">1</span>
+              </div>
+              <div class="company-card-stat">
+                <span class="company-card-stat-label">Avg Difficulty</span>
+                <span class="company-card-tag easy">Easy</span>
+              </div>
+            </div>
+          </div>
+          <div class="company-card">
+            <div class="company-card-logo meta">M</div>
+            <p class="company-card-name">Meta</p>
+            <div class="company-card-stats">
+              <div class="company-card-stat">
+                <span class="company-card-stat-label">Questions</span>
+                <span class="company-card-stat-value">3</span>
+              </div>
+              <div class="company-card-stat">
+                <span class="company-card-stat-label">Avg Difficulty</span>
+                <span class="company-card-tag intermediate">Medium</span>
+              </div>
+            </div>
+          </div>
+          <div class="company-card">
+            <div class="company-card-logo amazon">A</div>
+            <p class="company-card-name">Amazon</p>
+            <div class="company-card-stats">
+              <div class="company-card-stat">
+                <span class="company-card-stat-label">Questions</span>
+                <span class="company-card-stat-value">1</span>
+              </div>
+              <div class="company-card-stat">
+                <span class="company-card-stat-label">Avg Difficulty</span>
+                <span class="company-card-tag intermediate">Medium</span>
+              </div>
+            </div>
+          </div>
+          <div class="company-card">
+            <div class="company-card-logo netflix">N</div>
+            <p class="company-card-name">Netflix</p>
+            <div class="company-card-stats">
+              <div class="company-card-stat">
+                <span class="company-card-stat-label">Questions</span>
+                <span class="company-card-stat-value">1</span>
+              </div>
+              <div class="company-card-stat">
+                <span class="company-card-stat-label">Avg Difficulty</span>
+                <span class="company-card-tag easy">Hard</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <p class="section-label">List View</p>
+        <div class="company-wide-list">
+          <div class="company-wide-card">
+            <div class="company-wide-logo google">G</div>
+            <div class="company-wide-info">
+              <p class="company-wide-name">Google</p>
+              <p class="company-wide-meta">1 question · Easy</p>
+            </div>
+            <span class="company-wide-count">1</span>
+            <span class="company-wide-arrow">›</span>
+          </div>
+          <div class="company-wide-card">
+            <div class="company-wide-logo meta">M</div>
+            <div class="company-wide-info">
+              <p class="company-wide-name">Meta</p>
+              <p class="company-wide-meta">3 questions · Mixed</p>
+            </div>
+            <span class="company-wide-count">3</span>
+            <span class="company-wide-arrow">›</span>
+          </div>
+          <div class="company-wide-card">
+            <div class="company-wide-logo amazon">A</div>
+            <div class="company-wide-info">
+              <p class="company-wide-name">Amazon</p>
+              <p class="company-wide-meta">1 question · Intermediate</p>
+            </div>
+            <span class="company-wide-count">1</span>
+            <span class="company-wide-arrow">›</span>
+          </div>
+          <div class="company-wide-card">
+            <div class="company-wide-logo netflix">N</div>
+            <div class="company-wide-info">
+              <p class="company-wide-name">Netflix</p>
+              <p class="company-wide-meta">1 question · Advanced</p>
+            </div>
+            <span class="company-wide-count">1</span>
+            <span class="company-wide-arrow">›</span>
+          </div>
+          <div class="company-wide-card">
+            <div class="company-wide-logo openai">O</div>
+            <div class="company-wide-info">
+              <p class="company-wide-name">OpenAI</p>
+              <p class="company-wide-meta">1 question · Intermediate</p>
+            </div>
+            <span class="company-wide-count">1</span>
+            <span class="company-wide-arrow">›</span>
+          </div>
+          <div class="company-wide-card">
+            <div class="company-wide-logo uber">U</div>
+            <div class="company-wide-info">
+              <p class="company-wide-name">Uber</p>
+              <p class="company-wide-meta">1 question · Advanced</p>
+            </div>
+            <span class="company-wide-count">1</span>
+            <span class="company-wide-arrow">›</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

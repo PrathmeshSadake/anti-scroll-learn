@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Course Level Header</title>
+  <link rel="stylesheet" href="theme.css">
+  <style>
+    .level-header {
+      background: var(--color-card);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid var(--color-border-light);
+    }
+
+    .level-header__banner {
+      background: linear-gradient(135deg, var(--color-primary-dark), var(--color-primary));
+      padding: var(--spacing-xxl) var(--spacing-xxl) var(--spacing-xxxl);
+      position: relative;
+    }
+
+    .level-header__banner::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      right: 0;
+      height: 20px;
+      background: var(--color-card);
+      border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    }
+
+    .level-header__level-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--spacing-xs);
+      background: rgba(255, 255, 255, 0.2);
+      color: var(--color-text-inverse);
+      font-size: var(--font-xs);
+      font-weight: var(--weight-bold);
+      padding: var(--spacing-xs) var(--spacing-md);
+      border-radius: var(--radius-full);
+      margin-bottom: var(--spacing-md);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .level-header__icon {
+      font-size: var(--font-xxxl);
+      margin-bottom: var(--spacing-md);
+    }
+
+    .level-header__name {
+      font-size: var(--font-xxl);
+      font-weight: var(--weight-bold);
+      color: var(--color-text-inverse);
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .level-header__subtitle {
+      font-size: var(--font-md);
+      color: rgba(255, 255, 255, 0.8);
+      font-weight: var(--weight-medium);
+    }
+
+    .level-header__body {
+      padding: var(--spacing-lg) var(--spacing-xxl) var(--spacing-xxl);
+    }
+
+    .level-header__description {
+      font-size: var(--font-md);
+      color: var(--color-text-secondary);
+      line-height: 1.6;
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .level-header__modules-label {
+      font-size: var(--font-xs);
+      font-weight: var(--weight-semibold);
+      color: var(--color-text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: var(--spacing-md);
+    }
+
+    .level-header__modules {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-sm);
+    }
+
+    .level-header__module {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-md);
+      padding: var(--spacing-md) var(--spacing-lg);
+      background: var(--color-surface-light);
+      border-radius: var(--radius-sm);
+    }
+
+    .level-header__module-number {
+      width: 24px;
+      height: 24px;
+      border-radius: var(--radius-full);
+      background: var(--color-primary-light);
+      color: var(--color-primary-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: var(--font-xs);
+      font-weight: var(--weight-bold);
+      flex-shrink: 0;
+    }
+
+    .level-header__module-name {
+      font-size: var(--font-sm);
+      font-weight: var(--weight-medium);
+      color: var(--color-text);
+    }
+
+    .component-preview + .component-preview {
+      margin-top: var(--spacing-xxl);
+    }
+  </style>
+</head>
+<body>
+  <div class="component-preview">
+    <p class="component-title">Course Level Header — Level 1</p>
+
+    <article class="level-header">
+      <div class="level-header__banner">
+        <span class="level-header__level-badge">⭐ Level 1</span>
+        <div class="level-header__icon">🧠</div>
+        <h1 class="level-header__name">LLM Fundamentals</h1>
+        <p class="level-header__subtitle">How language models think</p>
+      </div>
+      <div class="level-header__body">
+        <p class="level-header__description">Master the core concepts behind generative AI, tokens, context windows, and prompt engineering.</p>
+        <p class="level-header__modules-label">4 Modules</p>
+        <div class="level-header__modules">
+          <div class="level-header__module">
+            <span class="level-header__module-number">1</span>
+            <span class="level-header__module-name">What is Generative AI?</span>
+          </div>
+          <div class="level-header__module">
+            <span class="level-header__module-number">2</span>
+            <span class="level-header__module-name">How LLMs Actually Work</span>
+          </div>
+          <div class="level-header__module">
+            <span class="level-header__module-number">3</span>
+            <span class="level-header__module-name">Tokens & Context Windows</span>
+          </div>
+          <div class="level-header__module">
+            <span class="level-header__module-number">4</span>
+            <span class="level-header__module-name">Prompt Engineering Basics</span>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <div class="component-preview">
+    <p class="component-title">Course Level Header — Level 2</p>
+
+    <article class="level-header">
+      <div class="level-header__banner">
+        <span class="level-header__level-badge">⭐ Level 2</span>
+        <div class="level-header__icon">🔗</div>
+        <h1 class="level-header__name">RAG</h1>
+        <p class="level-header__subtitle">Give AI your data</p>
+      </div>
+      <div class="level-header__body">
+        <p class="level-header__description">Learn how retrieval-augmented generation connects LLMs to your documents.</p>
+        <p class="level-header__modules-label">3 Modules</p>
+        <div class="level-header__modules">
+          <div class="level-header__module">
+            <span class="level-header__module-number">1</span>
+            <span class="level-header__module-name">How RAG Works</span>
+          </div>
+          <div class="level-header__module">
+            <span class="level-header__module-number">2</span>
+            <span class="level-header__module-name">Vector Embeddings & Semantic Search</span>
+          </div>
+          <div class="level-header__module">
+            <span class="level-header__module-number">3</span>
+            <span class="level-header__module-name">RAG vs Fine-tuning vs Prompting</span>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+</body>
+</html>

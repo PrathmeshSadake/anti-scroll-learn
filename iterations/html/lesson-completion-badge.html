@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lesson Completion Badge</title>
+  <link rel="stylesheet" href="theme.css">
+  <style>
+    .badges-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-xl);
+    }
+    .badge-row {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-lg);
+    }
+    .completion-badge {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      border-radius: var(--radius-full);
+      flex-shrink: 0;
+      transition: transform 0.2s ease;
+    }
+    .completion-badge:hover {
+      transform: scale(1.1);
+    }
+    .completion-badge__icon {
+      font-size: var(--font-xxl);
+    }
+    .completion-badge--completed {
+      background: var(--color-success);
+      box-shadow: 0 2px 8px rgba(88, 204, 2, 0.3);
+    }
+    .completion-badge--completed .completion-badge__icon {
+      color: var(--color-text-inverse);
+    }
+    .completion-badge--in-progress {
+      background: var(--color-primary-light);
+      border: 2px dashed var(--color-primary);
+    }
+    .completion-badge--locked {
+      background: var(--color-surface-light);
+      border: 2px solid var(--color-border);
+    }
+    .badge-info {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .badge-info__title {
+      font-size: var(--font-md);
+      font-weight: var(--weight-bold);
+      color: var(--color-text);
+    }
+    .badge-info__status {
+      font-size: var(--font-sm);
+      font-weight: var(--weight-medium);
+    }
+    .badge-info__status--completed { color: var(--color-success); }
+    .badge-info__status--in-progress { color: var(--color-primary); }
+    .badge-info__status--locked { color: var(--color-text-muted); }
+
+    /* Large badge variant */
+    .completion-badge--large {
+      width: 80px;
+      height: 80px;
+    }
+    .completion-badge--large .completion-badge__icon {
+      font-size: var(--font-xxxl);
+    }
+    .large-badge-section {
+      display: flex;
+      justify-content: center;
+      gap: var(--spacing-xxl);
+      padding: var(--spacing-xl) 0;
+    }
+    .demo-label {
+      font-size: var(--font-xs);
+      color: var(--color-text-muted);
+      font-weight: var(--weight-medium);
+      margin-bottom: var(--spacing-sm);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="component-preview">
+    <p class="component-title">Completion Badge</p>
+    <div class="badges-list">
+      <div>
+        <p class="demo-label">With Labels</p>
+        <div style="display: flex; flex-direction: column; gap: var(--spacing-md);">
+          <div class="badge-row">
+            <div class="completion-badge completion-badge--completed">
+              <span class="completion-badge__icon">✓</span>
+            </div>
+            <div class="badge-info">
+              <span class="badge-info__title">1. Introduction to Large Language Models</span>
+              <span class="badge-info__status badge-info__status--completed">Completed</span>
+            </div>
+          </div>
+          <div class="badge-row">
+            <div class="completion-badge completion-badge--in-progress">
+              <span class="completion-badge__icon">📖</span>
+            </div>
+            <div class="badge-info">
+              <span class="badge-info__title">2. The Architecture of LLMs</span>
+              <span class="badge-info__status badge-info__status--in-progress">In Progress</span>
+            </div>
+          </div>
+          <div class="badge-row">
+            <div class="completion-badge completion-badge--locked">
+              <span class="completion-badge__icon">🔒</span>
+            </div>
+            <div class="badge-info">
+              <span class="badge-info__title">3. Fundamentals Quiz</span>
+              <span class="badge-info__status badge-info__status--locked">Locked</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <p class="demo-label">Large Badges</p>
+        <div class="large-badge-section">
+          <div class="completion-badge completion-badge--large completion-badge--completed">
+            <span class="completion-badge__icon">✓</span>
+          </div>
+          <div class="completion-badge completion-badge--large completion-badge--in-progress">
+            <span class="completion-badge__icon">📖</span>
+          </div>
+          <div class="completion-badge completion-badge--large completion-badge--locked">
+            <span class="completion-badge__icon">🔒</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

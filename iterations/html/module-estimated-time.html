@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module Estimated Time</title>
+  <link rel="stylesheet" href="theme.css">
+  <style>
+    .time-demos {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-xxl);
+    }
+    .demo-label {
+      font-size: var(--font-xs);
+      color: var(--color-text-muted);
+      font-weight: var(--weight-medium);
+      margin-bottom: var(--spacing-sm);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* Pill badges */
+    .time-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--spacing-sm);
+    }
+    .time-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--spacing-xs);
+      padding: var(--spacing-xs) var(--spacing-md);
+      border-radius: var(--radius-full);
+      font-size: var(--font-sm);
+      font-weight: var(--weight-semibold);
+      background: var(--color-surface-light);
+      color: var(--color-text-secondary);
+      border: 1px solid var(--color-border-light);
+    }
+    .time-badge__icon {
+      font-size: var(--font-sm);
+    }
+
+    /* Card style */
+    .time-cards {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-md);
+    }
+    .time-card {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-md);
+      padding: var(--spacing-lg);
+      background: var(--color-card);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--color-border);
+    }
+    .time-card__clock {
+      width: 48px;
+      height: 48px;
+      border-radius: var(--radius-full);
+      background: var(--color-primary-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: var(--font-xxl);
+      flex-shrink: 0;
+    }
+    .time-card__info {
+      flex: 1;
+    }
+    .time-card__title {
+      font-size: var(--font-md);
+      font-weight: var(--weight-bold);
+      color: var(--color-text);
+    }
+    .time-card__subtitle {
+      font-size: var(--font-sm);
+      color: var(--color-text-muted);
+      margin-top: 2px;
+    }
+    .time-card__value {
+      font-size: var(--font-xl);
+      font-weight: var(--weight-heavy);
+      color: var(--color-primary);
+    }
+
+    /* Inline variant */
+    .time-inline {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-lg);
+      padding: var(--spacing-lg);
+      background: var(--color-card);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--color-border);
+    }
+    .time-inline__item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--spacing-xs);
+    }
+    .time-inline__value {
+      font-size: var(--font-xl);
+      font-weight: var(--weight-heavy);
+      color: var(--color-text);
+    }
+    .time-inline__label {
+      font-size: var(--font-xs);
+      color: var(--color-text-muted);
+      font-weight: var(--weight-medium);
+    }
+    .time-inline__divider {
+      width: 1px;
+      height: 32px;
+      background: var(--color-border);
+    }
+  </style>
+</head>
+<body>
+  <div class="component-preview">
+    <p class="component-title">Estimated Time</p>
+    <div class="time-demos">
+      <!-- Pill badges -->
+      <div>
+        <p class="demo-label">Pill Badges</p>
+        <div class="time-badges">
+          <span class="time-badge"><span class="time-badge__icon">🕐</span> ~5 min</span>
+          <span class="time-badge"><span class="time-badge__icon">🕐</span> ~10 min</span>
+          <span class="time-badge"><span class="time-badge__icon">🕐</span> ~15 min</span>
+          <span class="time-badge"><span class="time-badge__icon">🕐</span> ~30 min</span>
+          <span class="time-badge"><span class="time-badge__icon">🕐</span> ~1 hr</span>
+        </div>
+      </div>
+
+      <!-- Card style -->
+      <div>
+        <p class="demo-label">Card Style</p>
+        <div class="time-cards">
+          <div class="time-card">
+            <div class="time-card__clock">🕐</div>
+            <div class="time-card__info">
+              <h3 class="time-card__title">Module 1: Foundations of AI</h3>
+              <p class="time-card__subtitle">3 lessons · 1 quiz</p>
+            </div>
+            <span class="time-card__value">~15m</span>
+          </div>
+          <div class="time-card">
+            <div class="time-card__clock">🕐</div>
+            <div class="time-card__info">
+              <h3 class="time-card__title">Module 2: ML vs DL</h3>
+              <p class="time-card__subtitle">2 lessons</p>
+            </div>
+            <span class="time-card__value">~10m</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Inline stats -->
+      <div>
+        <p class="demo-label">Inline Stats</p>
+        <div class="time-inline">
+          <div class="time-inline__item">
+            <span class="time-inline__value">~5</span>
+            <span class="time-inline__label">Minutes</span>
+          </div>
+          <div class="time-inline__divider"></div>
+          <div class="time-inline__item">
+            <span class="time-inline__value">2</span>
+            <span class="time-inline__label">Sections</span>
+          </div>
+          <div class="time-inline__divider"></div>
+          <div class="time-inline__item">
+            <span class="time-inline__value">1</span>
+            <span class="time-inline__label">Quiz</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module Header</title>
+  <link rel="stylesheet" href="theme.css">
+  <style>
+    .headers-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-xl);
+    }
+    .module-header {
+      background: var(--color-card);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-xxl);
+      border: 1px solid var(--color-border);
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-md);
+    }
+    .module-header__number {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--spacing-xs);
+      font-size: var(--font-xs);
+      font-weight: var(--weight-bold);
+      color: var(--color-primary);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: var(--spacing-xs) var(--spacing-md);
+      background: var(--color-primary-light);
+      border-radius: var(--radius-full);
+      width: fit-content;
+    }
+    .module-header__title {
+      font-size: var(--font-xxl);
+      font-weight: var(--weight-heavy);
+      color: var(--color-text);
+      line-height: 1.2;
+    }
+    .module-header__description {
+      font-size: var(--font-md);
+      color: var(--color-text-secondary);
+      line-height: 1.6;
+    }
+    .module-header__stats {
+      display: flex;
+      gap: var(--spacing-lg);
+      margin-top: var(--spacing-sm);
+    }
+    .module-header__stat {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-xs);
+      font-size: var(--font-sm);
+      color: var(--color-text-muted);
+      font-weight: var(--weight-medium);
+    }
+  </style>
+</head>
+<body>
+  <div class="component-preview">
+    <p class="component-title">Module Header</p>
+    <div class="headers-list">
+      <header class="module-header">
+        <span class="module-header__number">📚 Module 1</span>
+        <h1 class="module-header__title">Foundations of Artificial Intelligence</h1>
+        <p class="module-header__description">Explore the fundamental concepts of AI, from its definition and brief history to the different types and their applications in the modern world.</p>
+        <div class="module-header__stats">
+          <span class="module-header__stat">📖 3 lessons</span>
+          <span class="module-header__stat">🧠 1 quiz</span>
+          <span class="module-header__stat">⏱ ~15 min</span>
+        </div>
+      </header>
+
+      <header class="module-header">
+        <span class="module-header__number">📚 Module 2</span>
+        <h1 class="module-header__title">Machine Learning vs Deep Learning</h1>
+        <p class="module-header__description">Understand the key differences between machine learning and deep learning, and learn how neural networks power today's most advanced AI systems.</p>
+        <div class="module-header__stats">
+          <span class="module-header__stat">📖 2 lessons</span>
+          <span class="module-header__stat">⏱ ~10 min</span>
+        </div>
+      </header>
+    </div>
+  </div>
+</body>
+</html>

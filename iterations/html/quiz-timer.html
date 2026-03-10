@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz Timer</title>
+  <link rel="stylesheet" href="theme.css">
+  <style>
+    .timer-showcase {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--spacing-xxxl);
+    }
+
+    .quiz-timer {
+      position: relative;
+      width: 120px;
+      height: 120px;
+    }
+
+    .quiz-timer svg {
+      transform: rotate(-90deg);
+    }
+
+    .quiz-timer__track {
+      fill: none;
+      stroke: var(--color-progress-bg);
+      stroke-width: 8;
+    }
+
+    .quiz-timer__fill {
+      fill: none;
+      stroke-width: 8;
+      stroke-linecap: round;
+      stroke-dasharray: 327;
+      transition: stroke-dashoffset 1s linear, stroke 0.5s ease;
+    }
+
+    .quiz-timer__fill--normal {
+      stroke: var(--color-primary);
+    }
+
+    .quiz-timer__fill--warning {
+      stroke: var(--color-warning);
+    }
+
+    .quiz-timer__fill--danger {
+      stroke: var(--color-error);
+      animation: timerPulse 1s ease-in-out infinite;
+    }
+
+    @keyframes timerPulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.6; }
+    }
+
+    .quiz-timer__text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+    }
+
+    .quiz-timer__seconds {
+      font-size: var(--font-xxl);
+      font-weight: var(--weight-heavy);
+      color: var(--color-text);
+      line-height: 1;
+    }
+
+    .quiz-timer__seconds--warning {
+      color: var(--color-warning);
+    }
+
+    .quiz-timer__seconds--danger {
+      color: var(--color-error);
+    }
+
+    .quiz-timer__label {
+      font-size: var(--font-xs);
+      color: var(--color-text-muted);
+      font-weight: var(--weight-medium);
+      margin-top: var(--spacing-xs);
+    }
+
+    .timer-state-label {
+      font-size: var(--font-sm);
+      font-weight: var(--weight-semibold);
+      color: var(--color-text-secondary);
+    }
+
+    /* Compact inline timer */
+    .quiz-timer-inline {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+      background: var(--color-card);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-full);
+      padding: var(--spacing-sm) var(--spacing-lg);
+    }
+
+    .quiz-timer-inline__icon {
+      font-size: var(--font-md);
+    }
+
+    .quiz-timer-inline__time {
+      font-size: var(--font-md);
+      font-weight: var(--weight-bold);
+      color: var(--color-text);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .quiz-timer-inline__time--danger {
+      color: var(--color-error);
+    }
+
+    .timer-row {
+      display: flex;
+      gap: var(--spacing-lg);
+      align-items: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="component-preview">
+    <p class="component-title">Quiz Timer</p>
+    <div class="timer-showcase">
+      <!-- Normal state: 30 seconds -->
+      <span class="timer-state-label">Normal (30s)</span>
+      <div class="quiz-timer" id="timer-normal">
+        <svg width="120" height="120" viewBox="0 0 120 120">
+          <circle class="quiz-timer__track" cx="60" cy="60" r="52" />
+          <circle class="quiz-timer__fill quiz-timer__fill--normal" cx="60" cy="60" r="52" style="stroke-dashoffset: 0;" />
+        </svg>
+        <div class="quiz-timer__text">
+          <div class="quiz-timer__seconds">30</div>
+          <div class="quiz-timer__label">seconds</div>
+        </div>
+      </div>
+
+      <!-- Warning state: 10 seconds -->
+      <span class="timer-state-label">Warning (10s)</span>
+      <div class="quiz-timer">
+        <svg width="120" height="120" viewBox="0 0 120 120">
+          <circle class="quiz-timer__track" cx="60" cy="60" r="52" />
+          <circle class="quiz-timer__fill quiz-timer__fill--warning" cx="60" cy="60" r="52" style="stroke-dashoffset: 218;" />
+        </svg>
+        <div class="quiz-timer__text">
+          <div class="quiz-timer__seconds quiz-timer__seconds--warning">10</div>
+          <div class="quiz-timer__label">seconds</div>
+        </div>
+      </div>
+
+      <!-- Danger state: 5 seconds -->
+      <span class="timer-state-label">Danger (5s)</span>
+      <div class="quiz-timer">
+        <svg width="120" height="120" viewBox="0 0 120 120">
+          <circle class="quiz-timer__track" cx="60" cy="60" r="52" />
+          <circle class="quiz-timer__fill quiz-timer__fill--danger" cx="60" cy="60" r="52" style="stroke-dashoffset: 272;" />
+        </svg>
+        <div class="quiz-timer__text">
+          <div class="quiz-timer__seconds quiz-timer__seconds--danger">5</div>
+          <div class="quiz-timer__label">seconds</div>
+        </div>
+      </div>
+
+      <!-- Inline timer variants -->
+      <span class="timer-state-label">Compact Inline</span>
+      <div class="timer-row">
+        <div class="quiz-timer-inline">
+          <span class="quiz-timer-inline__icon">⏱</span>
+          <span class="quiz-timer-inline__time">0:25</span>
+        </div>
+        <div class="quiz-timer-inline">
+          <span class="quiz-timer-inline__icon">⏱</span>
+          <span class="quiz-timer-inline__time quiz-timer-inline__time--danger">0:05</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Animate the first timer from 30 down
+    const timerEl = document.querySelector('#timer-normal');
+    const fill = timerEl.querySelector('.quiz-timer__fill');
+    const secondsEl = timerEl.querySelector('.quiz-timer__seconds');
+    let seconds = 30;
+    const totalDash = 327;
+
+    const interval = setInterval(() => {
+      seconds--;
+      if (seconds < 0) {
+        clearInterval(interval);
+        return;
+      }
+      secondsEl.textContent = seconds;
+      const offset = totalDash - (seconds / 30) * totalDash;
+      fill.style.strokeDashoffset = offset;
+
+      if (seconds <= 5) {
+        fill.classList.remove('quiz-timer__fill--normal', 'quiz-timer__fill--warning');
+        fill.classList.add('quiz-timer__fill--danger');
+        secondsEl.classList.add('quiz-timer__seconds--danger');
+      } else if (seconds <= 10) {
+        fill.classList.remove('quiz-timer__fill--normal');
+        fill.classList.add('quiz-timer__fill--warning');
+        secondsEl.classList.add('quiz-timer__seconds--warning');
+      }
+    }, 1000);
+  </script>
+</body>
+</html>

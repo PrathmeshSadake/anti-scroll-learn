@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Memory Tip Card</title>
+  <link rel="stylesheet" href="theme.css">
+  <style>
+    .tip-showcase {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-xxl);
+    }
+
+    .section-label {
+      font-size: var(--font-xs);
+      font-weight: var(--weight-semibold);
+      color: var(--color-text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: var(--spacing-sm);
+    }
+
+    /* Default memory tip */
+    .memory-tip-card {
+      background: var(--color-prep-card);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-lg);
+      border: 1px solid var(--color-border);
+      display: flex;
+      align-items: flex-start;
+      gap: var(--spacing-md);
+    }
+
+    .memory-tip-icon-wrapper {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-md);
+      background: rgba(245, 158, 11, 0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: var(--font-xxl);
+      flex-shrink: 0;
+    }
+
+    .memory-tip-content {
+      flex: 1;
+    }
+
+    .memory-tip-label {
+      font-size: var(--font-xs);
+      font-weight: var(--weight-bold);
+      color: var(--color-warning);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .memory-tip-text {
+      font-size: var(--font-md);
+      color: var(--color-text);
+      line-height: 1.6;
+    }
+
+    /* Highlighted variant */
+    .memory-tip-card.highlighted {
+      background: rgba(245, 158, 11, 0.06);
+      border-color: rgba(245, 158, 11, 0.2);
+      border-left: 4px solid var(--color-warning);
+    }
+
+    /* Compact variant */
+    .memory-tip-compact {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--spacing-sm);
+      padding: var(--spacing-md);
+      background: rgba(245, 158, 11, 0.06);
+      border-radius: var(--radius-md);
+    }
+
+    .memory-tip-compact-icon {
+      font-size: var(--font-lg);
+      flex-shrink: 0;
+      line-height: 1;
+    }
+
+    .memory-tip-compact-text {
+      font-size: var(--font-sm);
+      color: var(--color-text-secondary);
+      line-height: 1.5;
+    }
+
+    /* Banner variant */
+    .memory-tip-banner {
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.08), rgba(245, 158, 11, 0.02));
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-xl);
+      border: 1px solid rgba(245, 158, 11, 0.15);
+      text-align: center;
+    }
+
+    .memory-tip-banner-icon {
+      font-size: var(--font-xxxl);
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .memory-tip-banner-label {
+      font-size: var(--font-xs);
+      font-weight: var(--weight-bold);
+      color: var(--color-warning);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .memory-tip-banner-text {
+      font-size: var(--font-lg);
+      font-weight: var(--weight-medium);
+      color: var(--color-text);
+      line-height: 1.6;
+    }
+
+    /* In context card */
+    .tip-context-card {
+      background: var(--color-prep-card);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-lg);
+      border: 1px solid var(--color-border);
+    }
+
+    .tip-context-question {
+      font-size: var(--font-md);
+      font-weight: var(--weight-semibold);
+      color: var(--color-text);
+      margin-bottom: var(--spacing-md);
+      padding-bottom: var(--spacing-md);
+      border-bottom: 1px solid var(--color-border-light);
+      line-height: 1.5;
+    }
+
+    .tip-context-meta {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .tip-context-badge {
+      font-size: var(--font-xs);
+      font-weight: var(--weight-semibold);
+      padding: 2px var(--spacing-sm);
+      border-radius: var(--radius-full);
+      background: rgba(99, 102, 241, 0.1);
+      color: var(--color-prep-accent);
+    }
+
+    .tip-context-company {
+      font-size: var(--font-xs);
+      color: var(--color-text-muted);
+    }
+  </style>
+</head>
+<body>
+  <div class="component-preview">
+    <p class="component-title">Memory Tip Card</p>
+
+    <div class="tip-showcase">
+      <div>
+        <p class="section-label">Default</p>
+        <div class="memory-tip-card">
+          <div class="memory-tip-icon-wrapper">💡</div>
+          <div class="memory-tip-content">
+            <p class="memory-tip-label">Memory Tip</p>
+            <p class="memory-tip-text">Think of attention as every word asking 'who in this sentence is most relevant to me?'</p>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <p class="section-label">Highlighted</p>
+        <div class="memory-tip-card highlighted">
+          <div class="memory-tip-icon-wrapper">💡</div>
+          <div class="memory-tip-content">
+            <p class="memory-tip-label">Memory Tip</p>
+            <p class="memory-tip-text">Think of attention as every word asking 'who in this sentence is most relevant to me?'</p>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <p class="section-label">Compact</p>
+        <div class="memory-tip-compact">
+          <span class="memory-tip-compact-icon">💡</span>
+          <p class="memory-tip-compact-text">Think of attention as every word asking 'who in this sentence is most relevant to me?'</p>
+        </div>
+      </div>
+
+      <div>
+        <p class="section-label">Banner</p>
+        <div class="memory-tip-banner">
+          <div class="memory-tip-banner-icon">💡</div>
+          <p class="memory-tip-banner-label">Memory Tip</p>
+          <p class="memory-tip-banner-text">Think of attention as every word asking "who in this sentence is most relevant to me?"</p>
+        </div>
+      </div>
+
+      <div>
+        <p class="section-label">In Context</p>
+        <div class="tip-context-card">
+          <div class="tip-context-meta">
+            <span class="tip-context-badge">Flashcard</span>
+            <span class="tip-context-company">Meta · Transformers Architecture</span>
+          </div>
+          <p class="tip-context-question">Explain the self-attention mechanism in transformers.</p>
+          <div class="memory-tip-compact">
+            <span class="memory-tip-compact-icon">💡</span>
+            <p class="memory-tip-compact-text">Think of attention as every word asking 'who in this sentence is most relevant to me?'</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

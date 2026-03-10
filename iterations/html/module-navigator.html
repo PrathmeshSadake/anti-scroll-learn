@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module Navigator</title>
+  <link rel="stylesheet" href="theme.css">
+  <style>
+    .navigators-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-xl);
+    }
+    .demo-label {
+      font-size: var(--font-xs);
+      color: var(--color-text-muted);
+      font-weight: var(--weight-medium);
+      margin-bottom: var(--spacing-sm);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .module-navigator {
+      display: flex;
+      justify-content: space-between;
+      align-items: stretch;
+      gap: var(--spacing-sm);
+      background: var(--color-card);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-md);
+      border: 1px solid var(--color-border);
+    }
+    .module-navigator__btn {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+      padding: var(--spacing-md) var(--spacing-lg);
+      border-radius: var(--radius-md);
+      border: none;
+      background: var(--color-surface-light);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      flex: 1;
+      min-width: 0;
+      font-family: 'DM Sans', sans-serif;
+    }
+    .module-navigator__btn:hover {
+      background: var(--color-primary-light);
+    }
+    .module-navigator__btn--prev {
+      text-align: left;
+    }
+    .module-navigator__btn--next {
+      text-align: right;
+      flex-direction: row-reverse;
+    }
+    .module-navigator__btn--disabled {
+      opacity: 0.4;
+      pointer-events: none;
+    }
+    .module-navigator__arrow {
+      width: 32px;
+      height: 32px;
+      border-radius: var(--radius-full);
+      background: var(--color-primary);
+      color: var(--color-text-inverse);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: var(--font-md);
+      font-weight: var(--weight-bold);
+      flex-shrink: 0;
+    }
+    .module-navigator__btn--disabled .module-navigator__arrow {
+      background: var(--color-border);
+    }
+    .module-navigator__info {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
+    }
+    .module-navigator__direction {
+      font-size: var(--font-xs);
+      color: var(--color-text-muted);
+      font-weight: var(--weight-medium);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .module-navigator__title {
+      font-size: var(--font-sm);
+      font-weight: var(--weight-semibold);
+      color: var(--color-text);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  </style>
+</head>
+<body>
+  <div class="component-preview">
+    <p class="component-title">Module Navigator</p>
+    <div class="navigators-list">
+      <!-- Between modules -->
+      <div>
+        <p class="demo-label">Between Modules</p>
+        <nav class="module-navigator" aria-label="Module navigation">
+          <button class="module-navigator__btn module-navigator__btn--prev">
+            <span class="module-navigator__arrow">←</span>
+            <div class="module-navigator__info">
+              <span class="module-navigator__direction">Previous</span>
+              <span class="module-navigator__title">Module 1: Foundations of AI</span>
+            </div>
+          </button>
+          <button class="module-navigator__btn module-navigator__btn--next">
+            <span class="module-navigator__arrow">→</span>
+            <div class="module-navigator__info" style="align-items: flex-end;">
+              <span class="module-navigator__direction">Next</span>
+              <span class="module-navigator__title">Module 2: ML vs DL</span>
+            </div>
+          </button>
+        </nav>
+      </div>
+
+      <!-- First module -->
+      <div>
+        <p class="demo-label">First Module</p>
+        <nav class="module-navigator" aria-label="Module navigation">
+          <button class="module-navigator__btn module-navigator__btn--prev module-navigator__btn--disabled">
+            <span class="module-navigator__arrow">←</span>
+            <div class="module-navigator__info">
+              <span class="module-navigator__direction">Previous</span>
+              <span class="module-navigator__title">—</span>
+            </div>
+          </button>
+          <button class="module-navigator__btn module-navigator__btn--next">
+            <span class="module-navigator__arrow">→</span>
+            <div class="module-navigator__info" style="align-items: flex-end;">
+              <span class="module-navigator__direction">Next</span>
+              <span class="module-navigator__title">Module 2: ML vs DL</span>
+            </div>
+          </button>
+        </nav>
+      </div>
+
+      <!-- Last module -->
+      <div>
+        <p class="demo-label">Last Module</p>
+        <nav class="module-navigator" aria-label="Module navigation">
+          <button class="module-navigator__btn module-navigator__btn--prev">
+            <span class="module-navigator__arrow">←</span>
+            <div class="module-navigator__info">
+              <span class="module-navigator__direction">Previous</span>
+              <span class="module-navigator__title">Module 1: Foundations of AI</span>
+            </div>
+          </button>
+          <button class="module-navigator__btn module-navigator__btn--next module-navigator__btn--disabled">
+            <span class="module-navigator__arrow">→</span>
+            <div class="module-navigator__info" style="align-items: flex-end;">
+              <span class="module-navigator__direction">Next</span>
+              <span class="module-navigator__title">—</span>
+            </div>
+          </button>
+        </nav>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

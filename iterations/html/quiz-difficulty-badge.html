@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz Difficulty Badge</title>
+  <link rel="stylesheet" href="theme.css">
+  <style>
+    .badges-showcase {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-xxxl);
+    }
+
+    .badge-section {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-lg);
+    }
+
+    .badge-section-title {
+      font-size: var(--font-xs);
+      font-weight: var(--weight-semibold);
+      color: var(--color-text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* Pill badges */
+    .badge-row {
+      display: flex;
+      gap: var(--spacing-md);
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .difficulty-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+      padding: var(--spacing-sm) var(--spacing-lg);
+      border-radius: var(--radius-full);
+      font-size: var(--font-sm);
+      font-weight: var(--weight-bold);
+      letter-spacing: 0.3px;
+    }
+
+    .difficulty-badge__dot {
+      width: 8px;
+      height: 8px;
+      border-radius: var(--radius-full);
+    }
+
+    .difficulty-badge--easy {
+      background: rgba(88, 204, 2, 0.12);
+      color: var(--color-success);
+    }
+
+    .difficulty-badge--easy .difficulty-badge__dot {
+      background: var(--color-success);
+    }
+
+    .difficulty-badge--medium {
+      background: rgba(245, 158, 11, 0.12);
+      color: var(--color-warning);
+    }
+
+    .difficulty-badge--medium .difficulty-badge__dot {
+      background: var(--color-warning);
+    }
+
+    .difficulty-badge--hard {
+      background: rgba(239, 68, 68, 0.12);
+      color: var(--color-error);
+    }
+
+    .difficulty-badge--hard .difficulty-badge__dot {
+      background: var(--color-error);
+    }
+
+    /* Card style badges */
+    .difficulty-card {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-md);
+      padding: var(--spacing-lg);
+      background: var(--color-card);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--color-border);
+    }
+
+    .difficulty-card__icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-md);
+      font-size: var(--font-xl);
+      flex-shrink: 0;
+    }
+
+    .difficulty-card--easy .difficulty-card__icon {
+      background: rgba(88, 204, 2, 0.12);
+    }
+
+    .difficulty-card--medium .difficulty-card__icon {
+      background: rgba(245, 158, 11, 0.12);
+    }
+
+    .difficulty-card--hard .difficulty-card__icon {
+      background: rgba(239, 68, 68, 0.12);
+    }
+
+    .difficulty-card__content {
+      flex: 1;
+    }
+
+    .difficulty-card__title {
+      font-size: var(--font-md);
+      font-weight: var(--weight-bold);
+      color: var(--color-text);
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .difficulty-card__description {
+      font-size: var(--font-xs);
+      color: var(--color-text-secondary);
+      line-height: 1.4;
+    }
+
+    .difficulty-card__bars {
+      display: flex;
+      gap: 3px;
+      align-items: flex-end;
+    }
+
+    .difficulty-card__bar {
+      width: 4px;
+      border-radius: 2px;
+      background: var(--color-progress-bg);
+    }
+
+    .difficulty-card--easy .difficulty-card__bar--active {
+      background: var(--color-success);
+    }
+
+    .difficulty-card--medium .difficulty-card__bar--active {
+      background: var(--color-warning);
+    }
+
+    .difficulty-card--hard .difficulty-card__bar--active {
+      background: var(--color-error);
+    }
+
+    /* Tag-style small badges */
+    .difficulty-tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 2px var(--spacing-sm);
+      border-radius: var(--radius-sm);
+      font-size: var(--font-xs);
+      font-weight: var(--weight-bold);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .difficulty-tag--easy {
+      background: rgba(88, 204, 2, 0.12);
+      color: var(--color-success);
+    }
+
+    .difficulty-tag--medium {
+      background: rgba(245, 158, 11, 0.12);
+      color: var(--color-warning);
+    }
+
+    .difficulty-tag--hard {
+      background: rgba(239, 68, 68, 0.12);
+      color: var(--color-error);
+    }
+  </style>
+</head>
+<body>
+  <div class="component-preview">
+    <p class="component-title">Quiz Difficulty Badges</p>
+    <div class="badges-showcase">
+      <!-- Pill badges -->
+      <div class="badge-section">
+        <span class="badge-section-title">Pill Badges</span>
+        <div class="badge-row">
+          <span class="difficulty-badge difficulty-badge--easy">
+            <span class="difficulty-badge__dot"></span> Easy
+          </span>
+          <span class="difficulty-badge difficulty-badge--medium">
+            <span class="difficulty-badge__dot"></span> Medium
+          </span>
+          <span class="difficulty-badge difficulty-badge--hard">
+            <span class="difficulty-badge__dot"></span> Hard
+          </span>
+        </div>
+      </div>
+
+      <!-- Tag badges -->
+      <div class="badge-section">
+        <span class="badge-section-title">Tag Badges</span>
+        <div class="badge-row">
+          <span class="difficulty-tag difficulty-tag--easy">Easy</span>
+          <span class="difficulty-tag difficulty-tag--medium">Medium</span>
+          <span class="difficulty-tag difficulty-tag--hard">Hard</span>
+        </div>
+      </div>
+
+      <!-- Card badges with bars -->
+      <div class="badge-section">
+        <span class="badge-section-title">Card Badges</span>
+        <div class="difficulty-card difficulty-card--easy">
+          <div class="difficulty-card__icon">🌱</div>
+          <div class="difficulty-card__content">
+            <div class="difficulty-card__title">Easy</div>
+            <div class="difficulty-card__description">Foundational concepts, great for beginners</div>
+          </div>
+          <div class="difficulty-card__bars">
+            <div class="difficulty-card__bar difficulty-card__bar--active" style="height: 12px;"></div>
+            <div class="difficulty-card__bar" style="height: 18px;"></div>
+            <div class="difficulty-card__bar" style="height: 24px;"></div>
+          </div>
+        </div>
+
+        <div class="difficulty-card difficulty-card--medium">
+          <div class="difficulty-card__icon">⚡</div>
+          <div class="difficulty-card__content">
+            <div class="difficulty-card__title">Medium</div>
+            <div class="difficulty-card__description">Intermediate topics, requires some knowledge</div>
+          </div>
+          <div class="difficulty-card__bars">
+            <div class="difficulty-card__bar difficulty-card__bar--active" style="height: 12px;"></div>
+            <div class="difficulty-card__bar difficulty-card__bar--active" style="height: 18px;"></div>
+            <div class="difficulty-card__bar" style="height: 24px;"></div>
+          </div>
+        </div>
+
+        <div class="difficulty-card difficulty-card--hard">
+          <div class="difficulty-card__icon">🔥</div>
+          <div class="difficulty-card__content">
+            <div class="difficulty-card__title">Hard</div>
+            <div class="difficulty-card__description">Advanced challenges for experienced learners</div>
+          </div>
+          <div class="difficulty-card__bars">
+            <div class="difficulty-card__bar difficulty-card__bar--active" style="height: 12px;"></div>
+            <div class="difficulty-card__bar difficulty-card__bar--active" style="height: 18px;"></div>
+            <div class="difficulty-card__bar difficulty-card__bar--active" style="height: 24px;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lesson Daily Card</title>
+  <link rel="stylesheet" href="theme.css">
+  <style>
+    .daily-card {
+      background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+      border-radius: var(--radius-xl);
+      padding: var(--spacing-xxl);
+      color: var(--color-text-inverse);
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-lg);
+      position: relative;
+      overflow: hidden;
+    }
+    .daily-card::before {
+      content: '';
+      position: absolute;
+      top: -40%;
+      right: -20%;
+      width: 200px;
+      height: 200px;
+      border-radius: var(--radius-full);
+      background: rgba(255, 255, 255, 0.08);
+    }
+    .daily-card::after {
+      content: '';
+      position: absolute;
+      bottom: -30%;
+      left: -10%;
+      width: 150px;
+      height: 150px;
+      border-radius: var(--radius-full);
+      background: rgba(255, 255, 255, 0.05);
+    }
+    .daily-card__label {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--spacing-xs);
+      font-size: var(--font-xs);
+      font-weight: var(--weight-bold);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      opacity: 0.9;
+    }
+    .daily-card__topic {
+      display: inline-flex;
+      padding: var(--spacing-xs) var(--spacing-md);
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: var(--radius-full);
+      font-size: var(--font-xs);
+      font-weight: var(--weight-semibold);
+      width: fit-content;
+      backdrop-filter: blur(4px);
+    }
+    .daily-card__title {
+      font-size: var(--font-xxl);
+      font-weight: var(--weight-heavy);
+      line-height: 1.2;
+      position: relative;
+      z-index: 1;
+    }
+    .daily-card__description {
+      font-size: var(--font-md);
+      opacity: 0.85;
+      line-height: 1.5;
+      position: relative;
+      z-index: 1;
+    }
+    .daily-card__btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--spacing-sm);
+      padding: var(--spacing-md) var(--spacing-xxl);
+      background: var(--color-white);
+      color: var(--color-primary-dark);
+      border: none;
+      border-radius: var(--radius-full);
+      font-size: var(--font-md);
+      font-weight: var(--weight-bold);
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      position: relative;
+      z-index: 1;
+      width: fit-content;
+      font-family: 'DM Sans', sans-serif;
+    }
+    .daily-card__btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+    .daily-card__btn:active {
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+  <div class="component-preview">
+    <p class="component-title">Today's Lesson</p>
+    <article class="daily-card">
+      <span class="daily-card__label">✨ Today's Lesson</span>
+      <span class="daily-card__topic">⚡ JavaScript</span>
+      <h2 class="daily-card__title">Closures</h2>
+      <p class="daily-card__description">A closure is a function that remembers the variables from its outer scope...</p>
+      <button class="daily-card__btn">Start Learning →</button>
+    </article>
+  </div>
+</body>
+</html>

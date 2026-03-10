@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Course Visual Card</title>
+  <link rel="stylesheet" href="theme.css">
+  <style>
+    .visual-card {
+      background: var(--color-card);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-xxl);
+      border: 1px solid var(--color-border-light);
+    }
+
+    .visual-card__badge {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--spacing-xs);
+      background: var(--color-info);
+      color: var(--color-text-inverse);
+      font-size: var(--font-xs);
+      font-weight: var(--weight-semibold);
+      padding: var(--spacing-xs) var(--spacing-sm);
+      border-radius: var(--radius-full);
+      margin-bottom: var(--spacing-lg);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .visual-card__title {
+      font-size: var(--font-xl);
+      font-weight: var(--weight-bold);
+      color: var(--color-text);
+      margin-bottom: var(--spacing-xl);
+      line-height: 1.3;
+    }
+
+    .visual-card__timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      position: relative;
+    }
+
+    .visual-card__step {
+      display: flex;
+      gap: var(--spacing-lg);
+      position: relative;
+      padding-bottom: var(--spacing-xl);
+    }
+
+    .visual-card__step:last-child {
+      padding-bottom: 0;
+    }
+
+    .visual-card__step-marker {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .visual-card__step-number {
+      width: 32px;
+      height: 32px;
+      border-radius: var(--radius-full);
+      background: var(--color-primary);
+      color: var(--color-text-inverse);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: var(--font-sm);
+      font-weight: var(--weight-bold);
+      flex-shrink: 0;
+      z-index: 1;
+    }
+
+    .visual-card__step-line {
+      width: 2px;
+      flex: 1;
+      background: var(--color-border);
+      margin-top: var(--spacing-xs);
+    }
+
+    .visual-card__step:last-child .visual-card__step-line {
+      display: none;
+    }
+
+    .visual-card__step-content {
+      padding-top: var(--spacing-xs);
+      flex: 1;
+    }
+
+    .visual-card__step-label {
+      font-size: var(--font-md);
+      font-weight: var(--weight-semibold);
+      color: var(--color-text);
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .visual-card__step-description {
+      font-size: var(--font-sm);
+      color: var(--color-text-secondary);
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+  <div class="component-preview">
+    <p class="component-title">Course Visual Card</p>
+
+    <article class="visual-card">
+      <span class="visual-card__badge">👁 Visual</span>
+      <h2 class="visual-card__title">How Generative AI Works</h2>
+
+      <div class="visual-card__timeline">
+        <div class="visual-card__step">
+          <div class="visual-card__step-marker">
+            <div class="visual-card__step-number">1</div>
+            <div class="visual-card__step-line"></div>
+          </div>
+          <div class="visual-card__step-content">
+            <h3 class="visual-card__step-label">Training Data</h3>
+            <p class="visual-card__step-description">Billions of text, image, and code examples are fed to the model</p>
+          </div>
+        </div>
+
+        <div class="visual-card__step">
+          <div class="visual-card__step-marker">
+            <div class="visual-card__step-number">2</div>
+            <div class="visual-card__step-line"></div>
+          </div>
+          <div class="visual-card__step-content">
+            <h3 class="visual-card__step-label">Pattern Learning</h3>
+            <p class="visual-card__step-description">The model learns statistical patterns and relationships</p>
+          </div>
+        </div>
+
+        <div class="visual-card__step">
+          <div class="visual-card__step-marker">
+            <div class="visual-card__step-number">3</div>
+            <div class="visual-card__step-line"></div>
+          </div>
+          <div class="visual-card__step-content">
+            <h3 class="visual-card__step-label">Generation</h3>
+            <p class="visual-card__step-description">Given a prompt, it produces new content from learned patterns</p>
+          </div>
+        </div>
+
+        <div class="visual-card__step">
+          <div class="visual-card__step-marker">
+            <div class="visual-card__step-number">4</div>
+            <div class="visual-card__step-line"></div>
+          </div>
+          <div class="visual-card__step-content">
+            <h3 class="visual-card__step-label">Output</h3>
+            <p class="visual-card__step-description">Text, images, code, audio — whatever it was trained to create</p>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+</body>
+</html>

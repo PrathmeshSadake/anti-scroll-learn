@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Performance Summary</title>
+  <link rel="stylesheet" href="theme.css">
+  <style>
+    .perf-showcase {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-xxl);
+    }
+
+    .section-label {
+      font-size: var(--font-xs);
+      font-weight: var(--weight-semibold);
+      color: var(--color-text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: var(--spacing-sm);
+    }
+
+    /* Main performance card */
+    .perf-card {
+      background: var(--color-prep-card);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-xl);
+      border: 1px solid var(--color-border);
+    }
+
+    .perf-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .perf-title {
+      font-size: var(--font-lg);
+      font-weight: var(--weight-bold);
+      color: var(--color-text);
+    }
+
+    .perf-period {
+      font-size: var(--font-xs);
+      color: var(--color-text-muted);
+      background: var(--color-surface-light);
+      padding: var(--spacing-xs) var(--spacing-sm);
+      border-radius: var(--radius-full);
+    }
+
+    /* Stats grid */
+    .perf-stats-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: var(--spacing-md);
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .perf-stat {
+      text-align: center;
+      padding: var(--spacing-md);
+      background: var(--color-prep-background);
+      border-radius: var(--radius-md);
+    }
+
+    .perf-stat-value {
+      font-size: var(--font-xxl);
+      font-weight: var(--weight-heavy);
+      color: var(--color-text);
+      line-height: 1.2;
+    }
+
+    .perf-stat-value.accent {
+      color: var(--color-prep-accent);
+    }
+
+    .perf-stat-value.success {
+      color: var(--color-success);
+    }
+
+    .perf-stat-value.warning {
+      color: var(--color-warning);
+    }
+
+    .perf-stat-label {
+      font-size: var(--font-xs);
+      color: var(--color-text-muted);
+      font-weight: var(--weight-medium);
+      margin-top: var(--spacing-xs);
+    }
+
+    /* Accuracy ring */
+    .accuracy-section {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-xl);
+      margin-bottom: var(--spacing-xl);
+      padding-bottom: var(--spacing-xl);
+      border-bottom: 1px solid var(--color-border-light);
+    }
+
+    .accuracy-ring {
+      position: relative;
+      width: 80px;
+      height: 80px;
+      flex-shrink: 0;
+    }
+
+    .accuracy-ring svg {
+      width: 80px;
+      height: 80px;
+      transform: rotate(-90deg);
+    }
+
+    .accuracy-ring-bg {
+      fill: none;
+      stroke: var(--color-progress-bg);
+      stroke-width: 6;
+    }
+
+    .accuracy-ring-fill {
+      fill: none;
+      stroke: var(--color-prep-accent);
+      stroke-width: 6;
+      stroke-linecap: round;
+      stroke-dasharray: 201;
+      stroke-dashoffset: 61;
+      transition: stroke-dashoffset 0.6s ease;
+    }
+
+    .accuracy-ring-text {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .accuracy-ring-pct {
+      font-size: var(--font-lg);
+      font-weight: var(--weight-heavy);
+      color: var(--color-text);
+      line-height: 1;
+    }
+
+    .accuracy-ring-label {
+      font-size: 9px;
+      color: var(--color-text-muted);
+      font-weight: var(--weight-medium);
+    }
+
+    .accuracy-details {
+      flex: 1;
+    }
+
+    .accuracy-title {
+      font-size: var(--font-md);
+      font-weight: var(--weight-bold);
+      color: var(--color-text);
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .accuracy-breakdown {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-xs);
+    }
+
+    .accuracy-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: var(--font-xs);
+    }
+
+    .accuracy-row-label {
+      color: var(--color-text-secondary);
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-xs);
+    }
+
+    .accuracy-row-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: var(--radius-full);
+    }
+
+    .accuracy-row-dot.correct { background: var(--color-success); }
+    .accuracy-row-dot.incorrect { background: var(--color-error); }
+    .accuracy-row-dot.skipped { background: var(--color-text-muted); }
+
+    .accuracy-row-value {
+      font-weight: var(--weight-bold);
+      color: var(--color-text);
+    }
+
+    /* Streak section */
+    .streak-section {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-md);
+      padding: var(--spacing-md);
+      background: rgba(245, 158, 11, 0.06);
+      border-radius: var(--radius-md);
+    }
+
+    .streak-icon {
+      font-size: var(--font-xxl);
+    }
+
+    .streak-info {
+      flex: 1;
+    }
+
+    .streak-value {
+      font-size: var(--font-lg);
+      font-weight: var(--weight-bold);
+      color: var(--color-text);
+    }
+
+    .streak-label {
+      font-size: var(--font-xs);
+      color: var(--color-text-muted);
+    }
+
+    .streak-best {
+      font-size: var(--font-xs);
+      color: var(--color-warning);
+      font-weight: var(--weight-semibold);
+    }
+
+    /* Topic breakdown */
+    .topic-breakdown {
+      margin-top: var(--spacing-xl);
+    }
+
+    .topic-breakdown-title {
+      font-size: var(--font-sm);
+      font-weight: var(--weight-bold);
+      color: var(--color-text);
+      margin-bottom: var(--spacing-md);
+    }
+
+    .topic-breakdown-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-sm);
+    }
+
+    .topic-breakdown-item {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+    }
+
+    .topic-breakdown-name {
+      font-size: var(--font-sm);
+      color: var(--color-text);
+      min-width: 120px;
+      font-weight: var(--weight-medium);
+    }
+
+    .topic-breakdown-bar {
+      flex: 1;
+      height: 6px;
+      background: var(--color-progress-bg);
+      border-radius: var(--radius-full);
+      overflow: hidden;
+    }
+
+    .topic-breakdown-fill {
+      height: 100%;
+      border-radius: var(--radius-full);
+      background: var(--color-prep-accent);
+    }
+
+    .topic-breakdown-pct {
+      font-size: var(--font-xs);
+      font-weight: var(--weight-bold);
+      color: var(--color-prep-accent);
+      min-width: 36px;
+      text-align: right;
+    }
+  </style>
+</head>
+<body>
+  <div class="component-preview">
+    <p class="component-title">Performance Summary</p>
+
+    <div class="perf-showcase">
+      <div class="perf-card">
+        <div class="perf-header">
+          <h2 class="perf-title">Your Performance</h2>
+          <span class="perf-period">This Week</span>
+        </div>
+
+        <div class="perf-stats-grid">
+          <div class="perf-stat">
+            <p class="perf-stat-value accent">5</p>
+            <p class="perf-stat-label">Attempted</p>
+          </div>
+          <div class="perf-stat">
+            <p class="perf-stat-value success">3</p>
+            <p class="perf-stat-label">Correct</p>
+          </div>
+          <div class="perf-stat">
+            <p class="perf-stat-value warning">4</p>
+            <p class="perf-stat-label">Day Streak</p>
+          </div>
+        </div>
+
+        <div class="accuracy-section">
+          <div class="accuracy-ring">
+            <svg viewBox="0 0 80 80">
+              <circle cx="40" cy="40" r="32" class="accuracy-ring-bg" />
+              <circle cx="40" cy="40" r="32" class="accuracy-ring-fill" />
+            </svg>
+            <div class="accuracy-ring-text">
+              <span class="accuracy-ring-pct">70%</span>
+              <span class="accuracy-ring-label">Accuracy</span>
+            </div>
+          </div>
+          <div class="accuracy-details">
+            <p class="accuracy-title">Overall Accuracy</p>
+            <div class="accuracy-breakdown">
+              <div class="accuracy-row">
+                <span class="accuracy-row-label"><span class="accuracy-row-dot correct"></span> Correct</span>
+                <span class="accuracy-row-value">3</span>
+              </div>
+              <div class="accuracy-row">
+                <span class="accuracy-row-label"><span class="accuracy-row-dot incorrect"></span> Incorrect</span>
+                <span class="accuracy-row-value">1</span>
+              </div>
+              <div class="accuracy-row">
+                <span class="accuracy-row-label"><span class="accuracy-row-dot skipped"></span> Skipped</span>
+                <span class="accuracy-row-value">1</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="streak-section">
+          <span class="streak-icon">🔥</span>
+          <div class="streak-info">
+            <p class="streak-value">4 Day Streak</p>
+            <p class="streak-label">Keep it going!</p>
+          </div>
+          <span class="streak-best">Best: 7</span>
+        </div>
+
+        <div class="topic-breakdown">
+          <p class="topic-breakdown-title">By Topic</p>
+          <div class="topic-breakdown-list">
+            <div class="topic-breakdown-item">
+              <span class="topic-breakdown-name">LLM Fundamentals</span>
+              <div class="topic-breakdown-bar">
+                <div class="topic-breakdown-fill" style="width: 100%"></div>
+              </div>
+              <span class="topic-breakdown-pct">100%</span>
+            </div>
+            <div class="topic-breakdown-item">
+              <span class="topic-breakdown-name">Transformers</span>
+              <div class="topic-breakdown-bar">
+                <div class="topic-breakdown-fill" style="width: 50%"></div>
+              </div>
+              <span class="topic-breakdown-pct">50%</span>
+            </div>
+            <div class="topic-breakdown-item">
+              <span class="topic-breakdown-name">RAG &amp; Retrieval</span>
+              <div class="topic-breakdown-bar">
+                <div class="topic-breakdown-fill" style="width: 75%"></div>
+              </div>
+              <span class="topic-breakdown-pct">75%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

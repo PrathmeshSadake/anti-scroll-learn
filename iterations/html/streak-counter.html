@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Streak Counter</title>
+  <link rel="stylesheet" href="theme.css">
+  <style>
+    .streak {
+      background: var(--color-card);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-xxl);
+      border: 1px solid var(--color-border-light);
+    }
+
+    .streak__header {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-lg);
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .streak__fire {
+      width: 56px;
+      height: 56px;
+      border-radius: var(--radius-full);
+      background: linear-gradient(135deg, #ff6b35, #f7931e);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: var(--font-xxxl);
+      box-shadow: 0 4px 16px rgba(255, 107, 53, 0.3);
+      animation: pulse 2s ease infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    .streak__info {
+      flex: 1;
+    }
+
+    .streak__count {
+      font-size: var(--font-xxxl);
+      font-weight: var(--weight-heavy);
+      color: var(--color-text);
+      line-height: 1;
+    }
+
+    .streak__label {
+      font-size: var(--font-sm);
+      color: var(--color-text-secondary);
+      font-weight: var(--weight-medium);
+    }
+
+    .streak__best {
+      font-size: var(--font-xs);
+      color: var(--color-text-muted);
+      margin-top: var(--spacing-xs);
+    }
+
+    .streak__calendar {
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .streak__calendar-label {
+      font-size: var(--font-xs);
+      font-weight: var(--weight-semibold);
+      color: var(--color-text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: var(--spacing-md);
+    }
+
+    .streak__week {
+      display: flex;
+      justify-content: space-between;
+      gap: var(--spacing-sm);
+    }
+
+    .streak__day {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--spacing-xs);
+      flex: 1;
+    }
+
+    .streak__day-name {
+      font-size: var(--font-xs);
+      color: var(--color-text-muted);
+      font-weight: var(--weight-medium);
+    }
+
+    .streak__day-dot {
+      width: 36px;
+      height: 36px;
+      border-radius: var(--radius-full);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: var(--font-sm);
+      transition: all 0.2s ease;
+    }
+
+    .streak__day-dot--completed {
+      background: linear-gradient(135deg, #ff6b35, #f7931e);
+      color: var(--color-text-inverse);
+    }
+
+    .streak__day-dot--today {
+      background: var(--color-primary);
+      color: var(--color-text-inverse);
+      box-shadow: 0 0 0 3px var(--color-primary-light);
+    }
+
+    .streak__day-dot--future {
+      background: var(--color-surface-light);
+      border: 2px dashed var(--color-border);
+      color: var(--color-text-muted);
+    }
+
+    .streak__day-dot--missed {
+      background: var(--color-surface-light);
+      color: var(--color-text-muted);
+    }
+
+    .streak__motivation {
+      background: var(--color-surface-light);
+      border-radius: var(--radius-md);
+      padding: var(--spacing-lg);
+      text-align: center;
+      font-size: var(--font-sm);
+      color: var(--color-text-secondary);
+      font-weight: var(--weight-medium);
+    }
+
+    .streak__motivation-emoji {
+      font-size: var(--font-lg);
+      margin-right: var(--spacing-xs);
+    }
+  </style>
+</head>
+<body>
+  <div class="component-preview">
+    <p class="component-title">Streak Counter</p>
+
+    <article class="streak">
+      <div class="streak__header">
+        <div class="streak__fire">🔥</div>
+        <div class="streak__info">
+          <p class="streak__count">7</p>
+          <p class="streak__label">Day Streak</p>
+          <p class="streak__best">🏆 Personal best: 12 days</p>
+        </div>
+      </div>
+
+      <div class="streak__calendar">
+        <p class="streak__calendar-label">This Week</p>
+        <div class="streak__week">
+          <div class="streak__day">
+            <span class="streak__day-name">Mon</span>
+            <div class="streak__day-dot streak__day-dot--completed">✓</div>
+          </div>
+          <div class="streak__day">
+            <span class="streak__day-name">Tue</span>
+            <div class="streak__day-dot streak__day-dot--completed">✓</div>
+          </div>
+          <div class="streak__day">
+            <span class="streak__day-name">Wed</span>
+            <div class="streak__day-dot streak__day-dot--completed">✓</div>
+          </div>
+          <div class="streak__day">
+            <span class="streak__day-name">Thu</span>
+            <div class="streak__day-dot streak__day-dot--completed">✓</div>
+          </div>
+          <div class="streak__day">
+            <span class="streak__day-name">Fri</span>
+            <div class="streak__day-dot streak__day-dot--completed">✓</div>
+          </div>
+          <div class="streak__day">
+            <span class="streak__day-name">Sat</span>
+            <div class="streak__day-dot streak__day-dot--completed">✓</div>
+          </div>
+          <div class="streak__day">
+            <span class="streak__day-name">Sun</span>
+            <div class="streak__day-dot streak__day-dot--today">✓</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="streak__motivation">
+        <span class="streak__motivation-emoji">💪</span>
+        You're on fire! Keep going to beat your personal best!
+      </div>
+    </article>
+  </div>
+</body>
+</html>

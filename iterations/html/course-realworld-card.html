@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Course Real-World Card</title>
+  <link rel="stylesheet" href="theme.css">
+  <style>
+    .realworld-card {
+      background: var(--color-card);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-xxl);
+      border: 1px solid var(--color-border-light);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .realworld-card__badge {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--spacing-xs);
+      background: var(--color-accent);
+      color: var(--color-text-inverse);
+      font-size: var(--font-xs);
+      font-weight: var(--weight-semibold);
+      padding: var(--spacing-xs) var(--spacing-sm);
+      border-radius: var(--radius-full);
+      margin-bottom: var(--spacing-lg);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .realworld-card__company {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-md);
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .realworld-card__company-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-md);
+      background: var(--color-surface-light);
+      border: 1px solid var(--color-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: var(--font-xl);
+    }
+
+    .realworld-card__company-name {
+      font-size: var(--font-lg);
+      font-weight: var(--weight-bold);
+      color: var(--color-text);
+    }
+
+    .realworld-card__what-label {
+      font-size: var(--font-xs);
+      font-weight: var(--weight-semibold);
+      color: var(--color-text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .realworld-card__what {
+      font-size: var(--font-md);
+      color: var(--color-text-secondary);
+      line-height: 1.6;
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .realworld-card__result {
+      background: var(--color-surface-light);
+      border-radius: var(--radius-md);
+      padding: var(--spacing-lg);
+      border-left: 3px solid var(--color-accent);
+    }
+
+    .realworld-card__result-label {
+      font-size: var(--font-xs);
+      font-weight: var(--weight-semibold);
+      color: var(--color-accent);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .realworld-card__result-text {
+      font-size: var(--font-md);
+      color: var(--color-text);
+      line-height: 1.5;
+      font-weight: var(--weight-medium);
+    }
+
+    .realworld-card__result-metric {
+      font-size: var(--font-xxl);
+      font-weight: var(--weight-heavy);
+      color: var(--color-accent);
+      margin-top: var(--spacing-sm);
+    }
+  </style>
+</head>
+<body>
+  <div class="component-preview">
+    <p class="component-title">Course Real-World Card</p>
+
+    <article class="realworld-card">
+      <span class="realworld-card__badge">🌍 Real World</span>
+
+      <div class="realworld-card__company">
+        <div class="realworld-card__company-icon">🤖</div>
+        <h2 class="realworld-card__company-name">GitHub Copilot</h2>
+      </div>
+
+      <p class="realworld-card__what-label">What they did</p>
+      <p class="realworld-card__what">Used Gen AI to auto-complete and generate code for developers directly inside their editor.</p>
+
+      <div class="realworld-card__result">
+        <p class="realworld-card__result-label">📈 Impact</p>
+        <p class="realworld-card__result-text">Developers completing tasks 55% faster. Over 100M lines of code generated daily.</p>
+        <p class="realworld-card__result-metric">55% faster</p>
+      </div>
+    </article>
+  </div>
+</body>
+</html>

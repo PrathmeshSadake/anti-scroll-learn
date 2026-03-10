@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interview Question List</title>
+  <link rel="stylesheet" href="theme.css">
+  <style>
+    .question-list-container {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-xxl);
+    }
+
+    .topic-group {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-sm);
+    }
+
+    .topic-group-header {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+      padding-bottom: var(--spacing-sm);
+      border-bottom: 1px solid var(--color-border-light);
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .topic-group-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: var(--font-lg);
+    }
+
+    .topic-group-icon.llm { background: rgba(99, 102, 241, 0.12); }
+    .topic-group-icon.transformers { background: rgba(206, 130, 255, 0.12); }
+    .topic-group-icon.rag { background: rgba(59, 130, 246, 0.12); }
+
+    .topic-group-name {
+      font-size: var(--font-md);
+      font-weight: var(--weight-bold);
+      color: var(--color-text);
+    }
+
+    .topic-group-count {
+      margin-left: auto;
+      font-size: var(--font-xs);
+      color: var(--color-text-muted);
+      background: var(--color-surface-light);
+      padding: 2px var(--spacing-sm);
+      border-radius: var(--radius-full);
+      font-weight: var(--weight-medium);
+    }
+
+    /* Question item */
+    .question-item {
+      background: var(--color-prep-card);
+      border-radius: var(--radius-md);
+      padding: var(--spacing-md) var(--spacing-lg);
+      border: 1px solid var(--color-border);
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-sm);
+      cursor: pointer;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .question-item:hover {
+      border-color: var(--color-prep-accent);
+      box-shadow: 0 2px 8px rgba(99, 102, 241, 0.08);
+    }
+
+    .question-item-top {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+      flex-wrap: wrap;
+    }
+
+    .q-type-badge {
+      font-size: var(--font-xs);
+      font-weight: var(--weight-bold);
+      padding: 2px var(--spacing-sm);
+      border-radius: var(--radius-full);
+      letter-spacing: 0.3px;
+    }
+
+    .q-type-badge.mcq {
+      background: rgba(88, 204, 2, 0.12);
+      color: var(--color-success);
+    }
+
+    .q-type-badge.flashcard {
+      background: rgba(99, 102, 241, 0.12);
+      color: var(--color-prep-accent);
+    }
+
+    .q-type-badge.fill {
+      background: rgba(59, 130, 246, 0.12);
+      color: var(--color-info);
+    }
+
+    .q-type-badge.short {
+      background: rgba(206, 130, 255, 0.12);
+      color: var(--color-primary);
+    }
+
+    .q-difficulty {
+      font-size: var(--font-xs);
+      font-weight: var(--weight-semibold);
+      padding: 2px var(--spacing-sm);
+      border-radius: var(--radius-full);
+    }
+
+    .q-difficulty.easy {
+      background: rgba(88, 204, 2, 0.1);
+      color: var(--color-success);
+    }
+
+    .q-difficulty.intermediate {
+      background: rgba(245, 158, 11, 0.1);
+      color: var(--color-warning);
+    }
+
+    .q-difficulty.advanced {
+      background: rgba(239, 68, 68, 0.1);
+      color: var(--color-error);
+    }
+
+    .q-company {
+      font-size: var(--font-xs);
+      color: var(--color-text-muted);
+      margin-left: auto;
+    }
+
+    .question-item-text {
+      font-size: var(--font-md);
+      font-weight: var(--weight-medium);
+      color: var(--color-text);
+      line-height: 1.5;
+    }
+
+    .question-item-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .q-success-mini {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-xs);
+      font-size: var(--font-xs);
+      color: var(--color-text-muted);
+    }
+
+    .q-success-bar-mini {
+      width: 48px;
+      height: 4px;
+      border-radius: var(--radius-full);
+      background: var(--color-progress-bg);
+      overflow: hidden;
+    }
+
+    .q-success-fill-mini {
+      height: 100%;
+      border-radius: var(--radius-full);
+      background: var(--color-success);
+    }
+
+    .q-arrow {
+      font-size: var(--font-md);
+      color: var(--color-text-muted);
+    }
+
+    .q-pro-label {
+      font-size: 9px;
+      font-weight: var(--weight-heavy);
+      background: linear-gradient(135deg, var(--color-warning), #e67e22);
+      color: var(--color-text-inverse);
+      padding: 1px var(--spacing-xs);
+      border-radius: var(--radius-sm);
+      letter-spacing: 0.5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="component-preview">
+    <p class="component-title">Interview Questions by Topic</p>
+
+    <div class="question-list-container">
+      <!-- LLM Fundamentals -->
+      <section class="topic-group">
+        <div class="topic-group-header">
+          <div class="topic-group-icon llm">🧠</div>
+          <span class="topic-group-name">LLM Fundamentals</span>
+          <span class="topic-group-count">1</span>
+        </div>
+        <article class="question-item">
+          <div class="question-item-top">
+            <span class="q-type-badge mcq">MCQ</span>
+            <span class="q-difficulty easy">Easy</span>
+            <span class="q-company">Google</span>
+          </div>
+          <p class="question-item-text">What is the primary purpose of tokenization in large language models?</p>
+          <div class="question-item-bottom">
+            <span class="q-success-mini">
+              <span class="q-success-bar-mini"><span class="q-success-fill-mini" style="width:92%"></span></span>
+              92%
+            </span>
+            <span class="q-arrow">›</span>
+          </div>
+        </article>
+      </section>
+
+      <!-- Transformers Architecture -->
+      <section class="topic-group">
+        <div class="topic-group-header">
+          <div class="topic-group-icon transformers">⚡</div>
+          <span class="topic-group-name">Transformers Architecture</span>
+          <span class="topic-group-count">2</span>
+        </div>
+        <article class="question-item">
+          <div class="question-item-top">
+            <span class="q-type-badge flashcard">Flashcard</span>
+            <span class="q-difficulty intermediate">Intermediate</span>
+            <span class="q-company">Meta</span>
+          </div>
+          <p class="question-item-text">Explain the self-attention mechanism in transformers.</p>
+          <div class="question-item-bottom">
+            <span class="q-success-mini">
+              <span class="q-success-bar-mini"><span class="q-success-fill-mini" style="width:34%"></span></span>
+              34%
+            </span>
+            <span class="q-arrow">›</span>
+          </div>
+        </article>
+        <article class="question-item">
+          <div class="question-item-top">
+            <span class="q-type-badge fill">Fill Blank</span>
+            <span class="q-difficulty intermediate">Intermediate</span>
+            <span class="q-company">Amazon</span>
+          </div>
+          <p class="question-item-text">In the transformer architecture, the attention score is computed as softmax(QK^T / √______).</p>
+          <div class="question-item-bottom">
+            <span class="q-success-mini">
+              <span class="q-success-bar-mini"><span class="q-success-fill-mini" style="width:44%"></span></span>
+              44%
+            </span>
+            <span class="q-arrow">›</span>
+          </div>
+        </article>
+      </section>
+
+      <!-- RAG & Retrieval -->
+      <section class="topic-group">
+        <div class="topic-group-header">
+          <div class="topic-group-icon rag">🔍</div>
+          <span class="topic-group-name">RAG &amp; Retrieval</span>
+          <span class="topic-group-count">2</span>
+        </div>
+        <article class="question-item">
+          <div class="question-item-top">
+            <span class="q-type-badge short">Short Answer</span>
+            <span class="q-difficulty advanced">Advanced</span>
+            <span class="q-pro-label">PRO</span>
+            <span class="q-company">Netflix</span>
+          </div>
+          <p class="question-item-text">When should you fine-tune an LLM versus using Context Window Management (RAG)?</p>
+          <div class="question-item-bottom">
+            <span class="q-success-mini">
+              <span class="q-success-bar-mini"><span class="q-success-fill-mini" style="width:62%"></span></span>
+              62%
+            </span>
+            <span class="q-arrow">›</span>
+          </div>
+        </article>
+        <article class="question-item">
+          <div class="question-item-top">
+            <span class="q-type-badge mcq">MCQ</span>
+            <span class="q-difficulty easy">Easy</span>
+            <span class="q-company">Meta</span>
+          </div>
+          <p class="question-item-text">In RAG systems, what is chunking primarily used for?</p>
+          <div class="question-item-bottom">
+            <span class="q-success-mini">
+              <span class="q-success-bar-mini"><span class="q-success-fill-mini" style="width:75%"></span></span>
+              75%
+            </span>
+            <span class="q-arrow">›</span>
+          </div>
+        </article>
+      </section>
+    </div>
+  </div>
+</body>
+</html>

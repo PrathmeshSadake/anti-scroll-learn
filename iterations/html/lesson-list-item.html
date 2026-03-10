@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lesson List Item</title>
+  <link rel="stylesheet" href="theme.css">
+  <style>
+    .list-items {
+      background: var(--color-card);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--color-border);
+      overflow: hidden;
+    }
+    .list-item {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-md);
+      padding: var(--spacing-lg);
+      border-bottom: 1px solid var(--color-border-light);
+      cursor: pointer;
+      transition: background 0.15s ease;
+    }
+    .list-item:last-child {
+      border-bottom: none;
+    }
+    .list-item:hover {
+      background: var(--color-surface-light);
+    }
+    .list-item__status {
+      width: 32px;
+      height: 32px;
+      border-radius: var(--radius-full);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: var(--font-sm);
+    }
+    .list-item__status--completed {
+      background: var(--color-success);
+      color: var(--color-text-inverse);
+    }
+    .list-item__status--in-progress {
+      background: var(--color-primary-light);
+      color: var(--color-primary-dark);
+    }
+    .list-item__status--locked {
+      background: var(--color-surface-light);
+      color: var(--color-text-muted);
+    }
+    .list-item__content {
+      flex: 1;
+      min-width: 0;
+    }
+    .list-item__title {
+      font-size: var(--font-md);
+      font-weight: var(--weight-semibold);
+      color: var(--color-text);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .list-item__topic {
+      display: inline-flex;
+      font-size: var(--font-xs);
+      color: var(--color-text-muted);
+      font-weight: var(--weight-medium);
+      margin-top: 2px;
+    }
+    .list-item__chevron {
+      font-size: var(--font-md);
+      color: var(--color-text-muted);
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="component-preview">
+    <p class="component-title">Lesson List Item</p>
+    <div class="list-items" role="list">
+      <div class="list-item" role="listitem">
+        <div class="list-item__status list-item__status--completed">✓</div>
+        <div class="list-item__content">
+          <p class="list-item__title">Closures</p>
+          <span class="list-item__topic">⚡ JavaScript</span>
+        </div>
+        <span class="list-item__chevron">›</span>
+      </div>
+      <div class="list-item" role="listitem">
+        <div class="list-item__status list-item__status--completed">✓</div>
+        <div class="list-item__content">
+          <p class="list-item__title">List Comprehensions</p>
+          <span class="list-item__topic">🐍 Python</span>
+        </div>
+        <span class="list-item__chevron">›</span>
+      </div>
+      <div class="list-item" role="listitem">
+        <div class="list-item__status list-item__status--in-progress">📖</div>
+        <div class="list-item__content">
+          <p class="list-item__title">Flexbox Basics</p>
+          <span class="list-item__topic">🎨 CSS</span>
+        </div>
+        <span class="list-item__chevron">›</span>
+      </div>
+      <div class="list-item" role="listitem">
+        <div class="list-item__status list-item__status--locked">🔒</div>
+        <div class="list-item__content">
+          <p class="list-item__title">1. Introduction to Large Language Models</p>
+          <span class="list-item__topic">🤖 AI / ML</span>
+        </div>
+        <span class="list-item__chevron">›</span>
+      </div>
+      <div class="list-item" role="listitem">
+        <div class="list-item__status list-item__status--locked">🔒</div>
+        <div class="list-item__content">
+          <p class="list-item__title">2. The Architecture of LLMs</p>
+          <span class="list-item__topic">🤖 AI / ML</span>
+        </div>
+        <span class="list-item__chevron">›</span>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

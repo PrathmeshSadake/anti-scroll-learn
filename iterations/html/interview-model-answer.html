@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Model Answer Section</title>
+  <link rel="stylesheet" href="theme.css">
+  <style>
+    .answer-showcase {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-xxl);
+    }
+
+    .section-label {
+      font-size: var(--font-xs);
+      font-weight: var(--weight-semibold);
+      color: var(--color-text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: var(--spacing-sm);
+    }
+
+    /* Expandable model answer */
+    .model-answer-section {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid var(--color-border);
+    }
+
+    .model-answer-toggle {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: var(--spacing-md) var(--spacing-lg);
+      background: var(--color-prep-card);
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+      transition: background 0.2s ease;
+    }
+
+    .model-answer-toggle:hover {
+      background: var(--color-surface-light);
+    }
+
+    .model-answer-toggle-left {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+    }
+
+    .model-answer-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: var(--radius-full);
+      background: var(--color-prep-background);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: var(--font-sm);
+    }
+
+    .model-answer-label {
+      font-size: var(--font-sm);
+      font-weight: var(--weight-semibold);
+      color: var(--color-prep-accent);
+    }
+
+    .model-answer-chevron {
+      font-size: var(--font-md);
+      color: var(--color-text-muted);
+      transition: transform 0.3s ease;
+    }
+
+    .model-answer-chevron.open {
+      transform: rotate(180deg);
+    }
+
+    .model-answer-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.4s ease;
+      background: var(--color-prep-background);
+      padding: 0 var(--spacing-lg);
+    }
+
+    .model-answer-body.visible {
+      max-height: 400px;
+      padding: var(--spacing-lg);
+    }
+
+    .model-answer-text {
+      font-size: var(--font-md);
+      color: var(--color-text);
+      line-height: 1.7;
+    }
+
+    .model-answer-source {
+      margin-top: var(--spacing-md);
+      font-size: var(--font-xs);
+      color: var(--color-text-muted);
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-xs);
+    }
+
+    /* Inline revealed answer */
+    .answer-inline {
+      background: var(--color-prep-card);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-lg);
+      border: 1px solid var(--color-border);
+    }
+
+    .answer-inline-question {
+      font-size: var(--font-md);
+      font-weight: var(--weight-semibold);
+      color: var(--color-text);
+      margin-bottom: var(--spacing-lg);
+      padding-bottom: var(--spacing-md);
+      border-bottom: 1px solid var(--color-border-light);
+    }
+
+    .answer-inline-label {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-xs);
+      font-size: var(--font-xs);
+      font-weight: var(--weight-bold);
+      color: var(--color-prep-accent);
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .answer-inline-text {
+      font-size: var(--font-md);
+      color: var(--color-text-secondary);
+      line-height: 1.6;
+      padding-left: var(--spacing-lg);
+      border-left: 3px solid var(--color-prep-accent);
+    }
+
+    /* Blurred teaser */
+    .answer-blurred-card {
+      background: var(--color-prep-card);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-lg);
+      border: 1px solid var(--color-border);
+      position: relative;
+    }
+
+    .answer-blurred-label {
+      font-size: var(--font-xs);
+      font-weight: var(--weight-bold);
+      color: var(--color-prep-accent);
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .answer-blurred-text {
+      font-size: var(--font-md);
+      color: var(--color-text-secondary);
+      line-height: 1.6;
+      filter: blur(5px);
+      user-select: none;
+      transition: filter 0.3s ease;
+    }
+
+    .answer-blurred-text.revealed {
+      filter: none;
+      user-select: auto;
+    }
+
+    .answer-reveal-btn {
+      display: block;
+      margin: var(--spacing-md) auto 0;
+      background: var(--color-prep-accent);
+      color: var(--color-text-inverse);
+      border: none;
+      padding: var(--spacing-sm) var(--spacing-xl);
+      border-radius: var(--radius-full);
+      font-size: var(--font-sm);
+      font-weight: var(--weight-bold);
+      cursor: pointer;
+      font-family: inherit;
+    }
+  </style>
+</head>
+<body>
+  <div class="component-preview">
+    <p class="component-title">Model Answer Section</p>
+
+    <div class="answer-showcase">
+      <div>
+        <p class="section-label">Expandable (Collapsed)</p>
+        <div class="model-answer-section" id="answer1">
+          <button class="model-answer-toggle" onclick="toggleAnswer('answer1')">
+            <span class="model-answer-toggle-left">
+              <span class="model-answer-icon">✨</span>
+              <span class="model-answer-label">Show Model Answer</span>
+            </span>
+            <span class="model-answer-chevron" id="chevron-answer1">▼</span>
+          </button>
+          <div class="model-answer-body" id="body-answer1">
+            <p class="model-answer-text">Tokenization converts raw text into a sequence of tokens (integers) that the model can process. These tokens map to entries in the model's vocabulary and serve as the fundamental input units.</p>
+            <p class="model-answer-source">🤖 AI-generated model answer</p>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <p class="section-label">Expandable (Open)</p>
+        <div class="model-answer-section" id="answer2">
+          <button class="model-answer-toggle" onclick="toggleAnswer('answer2')">
+            <span class="model-answer-toggle-left">
+              <span class="model-answer-icon">✨</span>
+              <span class="model-answer-label">Model Answer</span>
+            </span>
+            <span class="model-answer-chevron open" id="chevron-answer2">▼</span>
+          </button>
+          <div class="model-answer-body visible" id="body-answer2">
+            <p class="model-answer-text">Self-attention allows each token to attend to all other tokens in the sequence, computing weighted representations based on relevance. This mechanism is the core building block of transformer models.</p>
+            <p class="model-answer-source">🤖 AI-generated model answer</p>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <p class="section-label">Inline Revealed</p>
+        <div class="answer-inline">
+          <p class="answer-inline-question">In RAG systems, what is chunking primarily used for?</p>
+          <p class="answer-inline-label">✨ Model Answer</p>
+          <p class="answer-inline-text">Chunking splits large documents into smaller, semantically meaningful pieces that can be individually embedded and retrieved, allowing the RAG system to find the most relevant context.</p>
+        </div>
+      </div>
+
+      <div>
+        <p class="section-label">Blurred Teaser</p>
+        <div class="answer-blurred-card">
+          <p class="answer-blurred-label">✨ Model Answer</p>
+          <p class="answer-blurred-text" id="blurredText">The scaling factor is √d_k to prevent dot products from growing too large in high-dimensional spaces, which would push softmax into regions with extremely small gradients.</p>
+          <button class="answer-reveal-btn" onclick="revealAnswer()">Reveal Answer</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function toggleAnswer(id) {
+      const body = document.getElementById('body-' + id);
+      const chevron = document.getElementById('chevron-' + id);
+      body.classList.toggle('visible');
+      chevron.classList.toggle('open');
+    }
+
+    function revealAnswer() {
+      document.getElementById('blurredText').classList.add('revealed');
+    }
+  </script>
+</body>
+</html>

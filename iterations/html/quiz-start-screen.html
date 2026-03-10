@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz Start Screen</title>
+  <link rel="stylesheet" href="theme.css">
+  <style>
+    .quiz-start {
+      background: var(--color-card);
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--color-border);
+      overflow: hidden;
+    }
+
+    .quiz-start__hero {
+      background: linear-gradient(135deg, var(--color-primary-dark), var(--color-primary), var(--color-primary-light));
+      padding: var(--spacing-huge) var(--spacing-xxl) var(--spacing-xxxl);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .quiz-start__hero::before {
+      content: '';
+      position: absolute;
+      top: -40%;
+      right: -20%;
+      width: 200px;
+      height: 200px;
+      border-radius: var(--radius-full);
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .quiz-start__hero::after {
+      content: '';
+      position: absolute;
+      bottom: -30%;
+      left: -10%;
+      width: 150px;
+      height: 150px;
+      border-radius: var(--radius-full);
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .quiz-start__emoji {
+      font-size: 56px;
+      margin-bottom: var(--spacing-lg);
+      position: relative;
+      z-index: 1;
+    }
+
+    .quiz-start__title {
+      font-size: var(--font-xxl);
+      font-weight: var(--weight-heavy);
+      color: var(--color-text-inverse);
+      margin-bottom: var(--spacing-sm);
+      position: relative;
+      z-index: 1;
+    }
+
+    .quiz-start__description {
+      font-size: var(--font-md);
+      color: rgba(255, 255, 255, 0.85);
+      line-height: 1.5;
+      position: relative;
+      z-index: 1;
+    }
+
+    .quiz-start__info {
+      padding: var(--spacing-xxl);
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-lg);
+    }
+
+    .quiz-start__info-row {
+      display: flex;
+      gap: var(--spacing-md);
+    }
+
+    .quiz-start__info-card {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--spacing-sm);
+      padding: var(--spacing-lg);
+      background: var(--color-surface-light);
+      border-radius: var(--radius-md);
+      text-align: center;
+    }
+
+    .quiz-start__info-icon {
+      font-size: var(--font-xxl);
+    }
+
+    .quiz-start__info-value {
+      font-size: var(--font-lg);
+      font-weight: var(--weight-bold);
+      color: var(--color-text);
+    }
+
+    .quiz-start__info-label {
+      font-size: var(--font-xs);
+      color: var(--color-text-muted);
+      font-weight: var(--weight-medium);
+    }
+
+    .quiz-start__topics {
+      padding: 0 var(--spacing-xxl);
+    }
+
+    .quiz-start__topics-title {
+      font-size: var(--font-sm);
+      font-weight: var(--weight-semibold);
+      color: var(--color-text-secondary);
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .quiz-start__tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--spacing-sm);
+    }
+
+    .quiz-start__tag {
+      padding: var(--spacing-xs) var(--spacing-md);
+      background: rgba(206, 130, 255, 0.1);
+      color: var(--color-primary);
+      border-radius: var(--radius-full);
+      font-size: var(--font-xs);
+      font-weight: var(--weight-semibold);
+    }
+
+    .quiz-start__action {
+      padding: var(--spacing-xxl);
+    }
+
+    .quiz-start__button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--spacing-sm);
+      width: 100%;
+      padding: var(--spacing-lg) var(--spacing-xxl);
+      background: var(--color-primary);
+      color: var(--color-text-inverse);
+      border: none;
+      border-radius: var(--radius-md);
+      font-family: inherit;
+      font-size: var(--font-lg);
+      font-weight: var(--weight-bold);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 12px rgba(206, 130, 255, 0.3);
+    }
+
+    .quiz-start__button:hover {
+      background: var(--color-primary-dark);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 16px rgba(206, 130, 255, 0.4);
+    }
+
+    .quiz-start__button:active {
+      transform: scale(0.98);
+    }
+
+    .quiz-start__best-score {
+      text-align: center;
+      margin-top: var(--spacing-md);
+      font-size: var(--font-sm);
+      color: var(--color-text-muted);
+    }
+
+    .quiz-start__best-score strong {
+      color: var(--color-text-secondary);
+      font-weight: var(--weight-semibold);
+    }
+  </style>
+</head>
+<body>
+  <div class="component-preview">
+    <p class="component-title">Quiz Start Screen</p>
+    <div class="quiz-start">
+      <div class="quiz-start__hero">
+        <div class="quiz-start__emoji">🧠</div>
+        <h1 class="quiz-start__title">Understanding LLMs</h1>
+        <p class="quiz-start__description">Test your knowledge of Large Language Models, AI hallucinations, and Transformer architecture.</p>
+      </div>
+
+      <div class="quiz-start__info">
+        <div class="quiz-start__info-row">
+          <div class="quiz-start__info-card">
+            <span class="quiz-start__info-icon">📝</span>
+            <span class="quiz-start__info-value">5</span>
+            <span class="quiz-start__info-label">Questions</span>
+          </div>
+          <div class="quiz-start__info-card">
+            <span class="quiz-start__info-icon">⏱</span>
+            <span class="quiz-start__info-value">~3 min</span>
+            <span class="quiz-start__info-label">Duration</span>
+          </div>
+          <div class="quiz-start__info-card">
+            <span class="quiz-start__info-icon">📊</span>
+            <span class="quiz-start__info-value">Medium</span>
+            <span class="quiz-start__info-label">Difficulty</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="quiz-start__topics">
+        <div class="quiz-start__topics-title">Topics covered</div>
+        <div class="quiz-start__tags">
+          <span class="quiz-start__tag">LLM Basics</span>
+          <span class="quiz-start__tag">AI Hallucinations</span>
+          <span class="quiz-start__tag">Transformers</span>
+          <span class="quiz-start__tag">Prompting</span>
+          <span class="quiz-start__tag">Tokenization</span>
+        </div>
+      </div>
+
+      <div class="quiz-start__action">
+        <button class="quiz-start__button">Start Quiz →</button>
+        <p class="quiz-start__best-score">Best score: <strong>80%</strong> (2 days ago)</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

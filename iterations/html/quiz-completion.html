@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz Completion</title>
+  <link rel="stylesheet" href="theme.css">
+  <style>
+    .quiz-completion {
+      background: var(--color-card);
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--color-border);
+      padding: var(--spacing-huge) var(--spacing-xxl);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Confetti particles */
+    .confetti-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .confetti {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      border-radius: 2px;
+      opacity: 0;
+      animation: confettiFall 3s ease-out forwards;
+    }
+
+    @keyframes confettiFall {
+      0% {
+        opacity: 1;
+        transform: translateY(-20px) rotate(0deg) scale(1);
+      }
+      100% {
+        opacity: 0;
+        transform: translateY(400px) rotate(720deg) scale(0.5);
+      }
+    }
+
+    .quiz-completion__trophy {
+      font-size: 72px;
+      line-height: 1;
+      margin-bottom: var(--spacing-xxl);
+      position: relative;
+      z-index: 1;
+      animation: trophyBounce 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    }
+
+    @keyframes trophyBounce {
+      0% {
+        opacity: 0;
+        transform: scale(0.3) rotate(-10deg);
+      }
+      60% {
+        transform: scale(1.1) rotate(3deg);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+      }
+    }
+
+    .quiz-completion__title {
+      font-size: var(--font-xxl);
+      font-weight: var(--weight-heavy);
+      color: var(--color-text);
+      margin-bottom: var(--spacing-sm);
+      position: relative;
+      z-index: 1;
+    }
+
+    .quiz-completion__message {
+      font-size: var(--font-md);
+      color: var(--color-text-secondary);
+      line-height: 1.5;
+      margin-bottom: var(--spacing-xxxl);
+      position: relative;
+      z-index: 1;
+    }
+
+    .quiz-completion__score-circle {
+      position: relative;
+      width: 140px;
+      height: 140px;
+      margin: 0 auto var(--spacing-xxl);
+      z-index: 1;
+    }
+
+    .quiz-completion__score-circle svg {
+      transform: rotate(-90deg);
+    }
+
+    .quiz-completion__score-bg {
+      fill: none;
+      stroke: var(--color-progress-bg);
+      stroke-width: 8;
+    }
+
+    .quiz-completion__score-fill {
+      fill: none;
+      stroke: var(--color-success);
+      stroke-width: 8;
+      stroke-linecap: round;
+      stroke-dasharray: 377;
+      stroke-dashoffset: 75.4;
+      animation: scoreReveal 1.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+
+    @keyframes scoreReveal {
+      from { stroke-dashoffset: 377; }
+      to { stroke-dashoffset: 75.4; }
+    }
+
+    .quiz-completion__score-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .quiz-completion__score-value {
+      font-size: var(--font-xxxl);
+      font-weight: var(--weight-heavy);
+      color: var(--color-success);
+      line-height: 1;
+    }
+
+    .quiz-completion__score-label {
+      font-size: var(--font-xs);
+      color: var(--color-text-muted);
+      font-weight: var(--weight-medium);
+    }
+
+    .quiz-completion__stats {
+      display: flex;
+      justify-content: center;
+      gap: var(--spacing-xl);
+      margin-bottom: var(--spacing-xxxl);
+      position: relative;
+      z-index: 1;
+    }
+
+    .quiz-completion__stat {
+      text-align: center;
+    }
+
+    .quiz-completion__stat-icon {
+      font-size: var(--font-xl);
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .quiz-completion__stat-value {
+      font-size: var(--font-lg);
+      font-weight: var(--weight-bold);
+      color: var(--color-text);
+    }
+
+    .quiz-completion__stat-label {
+      font-size: var(--font-xs);
+      color: var(--color-text-muted);
+      font-weight: var(--weight-medium);
+    }
+
+    .quiz-completion__actions {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-md);
+      position: relative;
+      z-index: 1;
+    }
+
+    .quiz-completion__btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--spacing-sm);
+      width: 100%;
+      padding: var(--spacing-lg);
+      border-radius: var(--radius-md);
+      font-family: inherit;
+      font-size: var(--font-md);
+      font-weight: var(--weight-bold);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border: none;
+    }
+
+    .quiz-completion__btn--primary {
+      background: var(--color-primary);
+      color: var(--color-text-inverse);
+      box-shadow: 0 4px 12px rgba(206, 130, 255, 0.3);
+    }
+
+    .quiz-completion__btn--primary:hover {
+      background: var(--color-primary-dark);
+    }
+
+    .quiz-completion__btn--secondary {
+      background: var(--color-surface-light);
+      color: var(--color-text);
+      border: 1px solid var(--color-border);
+    }
+
+    .quiz-completion__btn--secondary:hover {
+      background: var(--color-border-light);
+    }
+  </style>
+</head>
+<body>
+  <div class="component-preview">
+    <p class="component-title">Quiz Completion</p>
+    <div class="quiz-completion">
+      <div class="confetti-container" id="confetti"></div>
+
+      <div class="quiz-completion__trophy">🏆</div>
+      <h1 class="quiz-completion__title">Quiz Complete!</h1>
+      <p class="quiz-completion__message">You've mastered the fundamentals of Large Language Models. Keep up the great work!</p>
+
+      <div class="quiz-completion__score-circle">
+        <svg width="140" height="140" viewBox="0 0 140 140">
+          <circle class="quiz-completion__score-bg" cx="70" cy="70" r="60" />
+          <circle class="quiz-completion__score-fill" cx="70" cy="70" r="60" />
+        </svg>
+        <div class="quiz-completion__score-text">
+          <div class="quiz-completion__score-value">80%</div>
+          <div class="quiz-completion__score-label">4 of 5</div>
+        </div>
+      </div>
+
+      <div class="quiz-completion__stats">
+        <div class="quiz-completion__stat">
+          <div class="quiz-completion__stat-icon">⏱</div>
+          <div class="quiz-completion__stat-value">2:45</div>
+          <div class="quiz-completion__stat-label">Time</div>
+        </div>
+        <div class="quiz-completion__stat">
+          <div class="quiz-completion__stat-icon">🔥</div>
+          <div class="quiz-completion__stat-value">3</div>
+          <div class="quiz-completion__stat-label">Best Streak</div>
+        </div>
+        <div class="quiz-completion__stat">
+          <div class="quiz-completion__stat-icon">⚡</div>
+          <div class="quiz-completion__stat-value">+50</div>
+          <div class="quiz-completion__stat-label">XP Earned</div>
+        </div>
+      </div>
+
+      <div class="quiz-completion__actions">
+        <button class="quiz-completion__btn quiz-completion__btn--primary">Review Answers</button>
+        <button class="quiz-completion__btn quiz-completion__btn--secondary">Back to Topics</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Generate confetti particles
+    const container = document.getElementById('confetti');
+    const colors = [
+      'var(--color-primary)',
+      'var(--color-primary-light)',
+      'var(--color-success)',
+      'var(--color-warning)',
+      'var(--color-info)',
+      'var(--color-accent)'
+    ];
+
+    for (let i = 0; i < 40; i++) {
+      const confetti = document.createElement('div');
+      confetti.className = 'confetti';
+      confetti.style.left = Math.random() * 100 + '%';
+      confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+      confetti.style.animationDelay = Math.random() * 2 + 's';
+      confetti.style.animationDuration = (2 + Math.random() * 2) + 's';
+      confetti.style.width = (6 + Math.random() * 8) + 'px';
+      confetti.style.height = (6 + Math.random() * 8) + 'px';
+      confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+      container.appendChild(confetti);
+    }
+  </script>
+</body>
+</html>

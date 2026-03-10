@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lesson Progress Indicator</title>
+  <link rel="stylesheet" href="theme.css">
+  <style>
+    .progress-demos {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-xxl);
+    }
+    .progress-indicator {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-md);
+      align-items: center;
+    }
+    .progress-indicator__label {
+      font-size: var(--font-sm);
+      font-weight: var(--weight-semibold);
+      color: var(--color-text-secondary);
+    }
+    .progress-indicator__dots {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+    }
+    .progress-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: var(--radius-full);
+      background: var(--color-progress-bg);
+      transition: all 0.3s ease;
+    }
+    .progress-dot--filled {
+      background: var(--color-primary);
+    }
+    .progress-dot--active {
+      background: var(--color-primary);
+      box-shadow: 0 0 0 3px var(--color-primary-light);
+      width: 14px;
+      height: 14px;
+    }
+    .progress-connector {
+      width: 24px;
+      height: 2px;
+      background: var(--color-progress-bg);
+    }
+    .progress-connector--filled {
+      background: var(--color-primary);
+    }
+
+    /* Step style */
+    .step-progress {
+      background: var(--color-card);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-xl);
+      border: 1px solid var(--color-border);
+    }
+    .step-progress__header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: var(--spacing-md);
+    }
+    .step-progress__text {
+      font-size: var(--font-sm);
+      font-weight: var(--weight-semibold);
+      color: var(--color-text);
+    }
+    .step-progress__fraction {
+      font-size: var(--font-sm);
+      color: var(--color-text-muted);
+      font-weight: var(--weight-medium);
+    }
+    .step-progress__bar {
+      height: 6px;
+      border-radius: var(--radius-full);
+      background: var(--color-progress-bg);
+      overflow: hidden;
+    }
+    .step-progress__fill {
+      height: 100%;
+      border-radius: var(--radius-full);
+      background: var(--color-primary);
+      transition: width 0.4s ease;
+    }
+    .demo-label {
+      font-size: var(--font-xs);
+      color: var(--color-text-muted);
+      font-weight: var(--weight-medium);
+      margin-bottom: var(--spacing-sm);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="component-preview">
+    <p class="component-title">Lesson Progress Indicator</p>
+    <div class="progress-demos">
+      <!-- Dot style: Step 1 of 3 -->
+      <div>
+        <p class="demo-label">Step 1 of 3</p>
+        <div class="progress-indicator">
+          <div class="progress-indicator__dots">
+            <div class="progress-dot progress-dot--active"></div>
+            <div class="progress-connector"></div>
+            <div class="progress-dot"></div>
+            <div class="progress-connector"></div>
+            <div class="progress-dot"></div>
+          </div>
+          <span class="progress-indicator__label">Step 1 of 3</span>
+        </div>
+      </div>
+
+      <!-- Dot style: Step 2 of 3 -->
+      <div>
+        <p class="demo-label">Step 2 of 3</p>
+        <div class="progress-indicator">
+          <div class="progress-indicator__dots">
+            <div class="progress-dot progress-dot--filled"></div>
+            <div class="progress-connector progress-connector--filled"></div>
+            <div class="progress-dot progress-dot--active"></div>
+            <div class="progress-connector"></div>
+            <div class="progress-dot"></div>
+          </div>
+          <span class="progress-indicator__label">Step 2 of 3</span>
+        </div>
+      </div>
+
+      <!-- Dot style: Step 3 of 3 (complete) -->
+      <div>
+        <p class="demo-label">Step 3 of 3 — Complete</p>
+        <div class="progress-indicator">
+          <div class="progress-indicator__dots">
+            <div class="progress-dot progress-dot--filled"></div>
+            <div class="progress-connector progress-connector--filled"></div>
+            <div class="progress-dot progress-dot--filled"></div>
+            <div class="progress-connector progress-connector--filled"></div>
+            <div class="progress-dot progress-dot--filled"></div>
+          </div>
+          <span class="progress-indicator__label">Complete ✓</span>
+        </div>
+      </div>
+
+      <!-- Bar progress -->
+      <div>
+        <p class="demo-label">Bar Style</p>
+        <div class="step-progress">
+          <div class="step-progress__header">
+            <span class="step-progress__text">Lesson Progress</span>
+            <span class="step-progress__fraction">1/3</span>
+          </div>
+          <div class="step-progress__bar">
+            <div class="step-progress__fill" style="width: 33%"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

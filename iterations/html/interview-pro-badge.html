@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pro Badge</title>
+  <link rel="stylesheet" href="theme.css">
+  <style>
+    .pro-showcase {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-xxl);
+    }
+
+    .section-label {
+      font-size: var(--font-xs);
+      font-weight: var(--weight-semibold);
+      color: var(--color-text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--spacing-sm);
+      align-items: center;
+    }
+
+    /* Base PRO badge */
+    .pro-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--spacing-xs);
+      font-weight: var(--weight-heavy);
+      border-radius: var(--radius-full);
+      letter-spacing: 0.8px;
+      cursor: default;
+    }
+
+    .pro-badge-icon {
+      font-size: inherit;
+    }
+
+    /* Sizes */
+    .pro-badge.xs {
+      padding: 1px var(--spacing-sm);
+      font-size: 9px;
+    }
+
+    .pro-badge.sm {
+      padding: 2px var(--spacing-sm);
+      font-size: var(--font-xs);
+    }
+
+    .pro-badge.md {
+      padding: var(--spacing-xs) var(--spacing-md);
+      font-size: var(--font-sm);
+    }
+
+    .pro-badge.lg {
+      padding: var(--spacing-sm) var(--spacing-lg);
+      font-size: var(--font-md);
+    }
+
+    /* Gold gradient */
+    .pro-badge.gold {
+      background: linear-gradient(135deg, #f59e0b, #d97706);
+      color: var(--color-text-inverse);
+    }
+
+    /* Purple gradient */
+    .pro-badge.purple {
+      background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+      color: var(--color-text-inverse);
+    }
+
+    /* Subtle */
+    .pro-badge.subtle {
+      background: rgba(245, 158, 11, 0.12);
+      color: var(--color-warning);
+    }
+
+    /* Outlined */
+    .pro-badge.outlined {
+      background: transparent;
+      border: 1.5px solid var(--color-warning);
+      color: var(--color-warning);
+    }
+
+    /* Locked card overlay */
+    .locked-card {
+      background: var(--color-prep-card);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-xl);
+      border: 1px solid var(--color-border);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .locked-card-overlay {
+      position: absolute;
+      inset: 0;
+      background: var(--color-overlay);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: var(--spacing-md);
+      backdrop-filter: blur(4px);
+      border-radius: var(--radius-lg);
+      z-index: 2;
+    }
+
+    .locked-icon-large {
+      width: 56px;
+      height: 56px;
+      border-radius: var(--radius-full);
+      background: linear-gradient(135deg, #f59e0b, #d97706);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: var(--font-xxl);
+    }
+
+    .locked-text {
+      color: var(--color-text-inverse);
+      font-size: var(--font-md);
+      font-weight: var(--weight-bold);
+      text-align: center;
+    }
+
+    .locked-cta {
+      background: linear-gradient(135deg, #f59e0b, #d97706);
+      color: var(--color-text-inverse);
+      border: none;
+      padding: var(--spacing-sm) var(--spacing-xxl);
+      border-radius: var(--radius-full);
+      font-size: var(--font-sm);
+      font-weight: var(--weight-bold);
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .locked-card-content {
+      filter: blur(3px);
+      user-select: none;
+    }
+
+    .locked-card-question {
+      font-size: var(--font-lg);
+      font-weight: var(--weight-semibold);
+      color: var(--color-text);
+      margin-bottom: var(--spacing-md);
+    }
+
+    .locked-card-meta {
+      display: flex;
+      gap: var(--spacing-sm);
+    }
+
+    .locked-meta-tag {
+      font-size: var(--font-xs);
+      padding: 2px var(--spacing-sm);
+      border-radius: var(--radius-full);
+      background: var(--color-surface-light);
+      color: var(--color-text-muted);
+    }
+
+    /* Inline PRO indicator */
+    .pro-inline-card {
+      background: var(--color-prep-card);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-lg);
+      border: 1px solid var(--color-border);
+    }
+
+    .pro-inline-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: var(--spacing-md);
+    }
+
+    .pro-inline-type {
+      font-size: var(--font-xs);
+      font-weight: var(--weight-semibold);
+      padding: 2px var(--spacing-sm);
+      border-radius: var(--radius-full);
+      background: rgba(206, 130, 255, 0.12);
+      color: var(--color-primary);
+    }
+
+    .pro-inline-question {
+      font-size: var(--font-md);
+      font-weight: var(--weight-semibold);
+      color: var(--color-text);
+      line-height: 1.5;
+    }
+
+    /* Upgrade banner */
+    .upgrade-banner {
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.08), rgba(245, 158, 11, 0.02));
+      border: 1px solid rgba(245, 158, 11, 0.2);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-xl);
+      text-align: center;
+    }
+
+    .upgrade-banner-icon {
+      font-size: var(--font-xxxl);
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .upgrade-banner-title {
+      font-size: var(--font-lg);
+      font-weight: var(--weight-bold);
+      color: var(--color-text);
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .upgrade-banner-text {
+      font-size: var(--font-sm);
+      color: var(--color-text-secondary);
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .upgrade-banner-btn {
+      background: linear-gradient(135deg, #f59e0b, #d97706);
+      color: var(--color-text-inverse);
+      border: none;
+      padding: var(--spacing-md) var(--spacing-xxl);
+      border-radius: var(--radius-full);
+      font-size: var(--font-md);
+      font-weight: var(--weight-bold);
+      cursor: pointer;
+      font-family: inherit;
+    }
+  </style>
+</head>
+<body>
+  <div class="component-preview">
+    <p class="component-title">Pro / Locked Badge</p>
+
+    <div class="pro-showcase">
+      <div>
+        <p class="section-label">Sizes — Gold</p>
+        <div class="badge-row">
+          <span class="pro-badge gold xs"><span class="pro-badge-icon">🔒</span> PRO</span>
+          <span class="pro-badge gold sm"><span class="pro-badge-icon">🔒</span> PRO</span>
+          <span class="pro-badge gold md"><span class="pro-badge-icon">🔒</span> PRO</span>
+          <span class="pro-badge gold lg"><span class="pro-badge-icon">🔒</span> PRO</span>
+        </div>
+      </div>
+
+      <div>
+        <p class="section-label">Variants</p>
+        <div class="badge-row">
+          <span class="pro-badge gold md"><span class="pro-badge-icon">🔒</span> PRO</span>
+          <span class="pro-badge purple md"><span class="pro-badge-icon">🔒</span> PRO</span>
+          <span class="pro-badge subtle md"><span class="pro-badge-icon">🔒</span> PRO</span>
+          <span class="pro-badge outlined md"><span class="pro-badge-icon">🔒</span> PRO</span>
+        </div>
+      </div>
+
+      <div>
+        <p class="section-label">Inline with Question</p>
+        <div class="pro-inline-card">
+          <div class="pro-inline-header">
+            <span class="pro-inline-type">Short Answer</span>
+            <span class="pro-badge gold xs"><span class="pro-badge-icon">🔒</span> PRO</span>
+          </div>
+          <p class="pro-inline-question">When should you fine-tune an LLM versus using Context Window Management (RAG)?</p>
+        </div>
+      </div>
+
+      <div>
+        <p class="section-label">Locked Card Overlay</p>
+        <div class="locked-card">
+          <div class="locked-card-overlay">
+            <div class="locked-icon-large">🔒</div>
+            <p class="locked-text">PRO Content</p>
+            <button class="locked-cta">Upgrade to PRO</button>
+          </div>
+          <div class="locked-card-content">
+            <p class="locked-card-question">When should you fine-tune an LLM versus using Context Window Management (RAG)?</p>
+            <div class="locked-card-meta">
+              <span class="locked-meta-tag">Netflix</span>
+              <span class="locked-meta-tag">Advanced</span>
+              <span class="locked-meta-tag">System Design</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <p class="section-label">Upgrade Banner</p>
+        <div class="upgrade-banner">
+          <div class="upgrade-banner-icon">👑</div>
+          <p class="upgrade-banner-title">Unlock PRO Questions</p>
+          <p class="upgrade-banner-text">Get access to advanced questions from top companies like Netflix, OpenAI, and more.</p>
+          <button class="upgrade-banner-btn">Upgrade Now</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

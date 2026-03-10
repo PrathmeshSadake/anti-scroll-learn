@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Course Interactive Card</title>
+  <link rel="stylesheet" href="theme.css">
+  <style>
+    .interactive-card {
+      background: var(--color-card);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-xxl);
+      border: 1px solid var(--color-border-light);
+    }
+
+    .interactive-card__badge {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--spacing-xs);
+      background: var(--color-primary-dark);
+      color: var(--color-text-inverse);
+      font-size: var(--font-xs);
+      font-weight: var(--weight-semibold);
+      padding: var(--spacing-xs) var(--spacing-sm);
+      border-radius: var(--radius-full);
+      margin-bottom: var(--spacing-lg);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .interactive-card__title {
+      font-size: var(--font-xl);
+      font-weight: var(--weight-bold);
+      color: var(--color-text);
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .interactive-card__instruction {
+      font-size: var(--font-sm);
+      color: var(--color-text-secondary);
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .interactive-card__categories {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--spacing-md);
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .interactive-card__category {
+      background: var(--color-surface-light);
+      border: 2px dashed var(--color-border);
+      border-radius: var(--radius-md);
+      padding: var(--spacing-md);
+      min-height: 140px;
+      transition: all 0.2s ease;
+    }
+
+    .interactive-card__category.drag-over {
+      border-color: var(--color-primary);
+      background: var(--color-surface);
+    }
+
+    .interactive-card__category-label {
+      font-size: var(--font-xs);
+      font-weight: var(--weight-semibold);
+      color: var(--color-text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      text-align: center;
+      margin-bottom: var(--spacing-sm);
+      padding-bottom: var(--spacing-sm);
+      border-bottom: 1px solid var(--color-border-light);
+    }
+
+    .interactive-card__category-items {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-sm);
+      min-height: 80px;
+    }
+
+    .interactive-card__items {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-sm);
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .interactive-card__item {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+      padding: var(--spacing-md) var(--spacing-lg);
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      cursor: grab;
+      transition: all 0.2s ease;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+      font-size: var(--font-sm);
+      font-weight: var(--weight-medium);
+      color: var(--color-text);
+    }
+
+    .interactive-card__item:active {
+      cursor: grabbing;
+      transform: scale(0.97);
+      box-shadow: 0 4px 12px var(--color-overlay);
+    }
+
+    .interactive-card__item.placed {
+      background: var(--color-primary-light);
+      border-color: var(--color-primary);
+      font-size: var(--font-xs);
+      padding: var(--spacing-sm) var(--spacing-md);
+    }
+
+    .interactive-card__item-grip {
+      color: var(--color-text-muted);
+      font-size: var(--font-md);
+      flex-shrink: 0;
+    }
+
+    .interactive-card__check-btn {
+      width: 100%;
+      padding: var(--spacing-lg);
+      background: var(--color-primary);
+      color: var(--color-text-inverse);
+      border: none;
+      border-radius: var(--radius-md);
+      font-size: var(--font-md);
+      font-weight: var(--weight-semibold);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-family: inherit;
+    }
+
+    .interactive-card__check-btn:active {
+      transform: scale(0.98);
+      background: var(--color-primary-dark);
+    }
+
+    .interactive-card__check-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .interactive-card__feedback {
+      margin-top: var(--spacing-lg);
+      padding: var(--spacing-lg);
+      border-radius: var(--radius-md);
+      display: none;
+      font-size: var(--font-sm);
+      line-height: 1.5;
+    }
+
+    .interactive-card__feedback.correct {
+      display: block;
+      background: var(--color-surface-light);
+      border-left: 3px solid var(--color-success);
+      color: var(--color-text);
+    }
+
+    .interactive-card__feedback.incorrect {
+      display: block;
+      background: var(--color-surface-light);
+      border-left: 3px solid var(--color-error);
+      color: var(--color-text);
+    }
+  </style>
+</head>
+<body>
+  <div class="component-preview">
+    <p class="component-title">Course Interactive Card</p>
+
+    <article class="interactive-card">
+      <span class="interactive-card__badge">🎮 Interactive</span>
+      <h2 class="interactive-card__title">Sort the AI Types</h2>
+      <p class="interactive-card__instruction">Tap an item, then tap a category to place it.</p>
+
+      <div class="interactive-card__categories">
+        <div class="interactive-card__category" data-category="0" onclick="placeItem(0)">
+          <p class="interactive-card__category-label">Traditional AI</p>
+          <div class="interactive-card__category-items" id="cat-0"></div>
+        </div>
+        <div class="interactive-card__category" data-category="1" onclick="placeItem(1)">
+          <p class="interactive-card__category-label">Generative AI</p>
+          <div class="interactive-card__category-items" id="cat-1"></div>
+        </div>
+      </div>
+
+      <div class="interactive-card__items" id="item-pool">
+        <div class="interactive-card__item" data-id="1" data-correct="0" onclick="selectItem(this)">
+          <span class="interactive-card__item-grip">⠿</span>
+          <span>Spam filter</span>
+        </div>
+        <div class="interactive-card__item" data-id="2" data-correct="1" onclick="selectItem(this)">
+          <span class="interactive-card__item-grip">⠿</span>
+          <span>ChatGPT writing an essay</span>
+        </div>
+        <div class="interactive-card__item" data-id="3" data-correct="0" onclick="selectItem(this)">
+          <span class="interactive-card__item-grip">⠿</span>
+          <span>Face recognition unlock</span>
+        </div>
+        <div class="interactive-card__item" data-id="4" data-correct="1" onclick="selectItem(this)">
+          <span class="interactive-card__item-grip">⠿</span>
+          <span>DALL-E creating an image</span>
+        </div>
+      </div>
+
+      <button class="interactive-card__check-btn" id="checkBtn" onclick="checkAnswers()" disabled>Check Answers</button>
+
+      <div class="interactive-card__feedback" id="feedback"></div>
+    </article>
+  </div>
+
+  <script>
+    let selectedItem = null;
+    let placements = {};
+    const totalItems = 4;
+
+    function selectItem(el) {
+      if (el.classList.contains('placed')) return;
+      document.querySelectorAll('.interactive-card__item').forEach(i => i.style.borderColor = '');
+      el.style.borderColor = 'var(--color-primary)';
+      selectedItem = el;
+    }
+
+    function placeItem(categoryIndex) {
+      if (!selectedItem) return;
+
+      const clone = selectedItem.cloneNode(true);
+      clone.classList.add('placed');
+      clone.querySelector('.interactive-card__item-grip').textContent = '•';
+      clone.onclick = null;
+
+      const container = document.getElementById('cat-' + categoryIndex);
+      container.appendChild(clone);
+
+      placements[selectedItem.dataset.id] = categoryIndex;
+      selectedItem.style.display = 'none';
+      selectedItem = null;
+
+      if (Object.keys(placements).length === totalItems) {
+        document.getElementById('checkBtn').disabled = false;
+      }
+    }
+
+    function checkAnswers() {
+      const items = document.querySelectorAll('#item-pool .interactive-card__item');
+      let allCorrect = true;
+
+      items.forEach(item => {
+        const id = item.dataset.id;
+        const correctCat = parseInt(item.dataset.correct);
+        if (placements[id] !== correctCat) {
+          allCorrect = false;
+        }
+      });
+
+      const feedback = document.getElementById('feedback');
+      if (allCorrect) {
+        feedback.className = 'interactive-card__feedback correct';
+        feedback.textContent = "✅ You've got it! Classification = Traditional AI. Creation = Generative AI.";
+      } else {
+        feedback.className = 'interactive-card__feedback incorrect';
+        feedback.textContent = "❌ Not quite — remember: if it creates new content, it's generative.";
+      }
+    }
+  </script>
+</body>
+</html>

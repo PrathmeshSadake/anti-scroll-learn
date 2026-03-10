@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Year Tags</title>
+  <link rel="stylesheet" href="theme.css">
+  <style>
+    .year-showcase {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-xxl);
+    }
+
+    .section-label {
+      font-size: var(--font-xs);
+      font-weight: var(--weight-semibold);
+      color: var(--color-text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--spacing-sm);
+      align-items: center;
+    }
+
+    /* Year pill base */
+    .year-tag {
+      display: inline-flex;
+      align-items: center;
+      font-weight: var(--weight-semibold);
+      border-radius: var(--radius-full);
+      cursor: default;
+      transition: transform 0.15s ease;
+      letter-spacing: 0.3px;
+    }
+
+    .year-tag:hover {
+      transform: scale(1.05);
+    }
+
+    /* Sizes */
+    .year-tag.xs {
+      padding: 1px var(--spacing-sm);
+      font-size: 10px;
+    }
+
+    .year-tag.sm {
+      padding: 2px var(--spacing-sm);
+      font-size: var(--font-xs);
+    }
+
+    .year-tag.md {
+      padding: var(--spacing-xs) var(--spacing-md);
+      font-size: var(--font-sm);
+    }
+
+    /* Default subtle style */
+    .year-tag.subtle {
+      background: var(--color-surface-light);
+      color: var(--color-text-secondary);
+    }
+
+    /* Accent style */
+    .year-tag.accent {
+      background: var(--color-prep-background);
+      color: var(--color-prep-accent);
+    }
+
+    /* Outlined */
+    .year-tag.outlined {
+      background: transparent;
+      border: 1.5px solid var(--color-border);
+      color: var(--color-text-secondary);
+    }
+
+    /* Filled */
+    .year-tag.filled {
+      background: var(--color-prep-accent);
+      color: var(--color-text-inverse);
+    }
+
+    /* With calendar icon */
+    .year-tag .year-icon {
+      margin-right: var(--spacing-xs);
+      font-size: inherit;
+    }
+
+    /* Current year highlight */
+    .year-tag.current {
+      background: var(--color-prep-accent);
+      color: var(--color-text-inverse);
+      position: relative;
+    }
+
+    .year-tag.current::after {
+      content: '';
+      position: absolute;
+      top: -2px;
+      right: -2px;
+      width: 7px;
+      height: 7px;
+      background: var(--color-success);
+      border-radius: var(--radius-full);
+      border: 1.5px solid var(--color-prep-card);
+    }
+
+    /* Context cards */
+    .context-card {
+      background: var(--color-prep-card);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-lg);
+      border: 1px solid var(--color-border);
+    }
+
+    .context-meta {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+      margin-bottom: var(--spacing-md);
+      flex-wrap: wrap;
+    }
+
+    .context-company {
+      font-size: var(--font-xs);
+      color: var(--color-text-muted);
+      font-weight: var(--weight-medium);
+    }
+
+    .context-question {
+      font-size: var(--font-md);
+      font-weight: var(--weight-semibold);
+      color: var(--color-text);
+      line-height: 1.5;
+    }
+
+    /* Year filter row */
+    .year-filter {
+      display: flex;
+      gap: var(--spacing-xs);
+      background: var(--color-surface-light);
+      padding: var(--spacing-xs);
+      border-radius: var(--radius-full);
+    }
+
+    .year-filter-btn {
+      padding: var(--spacing-xs) var(--spacing-md);
+      border-radius: var(--radius-full);
+      font-size: var(--font-sm);
+      font-weight: var(--weight-medium);
+      border: none;
+      background: transparent;
+      color: var(--color-text-muted);
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.2s ease;
+    }
+
+    .year-filter-btn.active {
+      background: var(--color-prep-card);
+      color: var(--color-prep-accent);
+      font-weight: var(--weight-bold);
+      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    }
+
+    /* Year stats card */
+    .year-stats {
+      display: flex;
+      gap: var(--spacing-md);
+    }
+
+    .year-stat-card {
+      flex: 1;
+      background: var(--color-prep-card);
+      border-radius: var(--radius-md);
+      padding: var(--spacing-md);
+      border: 1px solid var(--color-border);
+      text-align: center;
+    }
+
+    .year-stat-year {
+      font-size: var(--font-xs);
+      font-weight: var(--weight-bold);
+      color: var(--color-prep-accent);
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .year-stat-count {
+      font-size: var(--font-xxl);
+      font-weight: var(--weight-heavy);
+      color: var(--color-text);
+    }
+
+    .year-stat-label {
+      font-size: var(--font-xs);
+      color: var(--color-text-muted);
+    }
+  </style>
+</head>
+<body>
+  <div class="component-preview">
+    <p class="component-title">Year Tags</p>
+
+    <div class="year-showcase">
+      <div>
+        <p class="section-label">Extra Small</p>
+        <div class="tag-row">
+          <span class="year-tag subtle xs">2023</span>
+          <span class="year-tag subtle xs">2024</span>
+          <span class="year-tag accent xs">2025</span>
+        </div>
+      </div>
+
+      <div>
+        <p class="section-label">Small</p>
+        <div class="tag-row">
+          <span class="year-tag subtle sm">2023</span>
+          <span class="year-tag accent sm">2024</span>
+          <span class="year-tag outlined sm">2025</span>
+        </div>
+      </div>
+
+      <div>
+        <p class="section-label">Medium</p>
+        <div class="tag-row">
+          <span class="year-tag subtle md"><span class="year-icon">📅</span> 2023</span>
+          <span class="year-tag accent md"><span class="year-icon">📅</span> 2024</span>
+          <span class="year-tag filled md">2024</span>
+          <span class="year-tag current md">2024</span>
+        </div>
+      </div>
+
+      <div>
+        <p class="section-label">Filter Bar</p>
+        <div class="year-filter">
+          <button class="year-filter-btn">All</button>
+          <button class="year-filter-btn active">2024</button>
+          <button class="year-filter-btn">2023</button>
+          <button class="year-filter-btn">2022</button>
+        </div>
+      </div>
+
+      <div>
+        <p class="section-label">In Context</p>
+        <div class="context-card">
+          <div class="context-meta">
+            <span class="context-company">Google</span>
+            <span class="year-tag accent xs">2024</span>
+          </div>
+          <p class="context-question">What is the primary purpose of tokenization in large language models?</p>
+        </div>
+      </div>
+
+      <div>
+        <p class="section-label">Year Stats</p>
+        <div class="year-stats">
+          <div class="year-stat-card">
+            <p class="year-stat-year">2024</p>
+            <p class="year-stat-count">3</p>
+            <p class="year-stat-label">questions</p>
+          </div>
+          <div class="year-stat-card">
+            <p class="year-stat-year">2023</p>
+            <p class="year-stat-count">2</p>
+            <p class="year-stat-label">questions</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

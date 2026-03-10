@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Course Check Card</title>
+  <link rel="stylesheet" href="theme.css">
+  <style>
+    .check-card {
+      background: var(--color-card);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-xxl);
+      border: 1px solid var(--color-border-light);
+    }
+
+    .check-card__badge {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--spacing-xs);
+      background: var(--color-warning);
+      color: var(--color-text-inverse);
+      font-size: var(--font-xs);
+      font-weight: var(--weight-semibold);
+      padding: var(--spacing-xs) var(--spacing-sm);
+      border-radius: var(--radius-full);
+      margin-bottom: var(--spacing-lg);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .check-card__question {
+      font-size: var(--font-lg);
+      font-weight: var(--weight-semibold);
+      color: var(--color-text);
+      margin-bottom: var(--spacing-xl);
+      line-height: 1.4;
+    }
+
+    .check-card__options {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-sm);
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .check-card__option {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-md);
+      padding: var(--spacing-lg);
+      background: var(--color-surface-light);
+      border: 2px solid var(--color-border);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .check-card__option:active {
+      transform: scale(0.98);
+    }
+
+    .check-card__option-marker {
+      width: 24px;
+      height: 24px;
+      border-radius: var(--radius-full);
+      border: 2px solid var(--color-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: var(--font-sm);
+      font-weight: var(--weight-bold);
+      color: var(--color-text-muted);
+      transition: all 0.2s ease;
+    }
+
+    .check-card__option-text {
+      font-size: var(--font-md);
+      color: var(--color-text);
+      line-height: 1.4;
+    }
+
+    .check-card__option.selected {
+      border-color: var(--color-primary);
+      background: var(--color-surface);
+    }
+
+    .check-card__option.selected .check-card__option-marker {
+      background: var(--color-primary);
+      border-color: var(--color-primary);
+      color: var(--color-text-inverse);
+    }
+
+    .check-card__option.correct {
+      border-color: var(--color-success);
+      background: var(--color-surface);
+    }
+
+    .check-card__option.correct .check-card__option-marker {
+      background: var(--color-success);
+      border-color: var(--color-success);
+      color: var(--color-text-inverse);
+    }
+
+    .check-card__option.incorrect {
+      border-color: var(--color-error);
+      background: var(--color-surface);
+      opacity: 0.7;
+    }
+
+    .check-card__option.incorrect .check-card__option-marker {
+      background: var(--color-error);
+      border-color: var(--color-error);
+      color: var(--color-text-inverse);
+    }
+
+    .check-card__explanation {
+      background: var(--color-surface-light);
+      border-radius: var(--radius-md);
+      padding: var(--spacing-lg);
+      display: none;
+    }
+
+    .check-card__explanation.visible {
+      display: block;
+    }
+
+    .check-card__explanation-icon {
+      font-size: var(--font-lg);
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .check-card__explanation-text {
+      font-size: var(--font-sm);
+      color: var(--color-text-secondary);
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+  <div class="component-preview">
+    <p class="component-title">Course Check Card</p>
+
+    <article class="check-card">
+      <span class="check-card__badge">✅ Knowledge Check</span>
+      <h2 class="check-card__question">What makes Generative AI different from traditional AI?</h2>
+
+      <div class="check-card__options" id="options">
+        <button class="check-card__option" data-correct="false" onclick="selectOption(this)">
+          <span class="check-card__option-marker">A</span>
+          <span class="check-card__option-text">It classifies data into categories</span>
+        </button>
+        <button class="check-card__option" data-correct="true" onclick="selectOption(this)">
+          <span class="check-card__option-marker">B</span>
+          <span class="check-card__option-text">It creates new, original content from learned patterns</span>
+        </button>
+        <button class="check-card__option" data-correct="false" onclick="selectOption(this)">
+          <span class="check-card__option-marker">C</span>
+          <span class="check-card__option-text">It runs faster on modern hardware</span>
+        </button>
+        <button class="check-card__option" data-correct="false" onclick="selectOption(this)">
+          <span class="check-card__option-marker">D</span>
+          <span class="check-card__option-text">It only works with text data</span>
+        </button>
+      </div>
+
+      <div class="check-card__explanation" id="explanation">
+        <p class="check-card__explanation-icon">💡</p>
+        <p class="check-card__explanation-text">Generative AI creates new content — text, images, code — by learning patterns from data.</p>
+      </div>
+    </article>
+  </div>
+
+  <script>
+    let answered = false;
+
+    function selectOption(el) {
+      if (answered) return;
+      answered = true;
+
+      const isCorrect = el.dataset.correct === 'true';
+      const options = document.querySelectorAll('.check-card__option');
+
+      options.forEach(opt => {
+        opt.style.pointerEvents = 'none';
+        if (opt.dataset.correct === 'true') {
+          opt.classList.add('correct');
+          opt.querySelector('.check-card__option-marker').textContent = '✓';
+        } else if (opt === el && !isCorrect) {
+          opt.classList.add('incorrect');
+          opt.querySelector('.check-card__option-marker').textContent = '✗';
+        }
+      });
+
+      document.getElementById('explanation').classList.add('visible');
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lesson Navigator</title>
+  <link rel="stylesheet" href="theme.css">
+  <style>
+    .navigators-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-xl);
+    }
+    .lesson-navigator {
+      display: flex;
+      justify-content: space-between;
+      align-items: stretch;
+      gap: var(--spacing-sm);
+      background: var(--color-card);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-md);
+      border: 1px solid var(--color-border);
+    }
+    .lesson-navigator__btn {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+      padding: var(--spacing-md) var(--spacing-lg);
+      border-radius: var(--radius-md);
+      border: none;
+      background: var(--color-surface-light);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      flex: 1;
+      min-width: 0;
+    }
+    .lesson-navigator__btn:hover {
+      background: var(--color-primary-light);
+    }
+    .lesson-navigator__btn--prev {
+      text-align: left;
+    }
+    .lesson-navigator__btn--next {
+      text-align: right;
+      flex-direction: row-reverse;
+    }
+    .lesson-navigator__btn--disabled {
+      opacity: 0.4;
+      pointer-events: none;
+    }
+    .lesson-navigator__arrow {
+      font-size: var(--font-xl);
+      color: var(--color-primary);
+      flex-shrink: 0;
+      font-weight: var(--weight-bold);
+    }
+    .lesson-navigator__info {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
+    }
+    .lesson-navigator__direction {
+      font-size: var(--font-xs);
+      color: var(--color-text-muted);
+      font-weight: var(--weight-medium);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .lesson-navigator__title {
+      font-size: var(--font-sm);
+      font-weight: var(--weight-semibold);
+      color: var(--color-text);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .demo-label {
+      font-size: var(--font-xs);
+      color: var(--color-text-muted);
+      font-weight: var(--weight-medium);
+      margin-bottom: var(--spacing-sm);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="component-preview">
+    <p class="component-title">Lesson Navigator</p>
+    <div class="navigators-list">
+      <!-- Mid-lesson navigation -->
+      <div>
+        <p class="demo-label">Both Directions</p>
+        <nav class="lesson-navigator" aria-label="Lesson navigation">
+          <button class="lesson-navigator__btn lesson-navigator__btn--prev">
+            <span class="lesson-navigator__arrow">←</span>
+            <div class="lesson-navigator__info">
+              <span class="lesson-navigator__direction">Previous</span>
+              <span class="lesson-navigator__title">Closures</span>
+            </div>
+          </button>
+          <button class="lesson-navigator__btn lesson-navigator__btn--next">
+            <span class="lesson-navigator__arrow">→</span>
+            <div class="lesson-navigator__info" style="align-items: flex-end;">
+              <span class="lesson-navigator__direction">Next</span>
+              <span class="lesson-navigator__title">Flexbox Basics</span>
+            </div>
+          </button>
+        </nav>
+      </div>
+
+      <!-- First lesson (no previous) -->
+      <div>
+        <p class="demo-label">First Lesson</p>
+        <nav class="lesson-navigator" aria-label="Lesson navigation">
+          <button class="lesson-navigator__btn lesson-navigator__btn--prev lesson-navigator__btn--disabled">
+            <span class="lesson-navigator__arrow">←</span>
+            <div class="lesson-navigator__info">
+              <span class="lesson-navigator__direction">Previous</span>
+              <span class="lesson-navigator__title">—</span>
+            </div>
+          </button>
+          <button class="lesson-navigator__btn lesson-navigator__btn--next">
+            <span class="lesson-navigator__arrow">→</span>
+            <div class="lesson-navigator__info" style="align-items: flex-end;">
+              <span class="lesson-navigator__direction">Next</span>
+              <span class="lesson-navigator__title">Types of AI</span>
+            </div>
+          </button>
+        </nav>
+      </div>
+
+      <!-- Last lesson (no next) -->
+      <div>
+        <p class="demo-label">Last Lesson</p>
+        <nav class="lesson-navigator" aria-label="Lesson navigation">
+          <button class="lesson-navigator__btn lesson-navigator__btn--prev">
+            <span class="lesson-navigator__arrow">←</span>
+            <div class="lesson-navigator__info">
+              <span class="lesson-navigator__direction">Previous</span>
+              <span class="lesson-navigator__title">Architecture of LLMs</span>
+            </div>
+          </button>
+          <button class="lesson-navigator__btn lesson-navigator__btn--next lesson-navigator__btn--disabled">
+            <span class="lesson-navigator__arrow">→</span>
+            <div class="lesson-navigator__info" style="align-items: flex-end;">
+              <span class="lesson-navigator__direction">Next</span>
+              <span class="lesson-navigator__title">—</span>
+            </div>
+          </button>
+        </nav>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

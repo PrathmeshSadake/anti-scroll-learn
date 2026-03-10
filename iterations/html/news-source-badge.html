@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>News Source Badges</title>
+  <link rel="stylesheet" href="theme.css">
+  <style>
+    .sources-container {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-md);
+    }
+    .source-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+      padding: var(--spacing-sm) var(--spacing-lg);
+      padding-left: var(--spacing-sm);
+      background: var(--color-card);
+      border-radius: var(--radius-full);
+      border: 1px solid var(--color-border);
+      font-size: var(--font-sm);
+      font-weight: var(--weight-semibold);
+      color: var(--color-text);
+      transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+      cursor: pointer;
+      width: fit-content;
+    }
+    .source-badge:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+      border-color: var(--color-primary-light);
+    }
+    .source-badge__icon {
+      width: 32px;
+      height: 32px;
+      border-radius: var(--radius-full);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: var(--font-md);
+      color: var(--color-text-inverse);
+      flex-shrink: 0;
+    }
+    .source-badge__icon--verge { background: #1a1a1a; }
+    .source-badge__icon--techcrunch { background: #0a9e01; }
+    .source-badge__icon--wired { background: #000000; }
+    .source-badge__icon--bloomberg { background: #472a91; }
+    .source-badge__icon--github { background: #24292e; }
+    .source-badge__text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.2;
+    }
+    .source-badge__name {
+      font-weight: var(--weight-semibold);
+      font-size: var(--font-sm);
+      color: var(--color-text);
+    }
+    .source-badge__type {
+      font-size: var(--font-xs);
+      font-weight: var(--weight-regular);
+      color: var(--color-text-muted);
+    }
+
+    .sources-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--spacing-sm);
+      margin-top: var(--spacing-lg);
+    }
+    .source-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--spacing-xs);
+      padding: var(--spacing-xs) var(--spacing-md);
+      padding-left: var(--spacing-xs);
+      background: var(--color-surface);
+      border-radius: var(--radius-full);
+      border: 1px solid var(--color-border-light);
+      font-size: var(--font-xs);
+      font-weight: var(--weight-medium);
+      color: var(--color-text-secondary);
+      transition: all 0.15s ease;
+      cursor: pointer;
+    }
+    .source-chip:hover {
+      background: var(--color-primary-light);
+      color: var(--color-primary-dark);
+      border-color: var(--color-primary-light);
+    }
+    .source-chip__dot {
+      width: 20px;
+      height: 20px;
+      border-radius: var(--radius-full);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      color: var(--color-text-inverse);
+    }
+  </style>
+</head>
+<body>
+  <div class="component-preview">
+    <p class="component-title">News Source Badges</p>
+    <div class="sources-container">
+      <div class="source-badge">
+        <span class="source-badge__icon source-badge__icon--verge">▽</span>
+        <div class="source-badge__text">
+          <span class="source-badge__name">The Verge</span>
+          <span class="source-badge__type">Technology</span>
+        </div>
+      </div>
+      <div class="source-badge">
+        <span class="source-badge__icon source-badge__icon--techcrunch">⚡</span>
+        <div class="source-badge__text">
+          <span class="source-badge__name">TechCrunch</span>
+          <span class="source-badge__type">Startups & Tech</span>
+        </div>
+      </div>
+      <div class="source-badge">
+        <span class="source-badge__icon source-badge__icon--wired">W</span>
+        <div class="source-badge__text">
+          <span class="source-badge__name">Wired</span>
+          <span class="source-badge__type">Science & Culture</span>
+        </div>
+      </div>
+      <div class="source-badge">
+        <span class="source-badge__icon source-badge__icon--bloomberg">B</span>
+        <div class="source-badge__text">
+          <span class="source-badge__name">Bloomberg</span>
+          <span class="source-badge__type">Finance & Business</span>
+        </div>
+      </div>
+      <div class="source-badge">
+        <span class="source-badge__icon source-badge__icon--github">⌥</span>
+        <div class="source-badge__text">
+          <span class="source-badge__name">GitHub Blog</span>
+          <span class="source-badge__type">Developer</span>
+        </div>
+      </div>
+    </div>
+
+    <p class="component-title" style="margin-top: var(--spacing-xxl);">Compact Source Chips</p>
+    <div class="sources-row">
+      <span class="source-chip"><span class="source-chip__dot source-badge__icon--verge">▽</span> The Verge</span>
+      <span class="source-chip"><span class="source-chip__dot source-badge__icon--techcrunch">⚡</span> TechCrunch</span>
+      <span class="source-chip"><span class="source-chip__dot source-badge__icon--wired">W</span> Wired</span>
+      <span class="source-chip"><span class="source-chip__dot source-badge__icon--bloomberg">B</span> Bloomberg</span>
+      <span class="source-chip"><span class="source-chip__dot source-badge__icon--github">⌥</span> GitHub Blog</span>
+    </div>
+  </div>
+</body>
+</html>

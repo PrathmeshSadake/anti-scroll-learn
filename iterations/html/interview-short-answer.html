@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Short Answer Card</title>
+  <link rel="stylesheet" href="theme.css">
+  <style>
+    .sa-card {
+      background: var(--color-prep-card);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-xl);
+      border: 1px solid var(--color-border);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+
+    .sa-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: var(--spacing-md);
+    }
+
+    .sa-type-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--spacing-xs);
+      background: var(--color-primary);
+      color: var(--color-text-inverse);
+      font-size: var(--font-xs);
+      font-weight: var(--weight-bold);
+      padding: var(--spacing-xs) var(--spacing-sm);
+      border-radius: var(--radius-full);
+    }
+
+    .sa-pro-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--spacing-xs);
+      background: linear-gradient(135deg, var(--color-warning), #e67e22);
+      color: var(--color-text-inverse);
+      font-size: var(--font-xs);
+      font-weight: var(--weight-heavy);
+      padding: var(--spacing-xs) var(--spacing-sm);
+      border-radius: var(--radius-full);
+      letter-spacing: 0.8px;
+    }
+
+    .sa-meta {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+      margin-bottom: var(--spacing-lg);
+      flex-wrap: wrap;
+    }
+
+    .sa-company {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--spacing-xs);
+      background: var(--color-prep-background);
+      color: var(--color-prep-accent);
+      font-size: var(--font-xs);
+      font-weight: var(--weight-semibold);
+      padding: var(--spacing-xs) var(--spacing-sm);
+      border-radius: var(--radius-full);
+    }
+
+    .sa-difficulty {
+      font-size: var(--font-xs);
+      font-weight: var(--weight-semibold);
+      padding: var(--spacing-xs) var(--spacing-sm);
+      border-radius: var(--radius-full);
+      background: rgba(239, 68, 68, 0.12);
+      color: var(--color-error);
+    }
+
+    .sa-round {
+      font-size: var(--font-xs);
+      color: var(--color-text-muted);
+    }
+
+    .sa-question {
+      font-size: var(--font-lg);
+      font-weight: var(--weight-semibold);
+      color: var(--color-text);
+      line-height: 1.5;
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .sa-textarea {
+      width: 100%;
+      min-height: 120px;
+      padding: var(--spacing-md);
+      border: 1.5px solid var(--color-border);
+      border-radius: var(--radius-md);
+      font-family: inherit;
+      font-size: var(--font-md);
+      color: var(--color-text);
+      background: var(--color-surface);
+      resize: vertical;
+      outline: none;
+      transition: border-color 0.2s ease;
+      line-height: 1.6;
+    }
+
+    .sa-textarea:focus {
+      border-color: var(--color-prep-accent);
+    }
+
+    .sa-textarea::placeholder {
+      color: var(--color-text-muted);
+    }
+
+    .sa-char-count {
+      text-align: right;
+      font-size: var(--font-xs);
+      color: var(--color-text-muted);
+      margin-top: var(--spacing-xs);
+    }
+
+    .sa-model-answer {
+      margin-top: var(--spacing-lg);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 1px solid var(--color-border-light);
+    }
+
+    .sa-model-toggle {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: var(--spacing-md) var(--spacing-lg);
+      background: var(--color-surface-light);
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: var(--font-sm);
+      font-weight: var(--weight-semibold);
+      color: var(--color-prep-accent);
+    }
+
+    .sa-model-toggle-icon {
+      transition: transform 0.3s ease;
+      font-size: var(--font-md);
+    }
+
+    .sa-model-toggle-icon.open {
+      transform: rotate(180deg);
+    }
+
+    .sa-model-content {
+      padding: 0 var(--spacing-lg);
+      max-height: 0;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      background: var(--color-prep-background);
+    }
+
+    .sa-model-content.visible {
+      padding: var(--spacing-lg);
+      max-height: 300px;
+    }
+
+    .sa-model-text {
+      font-size: var(--font-sm);
+      color: var(--color-text-secondary);
+      line-height: 1.6;
+    }
+
+    .sa-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: var(--spacing-xl);
+    }
+
+    .sa-success {
+      font-size: var(--font-xs);
+      color: var(--color-text-muted);
+    }
+
+    .sa-submit-btn {
+      background: var(--color-prep-accent);
+      color: var(--color-text-inverse);
+      border: none;
+      padding: var(--spacing-sm) var(--spacing-xl);
+      border-radius: var(--radius-full);
+      font-size: var(--font-sm);
+      font-weight: var(--weight-bold);
+      cursor: pointer;
+      font-family: inherit;
+    }
+  </style>
+</head>
+<body>
+  <div class="component-preview">
+    <p class="component-title">Short Answer Card</p>
+
+    <div class="sa-card">
+      <div class="sa-header">
+        <span class="sa-type-badge">📝 Short Answer</span>
+        <span class="sa-pro-badge">🔒 PRO</span>
+      </div>
+
+      <div class="sa-meta">
+        <span class="sa-company">Netflix</span>
+        <span class="sa-difficulty">Advanced</span>
+        <span class="sa-round">System Design · 2023</span>
+      </div>
+
+      <p class="sa-question">When should you fine-tune an LLM versus using Context Window Management (RAG)?</p>
+
+      <textarea class="sa-textarea" placeholder="Type your answer here..." oninput="updateCount(this)"></textarea>
+      <p class="sa-char-count"><span id="charCount">0</span> / 500</p>
+
+      <div class="sa-model-answer">
+        <button class="sa-model-toggle" onclick="toggleModelAnswer()">
+          <span>Show Model Answer</span>
+          <span class="sa-model-toggle-icon" id="toggleIcon">▼</span>
+        </button>
+        <div class="sa-model-content" id="modelContent">
+          <p class="sa-model-text">Context stuffing (RAG) is preferable when you need factual recall, up-to-date context, and the ability to ground responses in specific documents. Fine-tuning is better when you need to change the model's behavior, tone, or format, or when you need domain-specific reasoning that can't be achieved through prompting alone.</p>
+        </div>
+      </div>
+
+      <div class="sa-footer">
+        <span class="sa-success">62% success rate</span>
+        <button class="sa-submit-btn">Submit</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function updateCount(el) {
+      document.getElementById('charCount').textContent = el.value.length;
+    }
+
+    function toggleModelAnswer() {
+      const content = document.getElementById('modelContent');
+      const icon = document.getElementById('toggleIcon');
+      content.classList.toggle('visible');
+      icon.classList.toggle('open');
+    }
+  </script>
+</body>
+</html>

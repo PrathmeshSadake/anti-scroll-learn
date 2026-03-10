@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stat Card</title>
+  <link rel="stylesheet" href="theme.css">
+  <style>
+    .stats-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--spacing-md);
+    }
+
+    .stat-card {
+      background: var(--color-card);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-xl);
+      border: 1px solid var(--color-border-light);
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-sm);
+    }
+
+    .stat-card--wide {
+      grid-column: 1 / -1;
+      flex-direction: row;
+      align-items: center;
+      gap: var(--spacing-lg);
+    }
+
+    .stat-card__icon {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: var(--font-xl);
+      flex-shrink: 0;
+    }
+
+    .stat-card__icon--purple {
+      background: var(--color-primary-light);
+    }
+
+    .stat-card__icon--green {
+      background: rgba(88, 204, 2, 0.15);
+    }
+
+    .stat-card__icon--orange {
+      background: rgba(245, 158, 11, 0.15);
+    }
+
+    .stat-card__icon--blue {
+      background: rgba(59, 130, 246, 0.15);
+    }
+
+    .stat-card__content {
+      flex: 1;
+    }
+
+    .stat-card__value {
+      font-size: var(--font-xxl);
+      font-weight: var(--weight-heavy);
+      color: var(--color-text);
+      line-height: 1.2;
+    }
+
+    .stat-card__label {
+      font-size: var(--font-xs);
+      color: var(--color-text-muted);
+      font-weight: var(--weight-medium);
+    }
+
+    .stat-card__trend {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--spacing-xs);
+      font-size: var(--font-xs);
+      font-weight: var(--weight-semibold);
+      margin-top: var(--spacing-xs);
+    }
+
+    .stat-card__trend--up {
+      color: var(--color-success);
+    }
+
+    .stat-card__trend--down {
+      color: var(--color-error);
+    }
+
+    .stat-card--wide .stat-card__value {
+      font-size: var(--font-xxxl);
+    }
+
+    .stat-card__mini-chart {
+      display: flex;
+      align-items: flex-end;
+      gap: 3px;
+      height: 32px;
+      margin-top: var(--spacing-sm);
+    }
+
+    .stat-card__mini-bar {
+      width: 100%;
+      background: var(--color-primary-light);
+      border-radius: 2px;
+      flex: 1;
+    }
+  </style>
+</head>
+<body>
+  <div class="component-preview">
+    <p class="component-title">Stat Cards</p>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-card__icon stat-card__icon--purple">📝</div>
+        <div class="stat-card__content">
+          <p class="stat-card__value">42</p>
+          <p class="stat-card__label">Questions Answered</p>
+          <span class="stat-card__trend stat-card__trend--up">↑ 12 this week</span>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-card__icon stat-card__icon--orange">🔥</div>
+        <div class="stat-card__content">
+          <p class="stat-card__value">7</p>
+          <p class="stat-card__label">Day Streak</p>
+          <span class="stat-card__trend stat-card__trend--up">↑ Personal best!</span>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-card__icon stat-card__icon--green">🎯</div>
+        <div class="stat-card__content">
+          <p class="stat-card__value">85%</p>
+          <p class="stat-card__label">Accuracy</p>
+          <span class="stat-card__trend stat-card__trend--up">↑ +5% from last week</span>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-card__icon stat-card__icon--blue">⏱</div>
+        <div class="stat-card__content">
+          <p class="stat-card__value">3.2h</p>
+          <p class="stat-card__label">Time Spent</p>
+          <span class="stat-card__trend stat-card__trend--up">↑ 45 min today</span>
+        </div>
+      </div>
+
+      <div class="stat-card stat-card--wide">
+        <div class="stat-card__icon stat-card__icon--purple">📊</div>
+        <div class="stat-card__content">
+          <p class="stat-card__value">Level 1</p>
+          <p class="stat-card__label">LLM Fundamentals — 3 of 4 modules complete</p>
+        </div>
+        <div class="stat-card__mini-chart">
+          <div class="stat-card__mini-bar" style="height: 100%; background: var(--color-primary);"></div>
+          <div class="stat-card__mini-bar" style="height: 80%; background: var(--color-primary);"></div>
+          <div class="stat-card__mini-bar" style="height: 60%; background: var(--color-primary);"></div>
+          <div class="stat-card__mini-bar" style="height: 30%; background: var(--color-primary-light);"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

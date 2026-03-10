@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>News Featured Card</title>
+  <link rel="stylesheet" href="theme.css">
+  <style>
+    .featured-card {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      height: 420px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .featured-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.18);
+    }
+    .featured-card__image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+    .featured-card:hover .featured-card__image {
+      transform: scale(1.04);
+    }
+    .featured-card__overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.3) 40%, transparent 70%);
+    }
+    .featured-card__content {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: var(--spacing-xxl);
+    }
+    .featured-card__label {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--spacing-xs);
+      margin-bottom: var(--spacing-sm);
+    }
+    .featured-card__featured-tag {
+      padding: var(--spacing-xs) var(--spacing-sm);
+      border-radius: var(--radius-full);
+      font-size: var(--font-xs);
+      font-weight: var(--weight-bold);
+      color: var(--color-text-inverse);
+      background: var(--color-error);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .featured-card__badge {
+      padding: var(--spacing-xs) var(--spacing-sm);
+      border-radius: var(--radius-full);
+      font-size: var(--font-xs);
+      font-weight: var(--weight-bold);
+      color: var(--color-text-inverse);
+      background: var(--color-primary);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .featured-card__title {
+      font-size: var(--font-xxl);
+      font-weight: var(--weight-heavy);
+      color: var(--color-text-inverse);
+      line-height: 1.25;
+      margin-bottom: var(--spacing-md);
+    }
+    .featured-card__meta {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+      font-size: var(--font-sm);
+      color: rgba(255, 255, 255, 0.75);
+    }
+    .featured-card__source {
+      font-weight: var(--weight-semibold);
+      color: var(--color-text-inverse);
+    }
+    .featured-card__dot {
+      width: 3px;
+      height: 3px;
+      border-radius: var(--radius-full);
+      background: rgba(255, 255, 255, 0.6);
+    }
+  </style>
+</head>
+<body>
+  <div class="component-preview">
+    <p class="component-title">News Featured Card</p>
+    <article class="featured-card">
+      <img class="featured-card__image" src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=800" alt="Govt bans Jugnu & 4 other OTT platforms over obscene content">
+      <div class="featured-card__overlay"></div>
+      <div class="featured-card__content">
+        <div class="featured-card__label">
+          <span class="featured-card__featured-tag">Featured</span>
+          <span class="featured-card__badge">Regulation</span>
+        </div>
+        <h2 class="featured-card__title">Govt bans Jugnu & 4 other OTT platforms over obscene content</h2>
+        <div class="featured-card__meta">
+          <span class="featured-card__source">The Verge</span>
+          <span class="featured-card__dot"></span>
+          <span>Pragya Swastik</span>
+          <span class="featured-card__dot"></span>
+          <time>12:05 pm on 27 Feb 2026</time>
+        </div>
+      </div>
+    </article>
+  </div>
+</body>
+</html>

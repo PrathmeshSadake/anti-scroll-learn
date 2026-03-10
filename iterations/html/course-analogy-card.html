@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Course Analogy Card</title>
+  <link rel="stylesheet" href="theme.css">
+  <style>
+    .analogy-card {
+      background: var(--color-card);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-xxl);
+      border: 1px solid var(--color-border-light);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .analogy-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: linear-gradient(180deg, var(--color-primary), var(--color-primary-light));
+    }
+
+    .analogy-card__quote-mark {
+      font-size: var(--font-display);
+      font-weight: var(--weight-heavy);
+      color: var(--color-primary-light);
+      line-height: 1;
+      margin-bottom: var(--spacing-sm);
+      opacity: 0.6;
+    }
+
+    .analogy-card__badge {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--spacing-xs);
+      background: var(--color-primary-light);
+      color: var(--color-primary-dark);
+      font-size: var(--font-xs);
+      font-weight: var(--weight-semibold);
+      padding: var(--spacing-xs) var(--spacing-sm);
+      border-radius: var(--radius-full);
+      margin-bottom: var(--spacing-lg);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .analogy-card__text {
+      font-size: var(--font-lg);
+      font-weight: var(--weight-medium);
+      color: var(--color-text);
+      line-height: 1.6;
+      font-style: italic;
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .analogy-card__divider {
+      height: 1px;
+      background: var(--color-border-light);
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .analogy-card__context {
+      font-size: var(--font-sm);
+      color: var(--color-text-secondary);
+      line-height: 1.5;
+    }
+
+    .analogy-card__context-label {
+      font-weight: var(--weight-semibold);
+      color: var(--color-primary);
+    }
+  </style>
+</head>
+<body>
+  <div class="component-preview">
+    <p class="component-title">Course Analogy Card</p>
+
+    <article class="analogy-card">
+      <span class="analogy-card__badge">💭 Analogy</span>
+      <div class="analogy-card__quote-mark">"</div>
+      <p class="analogy-card__text">Traditional AI is like a judge at a talent show — it scores performances. Generative AI is the performer — it gets on stage and creates something new.</p>
+      <div class="analogy-card__divider"></div>
+      <p class="analogy-card__context">
+        <span class="analogy-card__context-label">From:</span> Traditional AI vs Generative AI
+      </p>
+    </article>
+  </div>
+</body>
+</html>

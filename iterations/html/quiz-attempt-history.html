@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz Attempt History</title>
+  <link rel="stylesheet" href="theme.css">
+  <style>
+    .attempt-history {
+      background: var(--color-card);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--color-border);
+      overflow: hidden;
+    }
+
+    .attempt-history__header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: var(--spacing-xl) var(--spacing-xxl);
+      border-bottom: 1px solid var(--color-border-light);
+    }
+
+    .attempt-history__title {
+      font-size: var(--font-lg);
+      font-weight: var(--weight-bold);
+      color: var(--color-text);
+    }
+
+    .attempt-history__count {
+      font-size: var(--font-sm);
+      color: var(--color-text-muted);
+      font-weight: var(--weight-medium);
+    }
+
+    .attempt-history__best {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-md);
+      padding: var(--spacing-lg) var(--spacing-xxl);
+      background: rgba(88, 204, 2, 0.06);
+      border-bottom: 1px solid var(--color-border-light);
+    }
+
+    .attempt-history__best-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: var(--radius-full);
+      background: rgba(88, 204, 2, 0.12);
+      font-size: var(--font-lg);
+      flex-shrink: 0;
+    }
+
+    .attempt-history__best-content {
+      flex: 1;
+    }
+
+    .attempt-history__best-label {
+      font-size: var(--font-xs);
+      color: var(--color-success);
+      font-weight: var(--weight-bold);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .attempt-history__best-value {
+      font-size: var(--font-md);
+      color: var(--color-text);
+      font-weight: var(--weight-semibold);
+    }
+
+    .attempt-history__list {
+      list-style: none;
+    }
+
+    .attempt-item {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-md);
+      padding: var(--spacing-lg) var(--spacing-xxl);
+      border-bottom: 1px solid var(--color-border-light);
+      transition: background 0.2s;
+      cursor: pointer;
+    }
+
+    .attempt-item:last-child {
+      border-bottom: none;
+    }
+
+    .attempt-item:hover {
+      background: var(--color-surface-light);
+    }
+
+    .attempt-item__rank {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: var(--radius-full);
+      background: var(--color-surface-light);
+      font-size: var(--font-sm);
+      font-weight: var(--weight-bold);
+      color: var(--color-text-muted);
+      flex-shrink: 0;
+    }
+
+    .attempt-item__content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .attempt-item__top-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .attempt-item__date {
+      font-size: var(--font-sm);
+      font-weight: var(--weight-semibold);
+      color: var(--color-text);
+    }
+
+    .attempt-item__score {
+      font-size: var(--font-sm);
+      font-weight: var(--weight-bold);
+    }
+
+    .attempt-item__score--high {
+      color: var(--color-success);
+    }
+
+    .attempt-item__score--mid {
+      color: var(--color-warning);
+    }
+
+    .attempt-item__score--low {
+      color: var(--color-error);
+    }
+
+    .attempt-item__bottom-row {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-lg);
+    }
+
+    .attempt-item__meta {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-xs);
+      font-size: var(--font-xs);
+      color: var(--color-text-muted);
+    }
+
+    .attempt-item__meta-icon {
+      font-size: var(--font-sm);
+    }
+
+    .attempt-item__progress {
+      flex: 1;
+      height: 4px;
+      background: var(--color-progress-bg);
+      border-radius: var(--radius-full);
+      overflow: hidden;
+      max-width: 80px;
+    }
+
+    .attempt-item__progress-fill {
+      height: 100%;
+      border-radius: var(--radius-full);
+    }
+
+    .attempt-item__progress-fill--high {
+      background: var(--color-success);
+    }
+
+    .attempt-item__progress-fill--mid {
+      background: var(--color-warning);
+    }
+
+    .attempt-item__progress-fill--low {
+      background: var(--color-error);
+    }
+
+    .attempt-item__arrow {
+      color: var(--color-text-muted);
+      font-size: var(--font-sm);
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="component-preview">
+    <p class="component-title">Quiz Attempt History</p>
+    <div class="attempt-history">
+      <div class="attempt-history__header">
+        <h2 class="attempt-history__title">Past Attempts</h2>
+        <span class="attempt-history__count">5 attempts</span>
+      </div>
+
+      <div class="attempt-history__best">
+        <div class="attempt-history__best-icon">🏆</div>
+        <div class="attempt-history__best-content">
+          <div class="attempt-history__best-label">Personal Best</div>
+          <div class="attempt-history__best-value">100% — 5/5 Correct</div>
+        </div>
+      </div>
+
+      <ul class="attempt-history__list">
+        <li class="attempt-item">
+          <div class="attempt-item__rank">1</div>
+          <div class="attempt-item__content">
+            <div class="attempt-item__top-row">
+              <span class="attempt-item__date">Today, 2:30 PM</span>
+              <span class="attempt-item__score attempt-item__score--high">100%</span>
+            </div>
+            <div class="attempt-item__bottom-row">
+              <span class="attempt-item__meta">
+                <span class="attempt-item__meta-icon">⏱</span> 2:15
+              </span>
+              <span class="attempt-item__meta">
+                <span class="attempt-item__meta-icon">✓</span> 5/5
+              </span>
+              <div class="attempt-item__progress">
+                <div class="attempt-item__progress-fill attempt-item__progress-fill--high" style="width: 100%;"></div>
+              </div>
+            </div>
+          </div>
+          <span class="attempt-item__arrow">›</span>
+        </li>
+
+        <li class="attempt-item">
+          <div class="attempt-item__rank">2</div>
+          <div class="attempt-item__content">
+            <div class="attempt-item__top-row">
+              <span class="attempt-item__date">Yesterday, 5:45 PM</span>
+              <span class="attempt-item__score attempt-item__score--high">80%</span>
+            </div>
+            <div class="attempt-item__bottom-row">
+              <span class="attempt-item__meta">
+                <span class="attempt-item__meta-icon">⏱</span> 2:45
+              </span>
+              <span class="attempt-item__meta">
+                <span class="attempt-item__meta-icon">✓</span> 4/5
+              </span>
+              <div class="attempt-item__progress">
+                <div class="attempt-item__progress-fill attempt-item__progress-fill--high" style="width: 80%;"></div>
+              </div>
+            </div>
+          </div>
+          <span class="attempt-item__arrow">›</span>
+        </li>
+
+        <li class="attempt-item">
+          <div class="attempt-item__rank">3</div>
+          <div class="attempt-item__content">
+            <div class="attempt-item__top-row">
+              <span class="attempt-item__date">Mar 8, 11:20 AM</span>
+              <span class="attempt-item__score attempt-item__score--mid">60%</span>
+            </div>
+            <div class="attempt-item__bottom-row">
+              <span class="attempt-item__meta">
+                <span class="attempt-item__meta-icon">⏱</span> 3:10
+              </span>
+              <span class="attempt-item__meta">
+                <span class="attempt-item__meta-icon">✓</span> 3/5
+              </span>
+              <div class="attempt-item__progress">
+                <div class="attempt-item__progress-fill attempt-item__progress-fill--mid" style="width: 60%;"></div>
+              </div>
+            </div>
+          </div>
+          <span class="attempt-item__arrow">›</span>
+        </li>
+
+        <li class="attempt-item">
+          <div class="attempt-item__rank">4</div>
+          <div class="attempt-item__content">
+            <div class="attempt-item__top-row">
+              <span class="attempt-item__date">Mar 6, 9:00 PM</span>
+              <span class="attempt-item__score attempt-item__score--mid">60%</span>
+            </div>
+            <div class="attempt-item__bottom-row">
+              <span class="attempt-item__meta">
+                <span class="attempt-item__meta-icon">⏱</span> 3:42
+              </span>
+              <span class="attempt-item__meta">
+                <span class="attempt-item__meta-icon">✓</span> 3/5
+              </span>
+              <div class="attempt-item__progress">
+                <div class="attempt-item__progress-fill attempt-item__progress-fill--mid" style="width: 60%;"></div>
+              </div>
+            </div>
+          </div>
+          <span class="attempt-item__arrow">›</span>
+        </li>
+
+        <li class="attempt-item">
+          <div class="attempt-item__rank">5</div>
+          <div class="attempt-item__content">
+            <div class="attempt-item__top-row">
+              <span class="attempt-item__date">Mar 4, 3:15 PM</span>
+              <span class="attempt-item__score attempt-item__score--low">40%</span>
+            </div>
+            <div class="attempt-item__bottom-row">
+              <span class="attempt-item__meta">
+                <span class="attempt-item__meta-icon">⏱</span> 4:05
+              </span>
+              <span class="attempt-item__meta">
+                <span class="attempt-item__meta-icon">✓</span> 2/5
+              </span>
+              <div class="attempt-item__progress">
+                <div class="attempt-item__progress-fill attempt-item__progress-fill--low" style="width: 40%;"></div>
+              </div>
+            </div>
+          </div>
+          <span class="attempt-item__arrow">›</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>

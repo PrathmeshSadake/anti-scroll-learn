@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>News Feed</title>
+  <link rel="stylesheet" href="theme.css">
+  <style>
+    .news-feed {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-lg);
+    }
+    .news-feed__header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: var(--spacing-xs);
+    }
+    .news-feed__heading {
+      font-size: var(--font-xl);
+      font-weight: var(--weight-bold);
+      color: var(--color-text);
+    }
+    .news-feed__see-all {
+      font-size: var(--font-sm);
+      font-weight: var(--weight-semibold);
+      color: var(--color-primary);
+      cursor: pointer;
+    }
+    .feed-card {
+      background: var(--color-card);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .feed-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    }
+    .feed-card__image-wrapper {
+      position: relative;
+      width: 100%;
+      height: 180px;
+      overflow: hidden;
+    }
+    .feed-card__image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .feed-card__badge {
+      position: absolute;
+      top: var(--spacing-sm);
+      left: var(--spacing-sm);
+      padding: var(--spacing-xs) var(--spacing-sm);
+      border-radius: var(--radius-full);
+      font-size: 10px;
+      font-weight: var(--weight-bold);
+      color: var(--color-text-inverse);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .badge--regulation { background: var(--color-error); }
+    .badge--research { background: var(--color-info); }
+    .badge--industry { background: var(--color-primary); }
+    .badge--enterprise { background: var(--color-warning); }
+    .badge--development { background: var(--color-accent); }
+    .feed-card__body {
+      padding: var(--spacing-md) var(--spacing-lg);
+      padding-bottom: var(--spacing-lg);
+    }
+    .feed-card__title {
+      font-size: var(--font-md);
+      font-weight: var(--weight-bold);
+      color: var(--color-text);
+      line-height: 1.35;
+      margin-bottom: var(--spacing-sm);
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .feed-card__meta {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-xs);
+      font-size: var(--font-xs);
+      color: var(--color-text-muted);
+    }
+    .feed-card__source {
+      font-weight: var(--weight-semibold);
+      color: var(--color-text-secondary);
+    }
+    .feed-card__dot {
+      width: 3px;
+      height: 3px;
+      border-radius: var(--radius-full);
+      background: var(--color-text-muted);
+    }
+  </style>
+</head>
+<body>
+  <div class="component-preview">
+    <p class="component-title">News Feed</p>
+    <div class="news-feed__header">
+      <h2 class="news-feed__heading">AI News</h2>
+      <span class="news-feed__see-all">See all</span>
+    </div>
+    <div class="news-feed">
+      <article class="feed-card">
+        <div class="feed-card__image-wrapper">
+          <img class="feed-card__image" src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=800" alt="News">
+          <span class="feed-card__badge badge--regulation">Regulation</span>
+        </div>
+        <div class="feed-card__body">
+          <h3 class="feed-card__title">Govt bans Jugnu & 4 other OTT platforms over obscene content</h3>
+          <div class="feed-card__meta">
+            <span class="feed-card__source">The Verge</span>
+            <span class="feed-card__dot"></span>
+            <time>12:05 pm on 27 Feb 2026</time>
+          </div>
+        </div>
+      </article>
+      <article class="feed-card">
+        <div class="feed-card__image-wrapper">
+          <img class="feed-card__image" src="https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=800" alt="News">
+          <span class="feed-card__badge badge--research">Research</span>
+        </div>
+        <div class="feed-card__body">
+          <h3 class="feed-card__title">Google's Gemini 1.5 Pro sets a new benchmark for multimodal AI processing</h3>
+          <div class="feed-card__meta">
+            <span class="feed-card__source">TechCrunch</span>
+            <span class="feed-card__dot"></span>
+            <time>09:30 am on 27 Feb 2026</time>
+          </div>
+        </div>
+      </article>
+      <article class="feed-card">
+        <div class="feed-card__image-wrapper">
+          <img class="feed-card__image" src="https://images.unsplash.com/photo-1698651848520-2216ea34488b?q=80&w=800" alt="News">
+          <span class="feed-card__badge badge--industry">Industry</span>
+        </div>
+        <div class="feed-card__body">
+          <h3 class="feed-card__title">Anthropic introduces Claude 3 Opus, matching GPT-4 capabilities</h3>
+          <div class="feed-card__meta">
+            <span class="feed-card__source">Wired</span>
+            <span class="feed-card__dot"></span>
+            <time>08:15 am on 27 Feb 2026</time>
+          </div>
+        </div>
+      </article>
+      <article class="feed-card">
+        <div class="feed-card__image-wrapper">
+          <img class="feed-card__image" src="https://images.unsplash.com/photo-1531297484001-80022131f5a1?q=80&w=800" alt="News">
+          <span class="feed-card__badge badge--enterprise">Enterprise</span>
+        </div>
+        <div class="feed-card__body">
+          <h3 class="feed-card__title">Apple brings advanced on-device AI models to upcoming iOS release</h3>
+          <div class="feed-card__meta">
+            <span class="feed-card__source">Bloomberg</span>
+            <span class="feed-card__dot"></span>
+            <time>07:05 am on 27 Feb 2026</time>
+          </div>
+        </div>
+      </article>
+      <article class="feed-card">
+        <div class="feed-card__image-wrapper">
+          <img class="feed-card__image" src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?q=80&w=800" alt="News">
+          <span class="feed-card__badge badge--development">Development</span>
+        </div>
+        <div class="feed-card__body">
+          <h3 class="feed-card__title">New open-source AI agent framework released for developers</h3>
+          <div class="feed-card__meta">
+            <span class="feed-card__source">GitHub Blog</span>
+            <span class="feed-card__dot"></span>
+            <time>Yesterday</time>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</body>
+</html>

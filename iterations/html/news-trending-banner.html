@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>News Trending Banner</title>
+  <link rel="stylesheet" href="theme.css">
+  <style>
+    .banners {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-lg);
+    }
+
+    /* Breaking news banner */
+    .breaking-banner {
+      background: var(--color-error);
+      border-radius: var(--radius-md);
+      padding: var(--spacing-md) var(--spacing-lg);
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-md);
+      overflow: hidden;
+      position: relative;
+    }
+    .breaking-banner__pulse {
+      width: 10px;
+      height: 10px;
+      border-radius: var(--radius-full);
+      background: var(--color-text-inverse);
+      flex-shrink: 0;
+      position: relative;
+    }
+    .breaking-banner__pulse::after {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      border-radius: var(--radius-full);
+      border: 2px solid var(--color-text-inverse);
+      animation: pulse 1.5s ease-in-out infinite;
+      opacity: 0.6;
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 0.6; }
+      50% { transform: scale(1.6); opacity: 0; }
+      100% { transform: scale(1); opacity: 0; }
+    }
+    .breaking-banner__content {
+      flex: 1;
+      min-width: 0;
+    }
+    .breaking-banner__label {
+      font-size: var(--font-xs);
+      font-weight: var(--weight-heavy);
+      color: var(--color-text-inverse);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 2px;
+    }
+    .breaking-banner__text {
+      font-size: var(--font-sm);
+      font-weight: var(--weight-semibold);
+      color: var(--color-text-inverse);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .breaking-banner__arrow {
+      color: var(--color-text-inverse);
+      font-size: var(--font-lg);
+      flex-shrink: 0;
+      opacity: 0.8;
+    }
+
+    /* Trending banner */
+    .trending-banner {
+      background: linear-gradient(135deg, var(--color-primary-dark), var(--color-primary));
+      border-radius: var(--radius-md);
+      padding: var(--spacing-lg);
+      position: relative;
+      overflow: hidden;
+    }
+    .trending-banner::before {
+      content: '';
+      position: absolute;
+      top: -20px;
+      right: -20px;
+      width: 100px;
+      height: 100px;
+      border-radius: var(--radius-full);
+      background: rgba(255, 255, 255, 0.08);
+    }
+    .trending-banner::after {
+      content: '';
+      position: absolute;
+      bottom: -30px;
+      left: 30%;
+      width: 80px;
+      height: 80px;
+      border-radius: var(--radius-full);
+      background: rgba(255, 255, 255, 0.05);
+    }
+    .trending-banner__header {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+      margin-bottom: var(--spacing-md);
+    }
+    .trending-banner__icon {
+      font-size: var(--font-lg);
+    }
+    .trending-banner__label {
+      font-size: var(--font-xs);
+      font-weight: var(--weight-heavy);
+      color: var(--color-text-inverse);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
+    .trending-banner__title {
+      font-size: var(--font-lg);
+      font-weight: var(--weight-bold);
+      color: var(--color-text-inverse);
+      line-height: 1.3;
+      margin-bottom: var(--spacing-sm);
+      position: relative;
+      z-index: 1;
+    }
+    .trending-banner__meta {
+      font-size: var(--font-xs);
+      color: rgba(255, 255, 255, 0.7);
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-xs);
+      position: relative;
+      z-index: 1;
+    }
+    .trending-banner__dot {
+      width: 3px;
+      height: 3px;
+      border-radius: var(--radius-full);
+      background: rgba(255, 255, 255, 0.5);
+    }
+
+    /* Scrolling ticker */
+    .ticker-banner {
+      background: var(--color-card);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: var(--spacing-md) var(--spacing-lg);
+      overflow: hidden;
+    }
+    .ticker-banner__label-row {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+      margin-bottom: var(--spacing-sm);
+    }
+    .ticker-banner__tag {
+      font-size: 10px;
+      font-weight: var(--weight-heavy);
+      color: var(--color-text-inverse);
+      background: var(--color-error);
+      padding: 2px var(--spacing-sm);
+      border-radius: var(--radius-full);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .ticker-banner__time {
+      font-size: var(--font-xs);
+      color: var(--color-text-muted);
+    }
+    .ticker-banner__scroll {
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .ticker-banner__text {
+      display: inline-block;
+      font-size: var(--font-sm);
+      font-weight: var(--weight-semibold);
+      color: var(--color-text);
+      animation: ticker 12s linear infinite;
+    }
+    @keyframes ticker {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
+  </style>
+</head>
+<body>
+  <div class="component-preview">
+    <p class="component-title">News Trending Banner</p>
+    <div class="banners">
+      <!-- Breaking news -->
+      <div class="breaking-banner">
+        <div class="breaking-banner__pulse"></div>
+        <div class="breaking-banner__content">
+          <div class="breaking-banner__label">Breaking News</div>
+          <div class="breaking-banner__text">Govt bans Jugnu & 4 other OTT platforms over obscene content</div>
+        </div>
+        <span class="breaking-banner__arrow">→</span>
+      </div>
+
+      <!-- Trending story -->
+      <div class="trending-banner">
+        <div class="trending-banner__header">
+          <span class="trending-banner__icon">🔥</span>
+          <span class="trending-banner__label">Trending Now</span>
+        </div>
+        <h3 class="trending-banner__title">Google's Gemini 1.5 Pro sets a new benchmark for multimodal AI processing</h3>
+        <div class="trending-banner__meta">
+          <span>TechCrunch</span>
+          <span class="trending-banner__dot"></span>
+          <span>Alex Wilkins</span>
+          <span class="trending-banner__dot"></span>
+          <time>09:30 am</time>
+        </div>
+      </div>
+
+      <!-- Scrolling ticker -->
+      <div class="ticker-banner">
+        <div class="ticker-banner__label-row">
+          <span class="ticker-banner__tag">Live</span>
+          <span class="ticker-banner__time">Just now</span>
+        </div>
+        <div class="ticker-banner__scroll">
+          <span class="ticker-banner__text">Govt bans Jugnu & 4 other OTT platforms ● Google's Gemini 1.5 Pro sets new benchmark ● Anthropic introduces Claude 3 Opus ● Apple brings on-device AI to iOS ● New open-source AI agent framework released</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

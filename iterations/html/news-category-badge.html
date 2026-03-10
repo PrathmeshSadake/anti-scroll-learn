@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>News Category Badges</title>
+  <link rel="stylesheet" href="theme.css">
+  <style>
+    .badges-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--spacing-sm);
+    }
+    .badge-group {
+      margin-bottom: var(--spacing-xxl);
+    }
+    .badge-group__label {
+      font-size: var(--font-sm);
+      font-weight: var(--weight-medium);
+      color: var(--color-text-secondary);
+      margin-bottom: var(--spacing-md);
+    }
+    .category-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--spacing-xs);
+      padding: var(--spacing-sm) var(--spacing-md);
+      border-radius: var(--radius-full);
+      font-size: var(--font-xs);
+      font-weight: var(--weight-bold);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+      cursor: pointer;
+    }
+    .category-badge:hover {
+      transform: scale(1.05);
+    }
+    .category-badge__icon {
+      font-size: var(--font-sm);
+    }
+    /* Solid variants */
+    .category-badge--regulation {
+      background: var(--color-error);
+      color: var(--color-text-inverse);
+    }
+    .category-badge--research {
+      background: var(--color-info);
+      color: var(--color-text-inverse);
+    }
+    .category-badge--industry {
+      background: var(--color-primary);
+      color: var(--color-text-inverse);
+    }
+    .category-badge--enterprise {
+      background: var(--color-warning);
+      color: var(--color-text-inverse);
+    }
+    .category-badge--development {
+      background: var(--color-accent);
+      color: var(--color-text-inverse);
+    }
+    /* Outlined variants */
+    .category-badge--outlined.category-badge--regulation {
+      background: transparent;
+      color: var(--color-error);
+      border: 1.5px solid var(--color-error);
+    }
+    .category-badge--outlined.category-badge--research {
+      background: transparent;
+      color: var(--color-info);
+      border: 1.5px solid var(--color-info);
+    }
+    .category-badge--outlined.category-badge--industry {
+      background: transparent;
+      color: var(--color-primary);
+      border: 1.5px solid var(--color-primary);
+    }
+    .category-badge--outlined.category-badge--enterprise {
+      background: transparent;
+      color: var(--color-warning);
+      border: 1.5px solid var(--color-warning);
+    }
+    .category-badge--outlined.category-badge--development {
+      background: transparent;
+      color: var(--color-accent);
+      border: 1.5px solid var(--color-accent);
+    }
+    /* Soft variants */
+    .category-badge--soft.category-badge--regulation {
+      background: rgba(239, 68, 68, 0.12);
+      color: var(--color-error);
+    }
+    .category-badge--soft.category-badge--research {
+      background: rgba(59, 130, 246, 0.12);
+      color: var(--color-info);
+    }
+    .category-badge--soft.category-badge--industry {
+      background: rgba(206, 130, 255, 0.15);
+      color: var(--color-primary-dark);
+    }
+    .category-badge--soft.category-badge--enterprise {
+      background: rgba(245, 158, 11, 0.12);
+      color: var(--color-warning);
+    }
+    .category-badge--soft.category-badge--development {
+      background: rgba(88, 204, 2, 0.12);
+      color: var(--color-accent);
+    }
+  </style>
+</head>
+<body>
+  <div class="component-preview">
+    <p class="component-title">News Category Badges</p>
+
+    <div class="badge-group">
+      <p class="badge-group__label">Solid</p>
+      <div class="badges-container">
+        <span class="category-badge category-badge--regulation"><span class="category-badge__icon">⚖️</span> Regulation</span>
+        <span class="category-badge category-badge--research"><span class="category-badge__icon">🔬</span> Research</span>
+        <span class="category-badge category-badge--industry"><span class="category-badge__icon">🏭</span> Industry</span>
+        <span class="category-badge category-badge--enterprise"><span class="category-badge__icon">🏢</span> Enterprise</span>
+        <span class="category-badge category-badge--development"><span class="category-badge__icon">💻</span> Development</span>
+      </div>
+    </div>
+
+    <div class="badge-group">
+      <p class="badge-group__label">Outlined</p>
+      <div class="badges-container">
+        <span class="category-badge category-badge--outlined category-badge--regulation">Regulation</span>
+        <span class="category-badge category-badge--outlined category-badge--research">Research</span>
+        <span class="category-badge category-badge--outlined category-badge--industry">Industry</span>
+        <span class="category-badge category-badge--outlined category-badge--enterprise">Enterprise</span>
+        <span class="category-badge category-badge--outlined category-badge--development">Development</span>
+      </div>
+    </div>
+
+    <div class="badge-group">
+      <p class="badge-group__label">Soft</p>
+      <div class="badges-container">
+        <span class="category-badge category-badge--soft category-badge--regulation">Regulation</span>
+        <span class="category-badge category-badge--soft category-badge--research">Research</span>
+        <span class="category-badge category-badge--soft category-badge--industry">Industry</span>
+        <span class="category-badge category-badge--soft category-badge--enterprise">Enterprise</span>
+        <span class="category-badge category-badge--soft category-badge--development">Development</span>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

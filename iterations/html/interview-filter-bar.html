@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Filter Bar</title>
+  <link rel="stylesheet" href="theme.css">
+  <style>
+    .filter-showcase {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-xxl);
+    }
+
+    .section-label {
+      font-size: var(--font-xs);
+      font-weight: var(--weight-semibold);
+      color: var(--color-text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: var(--spacing-sm);
+    }
+
+    /* Filter bar container */
+    .filter-bar {
+      background: var(--color-prep-card);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-lg);
+      border: 1px solid var(--color-border);
+    }
+
+    .filter-bar-title {
+      font-size: var(--font-sm);
+      font-weight: var(--weight-bold);
+      color: var(--color-text);
+      margin-bottom: var(--spacing-md);
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-xs);
+    }
+
+    .filter-bar-title-icon {
+      font-size: var(--font-md);
+    }
+
+    .filter-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--spacing-sm);
+    }
+
+    .filter-dropdown {
+      position: relative;
+    }
+
+    .filter-select {
+      width: 100%;
+      appearance: none;
+      padding: var(--spacing-sm) var(--spacing-md);
+      padding-right: var(--spacing-xxl);
+      border: 1.5px solid var(--color-border);
+      border-radius: var(--radius-md);
+      background: var(--color-surface);
+      font-family: inherit;
+      font-size: var(--font-sm);
+      font-weight: var(--weight-medium);
+      color: var(--color-text);
+      cursor: pointer;
+      outline: none;
+      transition: border-color 0.2s ease;
+    }
+
+    .filter-select:focus {
+      border-color: var(--color-prep-accent);
+    }
+
+    .filter-select.active {
+      border-color: var(--color-prep-accent);
+      background: var(--color-prep-background);
+      color: var(--color-prep-accent);
+      font-weight: var(--weight-semibold);
+    }
+
+    .filter-dropdown::after {
+      content: '▾';
+      position: absolute;
+      right: var(--spacing-md);
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: var(--font-xs);
+      color: var(--color-text-muted);
+      pointer-events: none;
+    }
+
+    /* Active filters */
+    .active-filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--spacing-xs);
+      margin-top: var(--spacing-md);
+      padding-top: var(--spacing-md);
+      border-top: 1px solid var(--color-border-light);
+    }
+
+    .active-filter-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--spacing-xs);
+      padding: 2px var(--spacing-sm);
+      background: var(--color-prep-background);
+      color: var(--color-prep-accent);
+      font-size: var(--font-xs);
+      font-weight: var(--weight-semibold);
+      border-radius: var(--radius-full);
+    }
+
+    .active-filter-close {
+      width: 16px;
+      height: 16px;
+      border-radius: var(--radius-full);
+      background: var(--color-prep-accent);
+      color: var(--color-text-inverse);
+      border: none;
+      font-size: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-family: inherit;
+      line-height: 1;
+    }
+
+    .clear-all-btn {
+      font-size: var(--font-xs);
+      color: var(--color-text-muted);
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+      padding: 2px var(--spacing-sm);
+      text-decoration: underline;
+    }
+
+    /* Horizontal scrollable chips variant */
+    .filter-chips-scroll {
+      display: flex;
+      gap: var(--spacing-sm);
+      overflow-x: auto;
+      padding: var(--spacing-xs) 0;
+      scrollbar-width: none;
+    }
+
+    .filter-chips-scroll::-webkit-scrollbar {
+      display: none;
+    }
+
+    .filter-chip {
+      flex-shrink: 0;
+      padding: var(--spacing-sm) var(--spacing-lg);
+      border-radius: var(--radius-full);
+      font-size: var(--font-sm);
+      font-weight: var(--weight-medium);
+      border: 1.5px solid var(--color-border);
+      background: var(--color-surface);
+      color: var(--color-text-secondary);
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .filter-chip:hover {
+      border-color: var(--color-prep-accent);
+    }
+
+    .filter-chip.active {
+      border-color: var(--color-prep-accent);
+      background: var(--color-prep-accent);
+      color: var(--color-text-inverse);
+    }
+
+    /* Results count */
+    .results-count {
+      font-size: var(--font-sm);
+      color: var(--color-text-muted);
+      margin-top: var(--spacing-md);
+    }
+
+    .results-count strong {
+      color: var(--color-text);
+      font-weight: var(--weight-bold);
+    }
+
+    /* Combined filter bar */
+    .combined-filter {
+      background: var(--color-prep-card);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-lg);
+      border: 1px solid var(--color-border);
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-md);
+    }
+
+    .search-input {
+      width: 100%;
+      padding: var(--spacing-sm) var(--spacing-md);
+      padding-left: var(--spacing-xxxl);
+      border: 1.5px solid var(--color-border);
+      border-radius: var(--radius-full);
+      background: var(--color-surface);
+      font-family: inherit;
+      font-size: var(--font-sm);
+      color: var(--color-text);
+      outline: none;
+      transition: border-color 0.2s ease;
+    }
+
+    .search-input:focus {
+      border-color: var(--color-prep-accent);
+    }
+
+    .search-input::placeholder {
+      color: var(--color-text-muted);
+    }
+
+    .search-wrapper {
+      position: relative;
+    }
+
+    .search-icon {
+      position: absolute;
+      left: var(--spacing-md);
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: var(--font-md);
+      color: var(--color-text-muted);
+    }
+  </style>
+</head>
+<body>
+  <div class="component-preview">
+    <p class="component-title">Filter Bar</p>
+
+    <div class="filter-showcase">
+      <div>
+        <p class="section-label">Dropdown Filters</p>
+        <div class="filter-bar">
+          <p class="filter-bar-title"><span class="filter-bar-title-icon">🔍</span> Filter Questions</p>
+          <div class="filter-grid">
+            <div class="filter-dropdown">
+              <select class="filter-select active">
+                <option>All Companies</option>
+                <option selected>Google</option>
+                <option>Meta</option>
+                <option>Amazon</option>
+                <option>Netflix</option>
+              </select>
+            </div>
+            <div class="filter-dropdown">
+              <select class="filter-select">
+                <option selected>All Topics</option>
+                <option>LLM Fundamentals</option>
+                <option>Transformers</option>
+                <option>RAG &amp; Retrieval</option>
+              </select>
+            </div>
+            <div class="filter-dropdown">
+              <select class="filter-select">
+                <option selected>All Difficulty</option>
+                <option>Easy</option>
+                <option>Intermediate</option>
+                <option>Advanced</option>
+              </select>
+            </div>
+            <div class="filter-dropdown">
+              <select class="filter-select">
+                <option selected>All Types</option>
+                <option>MCQ</option>
+                <option>Flashcard</option>
+                <option>Fill in Blank</option>
+                <option>Short Answer</option>
+              </select>
+            </div>
+          </div>
+          <div class="active-filters">
+            <span class="active-filter-chip">
+              Google <button class="active-filter-close">×</button>
+            </span>
+            <button class="clear-all-btn">Clear all</button>
+          </div>
+          <p class="results-count">Showing <strong>1</strong> of 5 questions</p>
+        </div>
+      </div>
+
+      <div>
+        <p class="section-label">Chip Filters</p>
+        <div class="filter-chips-scroll">
+          <button class="filter-chip active">All</button>
+          <button class="filter-chip">MCQ</button>
+          <button class="filter-chip">Flashcard</button>
+          <button class="filter-chip">Fill Blank</button>
+          <button class="filter-chip">Short Answer</button>
+        </div>
+      </div>
+
+      <div>
+        <p class="section-label">Combined Search + Filters</p>
+        <div class="combined-filter">
+          <div class="search-wrapper">
+            <span class="search-icon">🔍</span>
+            <input type="text" class="search-input" placeholder="Search questions...">
+          </div>
+          <div class="filter-chips-scroll">
+            <button class="filter-chip active" onclick="toggleChip(this)">All</button>
+            <button class="filter-chip" onclick="toggleChip(this)">Google</button>
+            <button class="filter-chip" onclick="toggleChip(this)">Meta</button>
+            <button class="filter-chip" onclick="toggleChip(this)">Amazon</button>
+            <button class="filter-chip" onclick="toggleChip(this)">Netflix</button>
+          </div>
+          <div class="filter-chips-scroll">
+            <button class="filter-chip" onclick="toggleChip(this)">Easy</button>
+            <button class="filter-chip" onclick="toggleChip(this)">Intermediate</button>
+            <button class="filter-chip" onclick="toggleChip(this)">Advanced</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function toggleChip(el) {
+      el.classList.toggle('active');
+    }
+  </script>
+</body>
+</html>

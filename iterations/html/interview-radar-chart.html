@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Radar Chart</title>
+  <link rel="stylesheet" href="theme.css">
+  <style>
+    .radar-showcase {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-xxl);
+    }
+
+    .section-label {
+      font-size: var(--font-xs);
+      font-weight: var(--weight-semibold);
+      color: var(--color-text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: var(--spacing-sm);
+    }
+
+    /* Radar chart card */
+    .radar-card {
+      background: var(--color-prep-card);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-xl);
+      border: 1px solid var(--color-border);
+    }
+
+    .radar-title {
+      font-size: var(--font-md);
+      font-weight: var(--weight-bold);
+      color: var(--color-text);
+      text-align: center;
+      margin-bottom: var(--spacing-xl);
+    }
+
+    /* CSS-only radar chart using SVG */
+    .radar-svg-container {
+      display: flex;
+      justify-content: center;
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .radar-svg {
+      width: 280px;
+      height: 280px;
+    }
+
+    .radar-grid-line {
+      fill: none;
+      stroke: var(--color-border);
+      stroke-width: 1;
+    }
+
+    .radar-axis {
+      stroke: var(--color-border-light);
+      stroke-width: 1;
+    }
+
+    .radar-area {
+      fill: rgba(99, 102, 241, 0.15);
+      stroke: var(--color-prep-accent);
+      stroke-width: 2;
+    }
+
+    .radar-dot {
+      fill: var(--color-prep-accent);
+      stroke: var(--color-prep-card);
+      stroke-width: 2;
+    }
+
+    .radar-label {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      fill: var(--color-text-secondary);
+      text-anchor: middle;
+    }
+
+    .radar-value {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      fill: var(--color-prep-accent);
+      text-anchor: middle;
+    }
+
+    /* Legend */
+    .radar-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--spacing-md);
+      justify-content: center;
+    }
+
+    .radar-legend-item {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-xs);
+      font-size: var(--font-xs);
+      color: var(--color-text-secondary);
+    }
+
+    .radar-legend-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: var(--radius-full);
+    }
+
+    .radar-legend-dot.accent {
+      background: var(--color-prep-accent);
+    }
+
+    /* Simplified bar-based radar for fallback */
+    .radar-bars {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-md);
+    }
+
+    .radar-bar-item {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-md);
+    }
+
+    .radar-bar-label {
+      font-size: var(--font-sm);
+      font-weight: var(--weight-medium);
+      color: var(--color-text);
+      min-width: 110px;
+    }
+
+    .radar-bar-track {
+      flex: 1;
+      height: 8px;
+      background: var(--color-progress-bg);
+      border-radius: var(--radius-full);
+      overflow: hidden;
+    }
+
+    .radar-bar-fill {
+      height: 100%;
+      border-radius: var(--radius-full);
+      background: var(--color-prep-accent);
+      transition: width 0.5s ease;
+    }
+
+    .radar-bar-pct {
+      font-size: var(--font-xs);
+      font-weight: var(--weight-bold);
+      color: var(--color-prep-accent);
+      min-width: 36px;
+      text-align: right;
+    }
+
+    /* Hexagon CSS radar */
+    .hex-radar {
+      position: relative;
+      width: 260px;
+      height: 260px;
+      margin: 0 auto var(--spacing-lg);
+    }
+
+    .hex-ring {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      border: 1px solid var(--color-border-light);
+      border-radius: var(--radius-full);
+    }
+
+    .hex-ring.ring-1 {
+      width: 220px;
+      height: 220px;
+      margin: -110px 0 0 -110px;
+    }
+
+    .hex-ring.ring-2 {
+      width: 160px;
+      height: 160px;
+      margin: -80px 0 0 -80px;
+    }
+
+    .hex-ring.ring-3 {
+      width: 100px;
+      height: 100px;
+      margin: -50px 0 0 -50px;
+    }
+
+    .hex-ring.ring-4 {
+      width: 40px;
+      height: 40px;
+      margin: -20px 0 0 -20px;
+    }
+
+    .hex-label {
+      position: absolute;
+      font-size: var(--font-xs);
+      font-weight: var(--weight-semibold);
+      color: var(--color-text-secondary);
+      white-space: nowrap;
+    }
+
+    .hex-label.top { top: -5px; left: 50%; transform: translateX(-50%); }
+    .hex-label.top-right { top: 38px; right: -20px; }
+    .hex-label.bottom-right { bottom: 38px; right: -15px; }
+    .hex-label.bottom { bottom: -5px; left: 50%; transform: translateX(-50%); }
+    .hex-label.bottom-left { bottom: 38px; left: -15px; }
+    .hex-label.top-left { top: 38px; left: -20px; }
+
+    .hex-point {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: var(--color-prep-accent);
+      border-radius: var(--radius-full);
+      border: 2px solid var(--color-prep-card);
+      box-shadow: 0 0 0 2px var(--color-prep-accent);
+      z-index: 2;
+    }
+  </style>
+</head>
+<body>
+  <div class="component-preview">
+    <p class="component-title">Performance Radar Chart</p>
+
+    <div class="radar-showcase">
+      <div>
+        <p class="section-label">SVG Radar</p>
+        <div class="radar-card">
+          <p class="radar-title">Topic Performance</p>
+          <div class="radar-svg-container">
+            <svg class="radar-svg" viewBox="0 0 300 300">
+              <!-- Grid circles -->
+              <circle cx="150" cy="150" r="120" class="radar-grid-line" />
+              <circle cx="150" cy="150" r="90" class="radar-grid-line" />
+              <circle cx="150" cy="150" r="60" class="radar-grid-line" />
+              <circle cx="150" cy="150" r="30" class="radar-grid-line" />
+
+              <!-- Axis lines (5 axes for 5 topics) -->
+              <line x1="150" y1="150" x2="150" y2="30" class="radar-axis" />
+              <line x1="150" y1="150" x2="264" y2="87" class="radar-axis" />
+              <line x1="150" y1="150" x2="220" y2="247" class="radar-axis" />
+              <line x1="150" y1="150" x2="80" y2="247" class="radar-axis" />
+              <line x1="150" y1="150" x2="36" y2="87" class="radar-axis" />
+
+              <!-- Data polygon (scaled by success rates) -->
+              <!-- LLM=92%, Transformers=34%, Transformers2=44%, RAG=62%, RAG2=75% -->
+              <!-- Points: top, top-right, bottom-right, bottom-left, top-left -->
+              <polygon class="radar-area"
+                points="150,40 247,98 193,218 98,218 60,98" />
+
+              <!-- Data dots -->
+              <circle cx="150" cy="40" r="5" class="radar-dot" />
+              <circle cx="247" cy="98" r="5" class="radar-dot" />
+              <circle cx="193" cy="218" r="5" class="radar-dot" />
+              <circle cx="98" cy="218" r="5" class="radar-dot" />
+              <circle cx="60" cy="98" r="5" class="radar-dot" />
+
+              <!-- Labels -->
+              <text x="150" y="18" class="radar-label">LLM</text>
+              <text x="150" y="10" class="radar-value">92%</text>
+              <text x="278" y="87" class="radar-label">Attention</text>
+              <text x="278" y="99" class="radar-value">34%</text>
+              <text x="232" y="268" class="radar-label">Scaling</text>
+              <text x="232" y="256" class="radar-value">44%</text>
+              <text x="68" y="268" class="radar-label">RAG</text>
+              <text x="68" y="256" class="radar-value">62%</text>
+              <text x="22" y="87" class="radar-label">Chunking</text>
+              <text x="22" y="99" class="radar-value">75%</text>
+            </svg>
+          </div>
+          <div class="radar-legend">
+            <span class="radar-legend-item"><span class="radar-legend-dot accent"></span> Your Performance</span>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <p class="section-label">Bar Chart Fallback</p>
+        <div class="radar-card">
+          <p class="radar-title">Topic Performance</p>
+          <div class="radar-bars">
+            <div class="radar-bar-item">
+              <span class="radar-bar-label">LLM Fundamentals</span>
+              <div class="radar-bar-track">
+                <div class="radar-bar-fill" style="width: 92%"></div>
+              </div>
+              <span class="radar-bar-pct">92%</span>
+            </div>
+            <div class="radar-bar-item">
+              <span class="radar-bar-label">Self-Attention</span>
+              <div class="radar-bar-track">
+                <div class="radar-bar-fill" style="width: 34%"></div>
+              </div>
+              <span class="radar-bar-pct">34%</span>
+            </div>
+            <div class="radar-bar-item">
+              <span class="radar-bar-label">Attention Scaling</span>
+              <div class="radar-bar-track">
+                <div class="radar-bar-fill" style="width: 44%"></div>
+              </div>
+              <span class="radar-bar-pct">44%</span>
+            </div>
+            <div class="radar-bar-item">
+              <span class="radar-bar-label">Fine-tune vs RAG</span>
+              <div class="radar-bar-track">
+                <div class="radar-bar-fill" style="width: 62%"></div>
+              </div>
+              <span class="radar-bar-pct">62%</span>
+            </div>
+            <div class="radar-bar-item">
+              <span class="radar-bar-label">RAG Chunking</span>
+              <div class="radar-bar-track">
+                <div class="radar-bar-fill" style="width: 75%"></div>
+              </div>
+              <span class="radar-bar-pct">75%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

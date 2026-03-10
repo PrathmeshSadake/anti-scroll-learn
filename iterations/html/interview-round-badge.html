@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Round Badges</title>
+  <link rel="stylesheet" href="theme.css">
+  <style>
+    .round-showcase {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-xxl);
+    }
+
+    .section-label {
+      font-size: var(--font-xs);
+      font-weight: var(--weight-semibold);
+      color: var(--color-text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .round-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--spacing-sm);
+    }
+
+    /* Base round badge */
+    .round-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--spacing-xs);
+      border-radius: var(--radius-full);
+      font-weight: var(--weight-medium);
+      cursor: default;
+      transition: transform 0.15s ease;
+    }
+
+    .round-badge:hover {
+      transform: scale(1.03);
+    }
+
+    .round-step {
+      width: 22px;
+      height: 22px;
+      border-radius: var(--radius-full);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: var(--font-xs);
+      font-weight: var(--weight-bold);
+    }
+
+    /* Default size */
+    .round-badge.md {
+      padding: var(--spacing-xs) var(--spacing-md);
+      font-size: var(--font-sm);
+    }
+
+    /* Small size */
+    .round-badge.sm {
+      padding: 2px var(--spacing-sm);
+      font-size: var(--font-xs);
+    }
+
+    .round-badge.sm .round-step {
+      width: 18px;
+      height: 18px;
+      font-size: 10px;
+    }
+
+    /* Large size */
+    .round-badge.lg {
+      padding: var(--spacing-sm) var(--spacing-lg);
+      font-size: var(--font-md);
+    }
+
+    .round-badge.lg .round-step {
+      width: 26px;
+      height: 26px;
+      font-size: var(--font-sm);
+    }
+
+    /* Phone Screen */
+    .round-badge.phone-screen {
+      background: rgba(88, 204, 2, 0.1);
+      color: var(--color-success);
+    }
+    .round-badge.phone-screen .round-step {
+      background: var(--color-success);
+      color: var(--color-text-inverse);
+    }
+
+    /* Initial Screen */
+    .round-badge.initial-screen {
+      background: rgba(59, 130, 246, 0.1);
+      color: var(--color-info);
+    }
+    .round-badge.initial-screen .round-step {
+      background: var(--color-info);
+      color: var(--color-text-inverse);
+    }
+
+    /* Final Round */
+    .round-badge.final-round {
+      background: rgba(206, 130, 255, 0.1);
+      color: var(--color-primary);
+    }
+    .round-badge.final-round .round-step {
+      background: var(--color-primary);
+      color: var(--color-text-inverse);
+    }
+
+    /* L5 Technical */
+    .round-badge.technical {
+      background: rgba(245, 158, 11, 0.1);
+      color: var(--color-warning);
+    }
+    .round-badge.technical .round-step {
+      background: var(--color-warning);
+      color: var(--color-text-inverse);
+    }
+
+    /* System Design */
+    .round-badge.system-design {
+      background: rgba(239, 68, 68, 0.1);
+      color: var(--color-error);
+    }
+    .round-badge.system-design .round-step {
+      background: var(--color-error);
+      color: var(--color-text-inverse);
+    }
+
+    /* Timeline */
+    .round-timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      position: relative;
+      padding-left: var(--spacing-xxl);
+    }
+
+    .round-timeline::before {
+      content: '';
+      position: absolute;
+      left: 14px;
+      top: 20px;
+      bottom: 20px;
+      width: 2px;
+      background: var(--color-border);
+    }
+
+    .timeline-item {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-md);
+      padding: var(--spacing-md) 0;
+      position: relative;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: calc(-1 * var(--spacing-xxl) + 6px);
+      width: 18px;
+      height: 18px;
+      border-radius: var(--radius-full);
+      border: 3px solid var(--color-prep-card);
+      z-index: 1;
+    }
+
+    .timeline-dot.green { background: var(--color-success); }
+    .timeline-dot.blue { background: var(--color-info); }
+    .timeline-dot.purple { background: var(--color-primary); }
+    .timeline-dot.orange { background: var(--color-warning); }
+    .timeline-dot.red { background: var(--color-error); }
+
+    .timeline-round-name {
+      font-size: var(--font-md);
+      font-weight: var(--weight-semibold);
+      color: var(--color-text);
+    }
+
+    .timeline-round-detail {
+      font-size: var(--font-xs);
+      color: var(--color-text-muted);
+    }
+
+    /* Context card */
+    .context-card {
+      background: var(--color-prep-card);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-lg);
+      border: 1px solid var(--color-border);
+    }
+
+    .context-header {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+      margin-bottom: var(--spacing-md);
+      flex-wrap: wrap;
+    }
+
+    .context-question {
+      font-size: var(--font-md);
+      font-weight: var(--weight-semibold);
+      color: var(--color-text);
+      line-height: 1.5;
+    }
+
+    .context-company {
+      font-size: var(--font-xs);
+      color: var(--color-text-muted);
+    }
+  </style>
+</head>
+<body>
+  <div class="component-preview">
+    <p class="component-title">Interview Round Badges</p>
+
+    <div class="round-showcase">
+      <div>
+        <p class="section-label">Small</p>
+        <div class="round-row">
+          <span class="round-badge phone-screen sm"><span class="round-step">1</span> Phone Screen</span>
+          <span class="round-badge initial-screen sm"><span class="round-step">1</span> Initial Screen</span>
+          <span class="round-badge final-round sm"><span class="round-step">3</span> Final Round</span>
+          <span class="round-badge technical sm"><span class="round-step">2</span> L5 Technical</span>
+          <span class="round-badge system-design sm"><span class="round-step">2</span> System Design</span>
+        </div>
+      </div>
+
+      <div>
+        <p class="section-label">Medium (Default)</p>
+        <div class="round-row">
+          <span class="round-badge phone-screen md"><span class="round-step">1</span> Phone Screen</span>
+          <span class="round-badge final-round md"><span class="round-step">3</span> Final Round</span>
+          <span class="round-badge technical md"><span class="round-step">2</span> L5 Technical</span>
+          <span class="round-badge system-design md"><span class="round-step">2</span> System Design</span>
+        </div>
+      </div>
+
+      <div>
+        <p class="section-label">Large</p>
+        <div class="round-row">
+          <span class="round-badge phone-screen lg"><span class="round-step">1</span> Phone Screen</span>
+          <span class="round-badge system-design lg"><span class="round-step">2</span> System Design</span>
+        </div>
+      </div>
+
+      <div>
+        <p class="section-label">Interview Process Timeline</p>
+        <div class="round-timeline">
+          <div class="timeline-item">
+            <span class="timeline-dot green"></span>
+            <div>
+              <p class="timeline-round-name">Phone Screen</p>
+              <p class="timeline-round-detail">30 min · Recruiter call</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <span class="timeline-dot blue"></span>
+            <div>
+              <p class="timeline-round-name">Initial Screen</p>
+              <p class="timeline-round-detail">45 min · Technical basics</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <span class="timeline-dot orange"></span>
+            <div>
+              <p class="timeline-round-name">L5 Technical</p>
+              <p class="timeline-round-detail">60 min · Deep technical</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <span class="timeline-dot red"></span>
+            <div>
+              <p class="timeline-round-name">System Design</p>
+              <p class="timeline-round-detail">60 min · Architecture</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <span class="timeline-dot purple"></span>
+            <div>
+              <p class="timeline-round-name">Final Round</p>
+              <p class="timeline-round-detail">45 min · Bar raiser</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <p class="section-label">In Context</p>
+        <div class="context-card">
+          <div class="context-header">
+            <span class="round-badge system-design sm"><span class="round-step">2</span> System Design</span>
+            <span class="context-company">Netflix · 2023</span>
+          </div>
+          <p class="context-question">When should you fine-tune an LLM versus using Context Window Management (RAG)?</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

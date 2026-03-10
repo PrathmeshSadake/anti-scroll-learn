@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Role Badges</title>
+  <link rel="stylesheet" href="theme.css">
+  <style>
+    .role-showcase {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-xxl);
+    }
+
+    .section-label {
+      font-size: var(--font-xs);
+      font-weight: var(--weight-semibold);
+      color: var(--color-text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .role-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--spacing-sm);
+    }
+
+    .role-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--spacing-xs);
+      padding: var(--spacing-xs) var(--spacing-md);
+      border-radius: var(--radius-full);
+      font-size: var(--font-sm);
+      font-weight: var(--weight-medium);
+      cursor: default;
+      transition: transform 0.15s ease;
+    }
+
+    .role-badge:hover {
+      transform: scale(1.03);
+    }
+
+    .role-icon {
+      font-size: var(--font-sm);
+    }
+
+    /* AI Engineer */
+    .role-badge.ai-engineer {
+      background: rgba(99, 102, 241, 0.1);
+      color: var(--color-prep-accent);
+    }
+
+    /* ML Engineer */
+    .role-badge.ml-engineer {
+      background: rgba(206, 130, 255, 0.1);
+      color: var(--color-primary);
+    }
+
+    /* Data Scientist */
+    .role-badge.data-scientist {
+      background: rgba(59, 130, 246, 0.1);
+      color: var(--color-info);
+    }
+
+    /* Prompt Engineer */
+    .role-badge.prompt-engineer {
+      background: rgba(88, 204, 2, 0.1);
+      color: var(--color-success);
+    }
+
+    /* Backend Developer */
+    .role-badge.backend-dev {
+      background: rgba(245, 158, 11, 0.1);
+      color: var(--color-warning);
+    }
+
+    /* Outlined variant */
+    .role-badge.outlined {
+      background: transparent;
+      border: 1.5px solid currentColor;
+    }
+
+    /* Compact variant */
+    .role-badge.compact {
+      padding: 2px var(--spacing-sm);
+      font-size: var(--font-xs);
+      gap: 3px;
+    }
+
+    .role-badge.compact .role-icon {
+      font-size: var(--font-xs);
+    }
+
+    /* Context card */
+    .context-card {
+      background: var(--color-prep-card);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-lg);
+      border: 1px solid var(--color-border);
+    }
+
+    .context-question {
+      font-size: var(--font-md);
+      font-weight: var(--weight-semibold);
+      color: var(--color-text);
+      margin-bottom: var(--spacing-md);
+      line-height: 1.5;
+    }
+
+    .context-label {
+      font-size: var(--font-xs);
+      color: var(--color-text-muted);
+      margin-bottom: var(--spacing-sm);
+      font-weight: var(--weight-medium);
+    }
+
+    /* Role count card */
+    .role-count-card {
+      background: var(--color-prep-card);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-lg);
+      border: 1px solid var(--color-border);
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-md);
+    }
+
+    .role-count-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: var(--font-xl);
+      flex-shrink: 0;
+    }
+
+    .role-count-icon.ai { background: rgba(99, 102, 241, 0.12); }
+    .role-count-icon.ml { background: rgba(206, 130, 255, 0.12); }
+
+    .role-count-info {
+      flex: 1;
+    }
+
+    .role-count-name {
+      font-size: var(--font-md);
+      font-weight: var(--weight-semibold);
+      color: var(--color-text);
+    }
+
+    .role-count-stat {
+      font-size: var(--font-xs);
+      color: var(--color-text-muted);
+    }
+
+    .role-count-number {
+      font-size: var(--font-xl);
+      font-weight: var(--weight-bold);
+      color: var(--color-prep-accent);
+    }
+  </style>
+</head>
+<body>
+  <div class="component-preview">
+    <p class="component-title">Role Badges</p>
+
+    <div class="role-showcase">
+      <div>
+        <p class="section-label">Default</p>
+        <div class="role-row">
+          <span class="role-badge ai-engineer"><span class="role-icon">🤖</span> AI Engineer</span>
+          <span class="role-badge ml-engineer"><span class="role-icon">🧠</span> ML Engineer</span>
+          <span class="role-badge data-scientist"><span class="role-icon">📊</span> Data Scientist</span>
+          <span class="role-badge prompt-engineer"><span class="role-icon">💬</span> Prompt Engineer</span>
+          <span class="role-badge backend-dev"><span class="role-icon">⚙️</span> Backend Developer</span>
+        </div>
+      </div>
+
+      <div>
+        <p class="section-label">Outlined</p>
+        <div class="role-row">
+          <span class="role-badge ai-engineer outlined"><span class="role-icon">🤖</span> AI Engineer</span>
+          <span class="role-badge ml-engineer outlined"><span class="role-icon">🧠</span> ML Engineer</span>
+          <span class="role-badge data-scientist outlined"><span class="role-icon">📊</span> Data Scientist</span>
+        </div>
+      </div>
+
+      <div>
+        <p class="section-label">Compact</p>
+        <div class="role-row">
+          <span class="role-badge ai-engineer compact"><span class="role-icon">🤖</span> AI Engineer</span>
+          <span class="role-badge ml-engineer compact"><span class="role-icon">🧠</span> ML Engineer</span>
+          <span class="role-badge prompt-engineer compact"><span class="role-icon">💬</span> Prompt Engineer</span>
+          <span class="role-badge backend-dev compact"><span class="role-icon">⚙️</span> Backend Developer</span>
+        </div>
+      </div>
+
+      <div>
+        <p class="section-label">In Context</p>
+        <div class="context-card">
+          <p class="context-question">When should you fine-tune an LLM versus using Context Window Management (RAG)?</p>
+          <p class="context-label">Target Roles</p>
+          <div class="role-row">
+            <span class="role-badge ai-engineer compact"><span class="role-icon">🤖</span> AI Engineer</span>
+            <span class="role-badge ml-engineer compact"><span class="role-icon">🧠</span> ML Engineer</span>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <p class="section-label">Role Cards</p>
+        <div style="display:flex; flex-direction:column; gap:var(--spacing-sm);">
+          <div class="role-count-card">
+            <div class="role-count-icon ai">🤖</div>
+            <div class="role-count-info">
+              <p class="role-count-name">AI Engineer</p>
+              <p class="role-count-stat">3 questions available</p>
+            </div>
+            <span class="role-count-number">3</span>
+          </div>
+          <div class="role-count-card">
+            <div class="role-count-icon ml">🧠</div>
+            <div class="role-count-info">
+              <p class="role-count-name">ML Engineer</p>
+              <p class="role-count-stat">4 questions available</p>
+            </div>
+            <span class="role-count-number">4</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

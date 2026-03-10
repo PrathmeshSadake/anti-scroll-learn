@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lesson Card</title>
+  <link rel="stylesheet" href="theme.css">
+  <style>
+    .lesson-card {
+      background: var(--color-card);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-xl);
+      border: 1px solid var(--color-border);
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-md);
+      transition: box-shadow 0.2s ease;
+    }
+    .lesson-card:hover {
+      box-shadow: 0 4px 16px var(--color-overlay);
+    }
+    .lesson-card__topic {
+      display: inline-flex;
+      align-items: center;
+      padding: var(--spacing-xs) var(--spacing-md);
+      border-radius: var(--radius-full);
+      font-size: var(--font-xs);
+      font-weight: var(--weight-semibold);
+      width: fit-content;
+      letter-spacing: 0.5px;
+    }
+    .lesson-card__topic--javascript {
+      background: #fef3c7;
+      color: #92400e;
+    }
+    .lesson-card__topic--python {
+      background: #d1fae5;
+      color: #065f46;
+    }
+    .lesson-card__topic--css {
+      background: #dbeafe;
+      color: #1e40af;
+    }
+    .lesson-card__title {
+      font-size: var(--font-xl);
+      font-weight: var(--weight-bold);
+      color: var(--color-text);
+      line-height: 1.3;
+    }
+    .lesson-card__content {
+      font-size: var(--font-md);
+      color: var(--color-text-secondary);
+      line-height: 1.6;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .lesson-card__takeaway {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--spacing-sm);
+      background: var(--color-surface-light);
+      border-radius: var(--radius-md);
+      padding: var(--spacing-md);
+      border-left: 3px solid var(--color-primary);
+    }
+    .lesson-card__takeaway-icon {
+      font-size: var(--font-lg);
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .lesson-card__takeaway-text {
+      font-size: var(--font-sm);
+      color: var(--color-text-secondary);
+      font-weight: var(--weight-medium);
+      line-height: 1.5;
+    }
+    .cards-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-lg);
+    }
+  </style>
+</head>
+<body>
+  <div class="component-preview">
+    <p class="component-title">Lesson Card</p>
+    <div class="cards-list">
+      <article class="lesson-card">
+        <span class="lesson-card__topic lesson-card__topic--javascript">JavaScript</span>
+        <h2 class="lesson-card__title">Closures</h2>
+        <p class="lesson-card__content">A closure is a function that remembers the variables from its outer scope...</p>
+        <div class="lesson-card__takeaway">
+          <span class="lesson-card__takeaway-icon">💡</span>
+          <p class="lesson-card__takeaway-text">Closures let functions 'remember' their creation environment.</p>
+        </div>
+      </article>
+      <article class="lesson-card">
+        <span class="lesson-card__topic lesson-card__topic--python">Python</span>
+        <h2 class="lesson-card__title">List Comprehensions</h2>
+        <p class="lesson-card__content">List comprehensions provide a concise way to create lists in Python...</p>
+        <div class="lesson-card__takeaway">
+          <span class="lesson-card__takeaway-icon">💡</span>
+          <p class="lesson-card__takeaway-text">List comprehensions turn multi-line loops into elegant one-liners.</p>
+        </div>
+      </article>
+      <article class="lesson-card">
+        <span class="lesson-card__topic lesson-card__topic--css">CSS</span>
+        <h2 class="lesson-card__title">Flexbox Basics</h2>
+        <p class="lesson-card__content">Flexbox is a one-dimensional layout model...</p>
+        <div class="lesson-card__takeaway">
+          <span class="lesson-card__takeaway-icon">💡</span>
+          <p class="lesson-card__takeaway-text">Flexbox simplifies alignment and distribution of space in one dimension.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz Score Card</title>
+  <link rel="stylesheet" href="theme.css">
+  <style>
+    .score-card {
+      background: var(--color-card);
+      border-radius: var(--radius-xl);
+      padding: var(--spacing-xxxl);
+      border: 1px solid var(--color-border);
+      text-align: center;
+    }
+
+    .score-card__ring-container {
+      display: flex;
+      justify-content: center;
+      margin-bottom: var(--spacing-xxl);
+    }
+
+    .score-card__ring {
+      position: relative;
+      width: 160px;
+      height: 160px;
+    }
+
+    .score-card__ring svg {
+      transform: rotate(-90deg);
+    }
+
+    .score-card__ring-bg {
+      fill: none;
+      stroke: var(--color-progress-bg);
+      stroke-width: 10;
+    }
+
+    .score-card__ring-fill {
+      fill: none;
+      stroke: var(--color-primary);
+      stroke-width: 10;
+      stroke-linecap: round;
+      stroke-dasharray: 440;
+      stroke-dashoffset: 88;
+      animation: ringFill 1.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+
+    @keyframes ringFill {
+      from {
+        stroke-dashoffset: 440;
+      }
+      to {
+        stroke-dashoffset: 88;
+      }
+    }
+
+    .score-card__ring-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+    }
+
+    .score-card__percentage {
+      font-size: var(--font-xxxl);
+      font-weight: var(--weight-heavy);
+      color: var(--color-primary);
+      line-height: 1;
+    }
+
+    .score-card__percentage-sign {
+      font-size: var(--font-lg);
+      font-weight: var(--weight-bold);
+    }
+
+    .score-card__fraction {
+      font-size: var(--font-sm);
+      font-weight: var(--weight-medium);
+      color: var(--color-text-secondary);
+      margin-top: var(--spacing-xs);
+    }
+
+    .score-card__title {
+      font-size: var(--font-xl);
+      font-weight: var(--weight-bold);
+      color: var(--color-text);
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .score-card__message {
+      font-size: var(--font-md);
+      color: var(--color-text-secondary);
+      margin-bottom: var(--spacing-xxl);
+      line-height: 1.5;
+    }
+
+    .score-card__stats {
+      display: flex;
+      justify-content: center;
+      gap: var(--spacing-xxl);
+      padding-top: var(--spacing-xl);
+      border-top: 1px solid var(--color-border-light);
+    }
+
+    .score-card__stat {
+      text-align: center;
+    }
+
+    .score-card__stat-value {
+      font-size: var(--font-xl);
+      font-weight: var(--weight-bold);
+    }
+
+    .score-card__stat-value--correct {
+      color: var(--color-success);
+    }
+
+    .score-card__stat-value--incorrect {
+      color: var(--color-error);
+    }
+
+    .score-card__stat-label {
+      font-size: var(--font-xs);
+      color: var(--color-text-muted);
+      font-weight: var(--weight-medium);
+      margin-top: var(--spacing-xs);
+    }
+  </style>
+</head>
+<body>
+  <div class="component-preview">
+    <p class="component-title">Quiz Score Card</p>
+    <div class="score-card">
+      <div class="score-card__ring-container">
+        <div class="score-card__ring">
+          <svg width="160" height="160" viewBox="0 0 160 160">
+            <circle class="score-card__ring-bg" cx="80" cy="80" r="70" />
+            <circle class="score-card__ring-fill" cx="80" cy="80" r="70" />
+          </svg>
+          <div class="score-card__ring-text">
+            <div class="score-card__percentage">80<span class="score-card__percentage-sign">%</span></div>
+            <div class="score-card__fraction">4 / 5 Correct</div>
+          </div>
+        </div>
+      </div>
+      <h2 class="score-card__title">Great Job! 🎉</h2>
+      <p class="score-card__message">You've mastered most of the key concepts about LLMs.</p>
+      <div class="score-card__stats">
+        <div class="score-card__stat">
+          <div class="score-card__stat-value score-card__stat-value--correct">4</div>
+          <div class="score-card__stat-label">Correct</div>
+        </div>
+        <div class="score-card__stat">
+          <div class="score-card__stat-value score-card__stat-value--incorrect">1</div>
+          <div class="score-card__stat-label">Incorrect</div>
+        </div>
+        <div class="score-card__stat">
+          <div class="score-card__stat-value" style="color: var(--color-info);">2:45</div>
+          <div class="score-card__stat-label">Time</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

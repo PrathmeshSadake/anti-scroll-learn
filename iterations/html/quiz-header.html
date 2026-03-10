@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz Header</title>
+  <link rel="stylesheet" href="theme.css">
+  <style>
+    .quiz-header {
+      background: var(--color-card);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-xxl);
+      border: 1px solid var(--color-border);
+    }
+
+    .quiz-header__top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .quiz-header__back {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border: none;
+      background: var(--color-surface-light);
+      border-radius: var(--radius-full);
+      cursor: pointer;
+      font-size: var(--font-lg);
+      color: var(--color-text);
+      transition: background 0.2s;
+    }
+
+    .quiz-header__back:hover {
+      background: var(--color-border-light);
+    }
+
+    .quiz-header__actions {
+      display: flex;
+      gap: var(--spacing-sm);
+    }
+
+    .quiz-header__action-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border: none;
+      background: var(--color-surface-light);
+      border-radius: var(--radius-full);
+      cursor: pointer;
+      font-size: var(--font-md);
+      color: var(--color-text-secondary);
+    }
+
+    .quiz-header__topic {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+      background: rgba(206, 130, 255, 0.1);
+      color: var(--color-primary);
+      font-size: var(--font-xs);
+      font-weight: var(--weight-bold);
+      padding: var(--spacing-xs) var(--spacing-md);
+      border-radius: var(--radius-full);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: var(--spacing-md);
+    }
+
+    .quiz-header__topic-icon {
+      font-size: var(--font-sm);
+    }
+
+    .quiz-header__title {
+      font-size: var(--font-xl);
+      font-weight: var(--weight-bold);
+      color: var(--color-text);
+      margin-bottom: var(--spacing-sm);
+      line-height: 1.3;
+    }
+
+    .quiz-header__meta {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-lg);
+      flex-wrap: wrap;
+    }
+
+    .quiz-header__meta-item {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-xs);
+      font-size: var(--font-sm);
+      color: var(--color-text-secondary);
+      font-weight: var(--weight-medium);
+    }
+
+    .quiz-header__meta-icon {
+      font-size: var(--font-md);
+    }
+
+    .quiz-header__difficulty {
+      display: inline-flex;
+      align-items: center;
+      padding: var(--spacing-xs) var(--spacing-sm);
+      border-radius: var(--radius-sm);
+      font-size: var(--font-xs);
+      font-weight: var(--weight-bold);
+    }
+
+    .quiz-header__difficulty--easy {
+      background: rgba(88, 204, 2, 0.12);
+      color: var(--color-success);
+    }
+
+    .quiz-header__difficulty--medium {
+      background: rgba(245, 158, 11, 0.12);
+      color: var(--color-warning);
+    }
+
+    .quiz-header__difficulty--hard {
+      background: rgba(239, 68, 68, 0.12);
+      color: var(--color-error);
+    }
+
+    .headers-showcase {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-xxl);
+    }
+  </style>
+</head>
+<body>
+  <div class="component-preview">
+    <p class="component-title">Quiz Header</p>
+    <div class="headers-showcase">
+      <!-- Full header -->
+      <div class="quiz-header">
+        <div class="quiz-header__top">
+          <button class="quiz-header__back" aria-label="Go back">←</button>
+          <div class="quiz-header__actions">
+            <button class="quiz-header__action-btn" aria-label="Bookmark">🔖</button>
+            <button class="quiz-header__action-btn" aria-label="More options">⋯</button>
+          </div>
+        </div>
+        <div class="quiz-header__topic">
+          <span class="quiz-header__topic-icon">🧠</span>
+          AI Fundamentals
+        </div>
+        <h1 class="quiz-header__title">Understanding Large Language Models</h1>
+        <div class="quiz-header__meta">
+          <span class="quiz-header__meta-item">
+            <span class="quiz-header__meta-icon">📝</span>
+            5 Questions
+          </span>
+          <span class="quiz-header__meta-item">
+            <span class="quiz-header__meta-icon">⏱</span>
+            ~3 min
+          </span>
+          <span class="quiz-header__difficulty quiz-header__difficulty--medium">Medium</span>
+        </div>
+      </div>
+
+      <!-- Minimal header -->
+      <div class="quiz-header" style="padding: var(--spacing-lg) var(--spacing-xl);">
+        <div class="quiz-header__top" style="margin-bottom: var(--spacing-sm);">
+          <button class="quiz-header__back" aria-label="Go back">←</button>
+          <div class="quiz-header__meta">
+            <span class="quiz-header__difficulty quiz-header__difficulty--hard">Hard</span>
+          </div>
+        </div>
+        <h1 class="quiz-header__title" style="font-size: var(--font-lg); margin-bottom: 0;">Transformer Architecture Deep Dive</h1>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

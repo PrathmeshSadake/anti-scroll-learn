@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module Progress Bar</title>
+  <link rel="stylesheet" href="theme.css">
+  <style>
+    .progress-demos {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-xxl);
+    }
+    .demo-label {
+      font-size: var(--font-xs);
+      color: var(--color-text-muted);
+      font-weight: var(--weight-medium);
+      margin-bottom: var(--spacing-sm);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .progress-bar-card {
+      background: var(--color-card);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-xl);
+      border: 1px solid var(--color-border);
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-md);
+    }
+    .progress-bar__header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+    .progress-bar__fraction {
+      font-size: var(--font-md);
+      font-weight: var(--weight-bold);
+      color: var(--color-text);
+    }
+    .progress-bar__fraction span {
+      color: var(--color-text-muted);
+      font-weight: var(--weight-regular);
+    }
+    .progress-bar__percentage {
+      font-size: var(--font-sm);
+      font-weight: var(--weight-bold);
+      color: var(--color-primary);
+    }
+    .progress-bar__track {
+      height: 10px;
+      border-radius: var(--radius-full);
+      background: var(--color-progress-bg);
+      overflow: hidden;
+    }
+    .progress-bar__fill {
+      height: 100%;
+      border-radius: var(--radius-full);
+      transition: width 0.6s ease;
+    }
+    .progress-bar__fill--primary {
+      background: var(--color-primary);
+    }
+    .progress-bar__fill--success {
+      background: var(--color-success);
+    }
+    .progress-bar__fill--warning {
+      background: var(--color-warning);
+    }
+    .progress-bar__label {
+      font-size: var(--font-sm);
+      color: var(--color-text-muted);
+      font-weight: var(--weight-medium);
+    }
+
+    /* Thin variant */
+    .progress-bar__track--thin {
+      height: 4px;
+    }
+
+    /* Thick variant */
+    .progress-bar__track--thick {
+      height: 16px;
+    }
+  </style>
+</head>
+<body>
+  <div class="component-preview">
+    <p class="component-title">Module Progress Bar</p>
+    <div class="progress-demos">
+      <div>
+        <p class="demo-label">1 of 3 completed (33%)</p>
+        <div class="progress-bar-card">
+          <div class="progress-bar__header">
+            <span class="progress-bar__fraction">1 <span>/ 3 completed</span></span>
+            <span class="progress-bar__percentage">33%</span>
+          </div>
+          <div class="progress-bar__track">
+            <div class="progress-bar__fill progress-bar__fill--primary" style="width: 33%"></div>
+          </div>
+          <span class="progress-bar__label">Module 1: Foundations of AI</span>
+        </div>
+      </div>
+
+      <div>
+        <p class="demo-label">0 of 2 completed (0%)</p>
+        <div class="progress-bar-card">
+          <div class="progress-bar__header">
+            <span class="progress-bar__fraction">0 <span>/ 2 completed</span></span>
+            <span class="progress-bar__percentage">0%</span>
+          </div>
+          <div class="progress-bar__track">
+            <div class="progress-bar__fill progress-bar__fill--primary" style="width: 0%"></div>
+          </div>
+          <span class="progress-bar__label">Module 2: ML vs Deep Learning</span>
+        </div>
+      </div>
+
+      <div>
+        <p class="demo-label">3 of 3 completed — Full</p>
+        <div class="progress-bar-card">
+          <div class="progress-bar__header">
+            <span class="progress-bar__fraction">3 <span>/ 3 completed</span></span>
+            <span class="progress-bar__percentage">100%</span>
+          </div>
+          <div class="progress-bar__track">
+            <div class="progress-bar__fill progress-bar__fill--success" style="width: 100%"></div>
+          </div>
+          <span class="progress-bar__label">Module complete! 🎉</span>
+        </div>
+      </div>
+
+      <div>
+        <p class="demo-label">Thin Variant</p>
+        <div class="progress-bar-card">
+          <div class="progress-bar__header">
+            <span class="progress-bar__fraction">2 <span>/ 5 completed</span></span>
+            <span class="progress-bar__percentage">40%</span>
+          </div>
+          <div class="progress-bar__track progress-bar__track--thin">
+            <div class="progress-bar__fill progress-bar__fill--warning" style="width: 40%"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

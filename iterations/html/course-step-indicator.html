@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Course Step Indicator</title>
+  <link rel="stylesheet" href="theme.css">
+  <style>
+    .step-indicator {
+      background: var(--color-card);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-xl) var(--spacing-xxl);
+      border: 1px solid var(--color-border-light);
+    }
+
+    .step-indicator__label {
+      font-size: var(--font-sm);
+      font-weight: var(--weight-medium);
+      color: var(--color-text-secondary);
+      text-align: center;
+      margin-bottom: var(--spacing-md);
+    }
+
+    .step-indicator__label strong {
+      color: var(--color-text);
+      font-weight: var(--weight-bold);
+    }
+
+    /* Dot style */
+    .step-indicator__dots {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--spacing-sm);
+    }
+
+    .step-indicator__dot {
+      width: 10px;
+      height: 10px;
+      border-radius: var(--radius-full);
+      background: var(--color-progress-bg);
+      transition: all 0.3s ease;
+    }
+
+    .step-indicator__dot.completed {
+      background: var(--color-primary);
+    }
+
+    .step-indicator__dot.active {
+      background: var(--color-primary);
+      width: 28px;
+      border-radius: var(--radius-full);
+    }
+
+    /* Progress bar style */
+    .step-indicator__bar {
+      margin-top: var(--spacing-lg);
+    }
+
+    .step-indicator__bar-track {
+      height: 4px;
+      background: var(--color-progress-bg);
+      border-radius: var(--radius-full);
+      overflow: hidden;
+    }
+
+    .step-indicator__bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--color-primary), var(--color-primary-dark));
+      border-radius: var(--radius-full);
+      transition: width 0.3s ease;
+    }
+
+    /* Numbered style */
+    .step-indicator__numbers {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--spacing-xs);
+    }
+
+    .step-indicator__number {
+      width: 28px;
+      height: 28px;
+      border-radius: var(--radius-full);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: var(--font-xs);
+      font-weight: var(--weight-bold);
+      border: 2px solid var(--color-border);
+      color: var(--color-text-muted);
+      transition: all 0.3s ease;
+    }
+
+    .step-indicator__number.completed {
+      background: var(--color-primary);
+      border-color: var(--color-primary);
+      color: var(--color-text-inverse);
+    }
+
+    .step-indicator__number.active {
+      border-color: var(--color-primary);
+      color: var(--color-primary);
+      box-shadow: 0 0 0 3px var(--color-primary-light);
+    }
+
+    .step-indicator__connector {
+      width: 16px;
+      height: 2px;
+      background: var(--color-border);
+    }
+
+    .step-indicator__connector.completed {
+      background: var(--color-primary);
+    }
+
+    .variants-gap {
+      height: var(--spacing-xxl);
+    }
+  </style>
+</head>
+<body>
+  <div class="component-preview">
+    <p class="component-title">Step Indicator — Dots (Card 3 of 7)</p>
+
+    <div class="step-indicator">
+      <p class="step-indicator__label">Card <strong>3</strong> of <strong>7</strong></p>
+      <div class="step-indicator__dots">
+        <div class="step-indicator__dot completed"></div>
+        <div class="step-indicator__dot completed"></div>
+        <div class="step-indicator__dot active"></div>
+        <div class="step-indicator__dot"></div>
+        <div class="step-indicator__dot"></div>
+        <div class="step-indicator__dot"></div>
+        <div class="step-indicator__dot"></div>
+      </div>
+      <div class="step-indicator__bar">
+        <div class="step-indicator__bar-track">
+          <div class="step-indicator__bar-fill" style="width: 42.8%"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="variants-gap"></div>
+
+    <p class="component-title">Step Indicator — Numbered (Step 5 of 7)</p>
+
+    <div class="step-indicator">
+      <p class="step-indicator__label">Step <strong>5</strong> of <strong>7</strong></p>
+      <div class="step-indicator__numbers">
+        <div class="step-indicator__number completed">✓</div>
+        <div class="step-indicator__connector completed"></div>
+        <div class="step-indicator__number completed">✓</div>
+        <div class="step-indicator__connector completed"></div>
+        <div class="step-indicator__number completed">✓</div>
+        <div class="step-indicator__connector completed"></div>
+        <div class="step-indicator__number completed">✓</div>
+        <div class="step-indicator__connector"></div>
+        <div class="step-indicator__number active">5</div>
+        <div class="step-indicator__connector"></div>
+        <div class="step-indicator__number">6</div>
+        <div class="step-indicator__connector"></div>
+        <div class="step-indicator__number">7</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

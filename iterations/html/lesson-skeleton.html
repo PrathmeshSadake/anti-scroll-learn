@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lesson Skeleton</title>
+  <link rel="stylesheet" href="theme.css">
+  <style>
+    @keyframes shimmer {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+    .skeleton-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-lg);
+    }
+    .skeleton-card {
+      background: var(--color-card);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-xl);
+      border: 1px solid var(--color-border);
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-md);
+    }
+    .skeleton-bone {
+      border-radius: var(--radius-sm);
+      background: linear-gradient(
+        90deg,
+        var(--color-surface-light) 25%,
+        var(--color-border-light) 50%,
+        var(--color-surface-light) 75%
+      );
+      background-size: 200% 100%;
+      animation: shimmer 1.5s ease-in-out infinite;
+    }
+    .skeleton-badge {
+      width: 80px;
+      height: 24px;
+      border-radius: var(--radius-full);
+    }
+    .skeleton-title {
+      width: 70%;
+      height: 24px;
+    }
+    .skeleton-text {
+      width: 100%;
+      height: 14px;
+    }
+    .skeleton-text--short {
+      width: 85%;
+    }
+    .skeleton-text--shorter {
+      width: 60%;
+    }
+    .skeleton-takeaway {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+      background: var(--color-surface-light);
+      border-radius: var(--radius-md);
+      padding: var(--spacing-md);
+      border-left: 3px solid var(--color-border);
+    }
+    .skeleton-circle {
+      width: 32px;
+      height: 32px;
+      border-radius: var(--radius-full);
+      flex-shrink: 0;
+    }
+    .skeleton-takeaway-lines {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-xs);
+    }
+  </style>
+</head>
+<body>
+  <div class="component-preview">
+    <p class="component-title">Lesson Skeleton (Loading)</p>
+    <div class="skeleton-list">
+      <div class="skeleton-card">
+        <div class="skeleton-bone skeleton-badge"></div>
+        <div class="skeleton-bone skeleton-title"></div>
+        <div style="display: flex; flex-direction: column; gap: var(--spacing-xs);">
+          <div class="skeleton-bone skeleton-text"></div>
+          <div class="skeleton-bone skeleton-text skeleton-text--short"></div>
+          <div class="skeleton-bone skeleton-text skeleton-text--shorter"></div>
+        </div>
+        <div class="skeleton-takeaway">
+          <div class="skeleton-bone skeleton-circle"></div>
+          <div class="skeleton-takeaway-lines">
+            <div class="skeleton-bone skeleton-text"></div>
+            <div class="skeleton-bone skeleton-text skeleton-text--short"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="skeleton-card">
+        <div class="skeleton-bone skeleton-badge"></div>
+        <div class="skeleton-bone skeleton-title"></div>
+        <div style="display: flex; flex-direction: column; gap: var(--spacing-xs);">
+          <div class="skeleton-bone skeleton-text"></div>
+          <div class="skeleton-bone skeleton-text skeleton-text--short"></div>
+          <div class="skeleton-bone skeleton-text skeleton-text--shorter"></div>
+        </div>
+        <div class="skeleton-takeaway">
+          <div class="skeleton-bone skeleton-circle"></div>
+          <div class="skeleton-takeaway-lines">
+            <div class="skeleton-bone skeleton-text"></div>
+            <div class="skeleton-bone skeleton-text skeleton-text--short"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="skeleton-card">
+        <div class="skeleton-bone skeleton-badge"></div>
+        <div class="skeleton-bone skeleton-title"></div>
+        <div style="display: flex; flex-direction: column; gap: var(--spacing-xs);">
+          <div class="skeleton-bone skeleton-text"></div>
+          <div class="skeleton-bone skeleton-text skeleton-text--short"></div>
+        </div>
+        <div class="skeleton-takeaway">
+          <div class="skeleton-bone skeleton-circle"></div>
+          <div class="skeleton-takeaway-lines">
+            <div class="skeleton-bone skeleton-text"></div>
+            <div class="skeleton-bone skeleton-text skeleton-text--short"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

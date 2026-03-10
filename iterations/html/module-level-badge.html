@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module Level Badge</title>
+  <link rel="stylesheet" href="theme.css">
+  <style>
+    .badges-section {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-xxl);
+    }
+    .demo-label {
+      font-size: var(--font-xs);
+      color: var(--color-text-muted);
+      font-weight: var(--weight-medium);
+      margin-bottom: var(--spacing-sm);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* Pill badges */
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--spacing-sm);
+    }
+    .level-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--spacing-xs);
+      padding: var(--spacing-xs) var(--spacing-md);
+      border-radius: var(--radius-full);
+      font-size: var(--font-sm);
+      font-weight: var(--weight-semibold);
+    }
+    .level-badge--beginner {
+      background: #dcfce7;
+      color: #166534;
+    }
+    .level-badge--intermediate {
+      background: #fef3c7;
+      color: #92400e;
+    }
+    .level-badge--advanced {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+    .level-badge--expert {
+      background: #f3e8ff;
+      color: #6b21a8;
+    }
+
+    /* Card style badges */
+    .level-cards {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-md);
+    }
+    .level-card {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-md);
+      padding: var(--spacing-lg);
+      background: var(--color-card);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--color-border);
+    }
+    .level-card__icon {
+      width: 48px;
+      height: 48px;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: var(--font-xxl);
+      flex-shrink: 0;
+    }
+    .level-card__icon--beginner { background: #dcfce7; }
+    .level-card__icon--intermediate { background: #fef3c7; }
+    .level-card__icon--advanced { background: #fee2e2; }
+    .level-card__icon--expert { background: #f3e8ff; }
+    .level-card__info {
+      flex: 1;
+    }
+    .level-card__title {
+      font-size: var(--font-md);
+      font-weight: var(--weight-bold);
+      color: var(--color-text);
+    }
+    .level-card__desc {
+      font-size: var(--font-sm);
+      color: var(--color-text-muted);
+      margin-top: 2px;
+    }
+  </style>
+</head>
+<body>
+  <div class="component-preview">
+    <p class="component-title">Level Badges</p>
+    <div class="badges-section">
+      <div>
+        <p class="demo-label">Pill Style</p>
+        <div class="badge-row">
+          <span class="level-badge level-badge--beginner">🌱 Beginner</span>
+          <span class="level-badge level-badge--intermediate">🔥 Intermediate</span>
+          <span class="level-badge level-badge--advanced">⚡ Advanced</span>
+          <span class="level-badge level-badge--expert">🏆 Expert</span>
+        </div>
+      </div>
+
+      <div>
+        <p class="demo-label">Card Style</p>
+        <div class="level-cards">
+          <div class="level-card">
+            <div class="level-card__icon level-card__icon--beginner">🌱</div>
+            <div class="level-card__info">
+              <h3 class="level-card__title">Beginner</h3>
+              <p class="level-card__desc">No prior knowledge needed</p>
+            </div>
+          </div>
+          <div class="level-card">
+            <div class="level-card__icon level-card__icon--intermediate">🔥</div>
+            <div class="level-card__info">
+              <h3 class="level-card__title">Intermediate</h3>
+              <p class="level-card__desc">Basic concepts understood</p>
+            </div>
+          </div>
+          <div class="level-card">
+            <div class="level-card__icon level-card__icon--advanced">⚡</div>
+            <div class="level-card__info">
+              <h3 class="level-card__title">Advanced</h3>
+              <p class="level-card__desc">Strong foundational knowledge</p>
+            </div>
+          </div>
+          <div class="level-card">
+            <div class="level-card__icon level-card__icon--expert">🏆</div>
+            <div class="level-card__info">
+              <h3 class="level-card__title">Expert</h3>
+              <p class="level-card__desc">Deep expertise expected</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

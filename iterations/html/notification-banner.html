@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notification Banner</title>
+  <link rel="stylesheet" href="theme.css">
+  <style>
+    .banners {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-md);
+    }
+
+    .banner {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--spacing-md);
+      padding: var(--spacing-lg);
+      border-radius: var(--radius-md);
+      border: 1px solid;
+      animation: slideIn 0.3s ease;
+    }
+
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(-8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .banner--success {
+      background: var(--color-surface);
+      border-color: var(--color-success);
+    }
+
+    .banner--error {
+      background: var(--color-surface);
+      border-color: var(--color-error);
+    }
+
+    .banner--warning {
+      background: var(--color-surface);
+      border-color: var(--color-warning);
+    }
+
+    .banner--info {
+      background: var(--color-surface);
+      border-color: var(--color-info);
+    }
+
+    .banner__icon {
+      width: 32px;
+      height: 32px;
+      border-radius: var(--radius-full);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: var(--font-md);
+      flex-shrink: 0;
+    }
+
+    .banner--success .banner__icon {
+      background: rgba(88, 204, 2, 0.15);
+    }
+
+    .banner--error .banner__icon {
+      background: rgba(239, 68, 68, 0.15);
+    }
+
+    .banner--warning .banner__icon {
+      background: rgba(245, 158, 11, 0.15);
+    }
+
+    .banner--info .banner__icon {
+      background: rgba(59, 130, 246, 0.15);
+    }
+
+    .banner__content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .banner__title {
+      font-size: var(--font-sm);
+      font-weight: var(--weight-semibold);
+      color: var(--color-text);
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .banner__message {
+      font-size: var(--font-sm);
+      color: var(--color-text-secondary);
+      line-height: 1.5;
+    }
+
+    .banner__dismiss {
+      width: 28px;
+      height: 28px;
+      border-radius: var(--radius-full);
+      border: none;
+      background: var(--color-surface-light);
+      color: var(--color-text-muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      flex-shrink: 0;
+      font-size: var(--font-md);
+      transition: all 0.2s ease;
+      font-family: inherit;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .banner__dismiss:active {
+      background: var(--color-border);
+    }
+
+    .banner__action {
+      display: inline-flex;
+      margin-top: var(--spacing-sm);
+      font-size: var(--font-sm);
+      font-weight: var(--weight-semibold);
+      color: var(--color-primary);
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      font-family: inherit;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .banner__action:active {
+      opacity: 0.7;
+    }
+  </style>
+</head>
+<body>
+  <div class="component-preview">
+    <p class="component-title">Notification Banners</p>
+
+    <div class="banners">
+      <div class="banner banner--success" id="banner-success">
+        <div class="banner__icon">✅</div>
+        <div class="banner__content">
+          <p class="banner__title">Lesson Complete!</p>
+          <p class="banner__message">You've finished "What is Generative AI?" with 92% accuracy.</p>
+        </div>
+        <button class="banner__dismiss" onclick="dismiss('banner-success')">✕</button>
+      </div>
+
+      <div class="banner banner--error" id="banner-error">
+        <div class="banner__icon">❌</div>
+        <div class="banner__content">
+          <p class="banner__title">Connection Lost</p>
+          <p class="banner__message">Your progress will be saved locally and synced when you're back online.</p>
+          <button class="banner__action">Try Again →</button>
+        </div>
+        <button class="banner__dismiss" onclick="dismiss('banner-error')">✕</button>
+      </div>
+
+      <div class="banner banner--warning" id="banner-warning">
+        <div class="banner__icon">⚠️</div>
+        <div class="banner__content">
+          <p class="banner__title">Streak at Risk!</p>
+          <p class="banner__message">Complete one lesson today to keep your 7-day streak alive.</p>
+          <button class="banner__action">Start a Quick Lesson →</button>
+        </div>
+        <button class="banner__dismiss" onclick="dismiss('banner-warning')">✕</button>
+      </div>
+
+      <div class="banner banner--info" id="banner-info">
+        <div class="banner__icon">ℹ️</div>
+        <div class="banner__content">
+          <p class="banner__title">New Course Available</p>
+          <p class="banner__message">RAG: Give AI Your Data — a new level has been added to your course.</p>
+          <button class="banner__action">Explore →</button>
+        </div>
+        <button class="banner__dismiss" onclick="dismiss('banner-info')">✕</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function dismiss(id) {
+      const banner = document.getElementById(id);
+      banner.style.transition = 'all 0.3s ease';
+      banner.style.opacity = '0';
+      banner.style.transform = 'translateX(100%)';
+      setTimeout(() => banner.style.display = 'none', 300);
+    }
+  </script>
+</body>
+</html>

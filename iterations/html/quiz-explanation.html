@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz Explanation</title>
+  <link rel="stylesheet" href="theme.css">
+  <style>
+    .explanations-showcase {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-xxl);
+    }
+
+    .quiz-explanation {
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-xl);
+      animation: explanationSlideUp 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    }
+
+    @keyframes explanationSlideUp {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .quiz-explanation--correct {
+      background: rgba(88, 204, 2, 0.08);
+      border: 1px solid rgba(88, 204, 2, 0.2);
+    }
+
+    .quiz-explanation--incorrect {
+      background: rgba(239, 68, 68, 0.08);
+      border: 1px solid rgba(239, 68, 68, 0.2);
+    }
+
+    .quiz-explanation__header {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-md);
+      margin-bottom: var(--spacing-md);
+    }
+
+    .quiz-explanation__icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: var(--radius-full);
+      font-size: var(--font-lg);
+      flex-shrink: 0;
+    }
+
+    .quiz-explanation--correct .quiz-explanation__icon {
+      background: var(--color-success);
+      color: var(--color-text-inverse);
+    }
+
+    .quiz-explanation--incorrect .quiz-explanation__icon {
+      background: var(--color-error);
+      color: var(--color-text-inverse);
+    }
+
+    .quiz-explanation__status {
+      font-size: var(--font-lg);
+      font-weight: var(--weight-bold);
+    }
+
+    .quiz-explanation--correct .quiz-explanation__status {
+      color: var(--color-success);
+    }
+
+    .quiz-explanation--incorrect .quiz-explanation__status {
+      color: var(--color-error);
+    }
+
+    .quiz-explanation__correct-answer {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+      background: rgba(88, 204, 2, 0.1);
+      border-radius: var(--radius-sm);
+      padding: var(--spacing-sm) var(--spacing-md);
+      margin-bottom: var(--spacing-md);
+      font-size: var(--font-sm);
+      font-weight: var(--weight-semibold);
+      color: var(--color-success);
+    }
+
+    .quiz-explanation__text {
+      font-size: var(--font-md);
+      color: var(--color-text);
+      line-height: 1.6;
+    }
+
+    .quiz-explanation__continue {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      margin-top: var(--spacing-xl);
+      padding: var(--spacing-md) var(--spacing-xl);
+      border: none;
+      border-radius: var(--radius-md);
+      font-family: inherit;
+      font-size: var(--font-md);
+      font-weight: var(--weight-bold);
+      color: var(--color-text-inverse);
+      cursor: pointer;
+      transition: transform 0.2s, opacity 0.2s;
+    }
+
+    .quiz-explanation__continue:hover {
+      opacity: 0.9;
+    }
+
+    .quiz-explanation__continue:active {
+      transform: scale(0.98);
+    }
+
+    .quiz-explanation--correct .quiz-explanation__continue {
+      background: var(--color-success);
+    }
+
+    .quiz-explanation--incorrect .quiz-explanation__continue {
+      background: var(--color-primary);
+    }
+  </style>
+</head>
+<body>
+  <div class="component-preview">
+    <p class="component-title">Quiz Explanation</p>
+    <div class="explanations-showcase">
+      <!-- Correct answer explanation -->
+      <div class="quiz-explanation quiz-explanation--correct">
+        <div class="quiz-explanation__header">
+          <div class="quiz-explanation__icon">✓</div>
+          <span class="quiz-explanation__status">Correct! Well done 🎉</span>
+        </div>
+        <p class="quiz-explanation__text">
+          LLMs are fundamentally next-word prediction engines. They are trained on massive datasets of text and learn statistical patterns to predict what word (or token) is most likely to come next in a sequence. This simple core mechanism is what powers their ability to generate coherent, contextual text.
+        </p>
+        <button class="quiz-explanation__continue">Continue →</button>
+      </div>
+
+      <!-- Incorrect answer explanation -->
+      <div class="quiz-explanation quiz-explanation--incorrect">
+        <div class="quiz-explanation__header">
+          <div class="quiz-explanation__icon">✗</div>
+          <span class="quiz-explanation__status">Not quite</span>
+        </div>
+        <div class="quiz-explanation__correct-answer">
+          ✓ Correct answer: The Attention mechanism
+        </div>
+        <p class="quiz-explanation__text">
+          The Attention mechanism, specifically "Self-Attention," is the key innovation in Transformers. It allows the model to weigh the importance of every other word in a sentence when processing a given word, regardless of distance. This is how it captures long-range dependencies in text.
+        </p>
+        <button class="quiz-explanation__continue">Got it, continue →</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

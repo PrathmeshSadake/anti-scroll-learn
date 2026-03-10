@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Progress Ring</title>
+  <link rel="stylesheet" href="theme.css">
+  <style>
+    .progress-ring-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--spacing-xl);
+    }
+
+    .progress-ring-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--spacing-sm);
+    }
+
+    .progress-ring {
+      position: relative;
+      width: 100px;
+      height: 100px;
+    }
+
+    .progress-ring svg {
+      transform: rotate(-90deg);
+      width: 100px;
+      height: 100px;
+    }
+
+    .progress-ring__bg {
+      fill: none;
+      stroke: var(--color-progress-bg);
+      stroke-width: 8;
+    }
+
+    .progress-ring__fill {
+      fill: none;
+      stroke: var(--color-primary);
+      stroke-width: 8;
+      stroke-linecap: round;
+      transition: stroke-dashoffset 0.6s ease;
+    }
+
+    .progress-ring__fill--success {
+      stroke: var(--color-success);
+    }
+
+    .progress-ring__fill--warning {
+      stroke: var(--color-warning);
+    }
+
+    .progress-ring__fill--info {
+      stroke: var(--color-info);
+    }
+
+    .progress-ring__text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+    }
+
+    .progress-ring__percentage {
+      font-size: var(--font-xl);
+      font-weight: var(--weight-heavy);
+      color: var(--color-text);
+      line-height: 1;
+    }
+
+    .progress-ring__sublabel {
+      font-size: var(--font-xs);
+      color: var(--color-text-muted);
+      margin-top: var(--spacing-xs);
+    }
+
+    .progress-ring-label {
+      font-size: var(--font-sm);
+      color: var(--color-text-secondary);
+      font-weight: var(--weight-medium);
+    }
+  </style>
+</head>
+<body>
+  <div class="component-preview">
+    <p class="component-title">Progress Ring</p>
+
+    <div class="progress-ring-grid">
+      <div class="progress-ring-wrapper">
+        <div class="progress-ring">
+          <svg viewBox="0 0 100 100">
+            <circle class="progress-ring__bg" cx="50" cy="50" r="42" />
+            <circle class="progress-ring__fill--warning" class="progress-ring__fill" cx="50" cy="50" r="42"
+              stroke-dasharray="263.89" stroke-dashoffset="197.92"
+              fill="none" stroke="var(--color-warning)" stroke-width="8" stroke-linecap="round" />
+          </svg>
+          <div class="progress-ring__text">
+            <span class="progress-ring__percentage">25%</span>
+          </div>
+        </div>
+        <span class="progress-ring-label">Getting Started</span>
+      </div>
+
+      <div class="progress-ring-wrapper">
+        <div class="progress-ring">
+          <svg viewBox="0 0 100 100">
+            <circle class="progress-ring__bg" cx="50" cy="50" r="42" />
+            <circle cx="50" cy="50" r="42"
+              stroke-dasharray="263.89" stroke-dashoffset="131.95"
+              fill="none" stroke="var(--color-info)" stroke-width="8" stroke-linecap="round" />
+          </svg>
+          <div class="progress-ring__text">
+            <span class="progress-ring__percentage">50%</span>
+          </div>
+        </div>
+        <span class="progress-ring-label">Halfway There</span>
+      </div>
+
+      <div class="progress-ring-wrapper">
+        <div class="progress-ring">
+          <svg viewBox="0 0 100 100">
+            <circle class="progress-ring__bg" cx="50" cy="50" r="42" />
+            <circle cx="50" cy="50" r="42"
+              stroke-dasharray="263.89" stroke-dashoffset="65.97"
+              fill="none" stroke="var(--color-primary)" stroke-width="8" stroke-linecap="round" />
+          </svg>
+          <div class="progress-ring__text">
+            <span class="progress-ring__percentage">75%</span>
+          </div>
+        </div>
+        <span class="progress-ring-label">Almost Done</span>
+      </div>
+
+      <div class="progress-ring-wrapper">
+        <div class="progress-ring">
+          <svg viewBox="0 0 100 100">
+            <circle class="progress-ring__bg" cx="50" cy="50" r="42" />
+            <circle cx="50" cy="50" r="42"
+              stroke-dasharray="263.89" stroke-dashoffset="0"
+              fill="none" stroke="var(--color-success)" stroke-width="8" stroke-linecap="round" />
+          </svg>
+          <div class="progress-ring__text">
+            <span class="progress-ring__percentage">100%</span>
+          </div>
+        </div>
+        <span class="progress-ring-label">Complete!</span>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

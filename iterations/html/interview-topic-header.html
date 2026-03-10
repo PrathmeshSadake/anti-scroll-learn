@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Topic Section Header</title>
+  <link rel="stylesheet" href="theme.css">
+  <style>
+    .topic-showcase {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-xxl);
+    }
+
+    .section-label {
+      font-size: var(--font-xs);
+      font-weight: var(--weight-semibold);
+      color: var(--color-text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: var(--spacing-sm);
+    }
+
+    /* Topic header */
+    .topic-header {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-md);
+      padding: var(--spacing-lg) 0;
+    }
+
+    .topic-icon-wrapper {
+      width: 48px;
+      height: 48px;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: var(--font-xxl);
+      flex-shrink: 0;
+    }
+
+    .topic-icon-wrapper.llm { background: rgba(99, 102, 241, 0.12); }
+    .topic-icon-wrapper.transformers { background: rgba(206, 130, 255, 0.12); }
+    .topic-icon-wrapper.rag { background: rgba(59, 130, 246, 0.12); }
+
+    .topic-info {
+      flex: 1;
+    }
+
+    .topic-name {
+      font-size: var(--font-lg);
+      font-weight: var(--weight-bold);
+      color: var(--color-text);
+      line-height: 1.3;
+    }
+
+    .topic-count {
+      font-size: var(--font-xs);
+      color: var(--color-text-muted);
+      font-weight: var(--weight-medium);
+    }
+
+    .topic-arrow {
+      font-size: var(--font-lg);
+      color: var(--color-text-muted);
+    }
+
+    /* Large variant */
+    .topic-header.large {
+      padding: var(--spacing-xl);
+      background: var(--color-prep-card);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--color-border);
+    }
+
+    .topic-header.large .topic-icon-wrapper {
+      width: 56px;
+      height: 56px;
+      font-size: var(--font-xxxl);
+    }
+
+    .topic-header.large .topic-name {
+      font-size: var(--font-xl);
+    }
+
+    .topic-header.large .topic-count {
+      font-size: var(--font-sm);
+    }
+
+    /* Colored band variant */
+    .topic-band {
+      position: relative;
+      padding: var(--spacing-lg) var(--spacing-xl);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+
+    .topic-band::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+    }
+
+    .topic-band.llm-band {
+      background: rgba(99, 102, 241, 0.06);
+    }
+    .topic-band.llm-band::before {
+      background: var(--color-prep-accent);
+    }
+
+    .topic-band.transformers-band {
+      background: rgba(206, 130, 255, 0.06);
+    }
+    .topic-band.transformers-band::before {
+      background: var(--color-primary);
+    }
+
+    .topic-band.rag-band {
+      background: rgba(59, 130, 246, 0.06);
+    }
+    .topic-band.rag-band::before {
+      background: var(--color-info);
+    }
+
+    .topic-band-name {
+      font-size: var(--font-lg);
+      font-weight: var(--weight-bold);
+      color: var(--color-text);
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .topic-band-meta {
+      display: flex;
+      gap: var(--spacing-md);
+      font-size: var(--font-xs);
+      color: var(--color-text-muted);
+    }
+
+    .topic-band-stat {
+      font-weight: var(--weight-semibold);
+    }
+
+    /* Progress variant */
+    .topic-progress-card {
+      background: var(--color-prep-card);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-lg);
+      border: 1px solid var(--color-border);
+    }
+
+    .topic-progress-header {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-md);
+      margin-bottom: var(--spacing-md);
+    }
+
+    .topic-progress-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: var(--font-xl);
+      background: rgba(99, 102, 241, 0.12);
+    }
+
+    .topic-progress-name {
+      font-size: var(--font-md);
+      font-weight: var(--weight-bold);
+      color: var(--color-text);
+    }
+
+    .topic-progress-pct {
+      font-size: var(--font-xs);
+      color: var(--color-text-muted);
+    }
+
+    .topic-progress-bar {
+      height: 6px;
+      border-radius: var(--radius-full);
+      background: var(--color-progress-bg);
+      overflow: hidden;
+    }
+
+    .topic-progress-fill {
+      height: 100%;
+      border-radius: var(--radius-full);
+      background: var(--color-prep-accent);
+      transition: width 0.5s ease;
+    }
+  </style>
+</head>
+<body>
+  <div class="component-preview">
+    <p class="component-title">Topic Section Headers</p>
+
+    <div class="topic-showcase">
+      <div>
+        <p class="section-label">Default</p>
+        <div class="topic-header">
+          <div class="topic-icon-wrapper llm">🧠</div>
+          <div class="topic-info">
+            <p class="topic-name">LLM Fundamentals</p>
+            <p class="topic-count">1 question</p>
+          </div>
+          <span class="topic-arrow">›</span>
+        </div>
+        <div class="topic-header">
+          <div class="topic-icon-wrapper transformers">⚡</div>
+          <div class="topic-info">
+            <p class="topic-name">Transformers Architecture</p>
+            <p class="topic-count">2 questions</p>
+          </div>
+          <span class="topic-arrow">›</span>
+        </div>
+        <div class="topic-header">
+          <div class="topic-icon-wrapper rag">🔍</div>
+          <div class="topic-info">
+            <p class="topic-name">RAG &amp; Retrieval</p>
+            <p class="topic-count">2 questions</p>
+          </div>
+          <span class="topic-arrow">›</span>
+        </div>
+      </div>
+
+      <div>
+        <p class="section-label">Large Card Variant</p>
+        <div class="topic-header large">
+          <div class="topic-icon-wrapper llm">🧠</div>
+          <div class="topic-info">
+            <p class="topic-name">LLM Fundamentals</p>
+            <p class="topic-count">1 question · Easy</p>
+          </div>
+          <span class="topic-arrow">›</span>
+        </div>
+      </div>
+
+      <div>
+        <p class="section-label">Color Band Variant</p>
+        <div style="display:flex; flex-direction:column; gap:var(--spacing-sm);">
+          <div class="topic-band llm-band">
+            <p class="topic-band-name">LLM Fundamentals</p>
+            <div class="topic-band-meta">
+              <span>1 question</span>
+              <span class="topic-band-stat">92% avg success</span>
+            </div>
+          </div>
+          <div class="topic-band transformers-band">
+            <p class="topic-band-name">Transformers Architecture</p>
+            <div class="topic-band-meta">
+              <span>2 questions</span>
+              <span class="topic-band-stat">39% avg success</span>
+            </div>
+          </div>
+          <div class="topic-band rag-band">
+            <p class="topic-band-name">RAG &amp; Retrieval</p>
+            <div class="topic-band-meta">
+              <span>2 questions</span>
+              <span class="topic-band-stat">69% avg success</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <p class="section-label">With Progress</p>
+        <div class="topic-progress-card">
+          <div class="topic-progress-header">
+            <div class="topic-progress-icon">🧠</div>
+            <div>
+              <p class="topic-progress-name">LLM Fundamentals</p>
+              <p class="topic-progress-pct">1 / 1 completed</p>
+            </div>
+          </div>
+          <div class="topic-progress-bar">
+            <div class="topic-progress-fill" style="width: 100%"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

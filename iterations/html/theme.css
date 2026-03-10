@@ -1,0 +1,126 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+
+:root {
+  /* Colors - Light Mode */
+  --color-primary: #ce82ff;
+  --color-primary-light: #e0adff;
+  --color-primary-dark: #b852ff;
+  --color-primary-shadow: #9c2bff;
+  --color-accent: #58CC02;
+  --color-accent-light: #78D930;
+  --color-background: #f5f5f5;
+  --color-surface: #ffffff;
+  --color-surface-light: #fafafa;
+  --color-surface-shadow: #e8e8e8;
+  --color-card: #ffffff;
+  --color-text: #1a1a2e;
+  --color-text-secondary: #6b7280;
+  --color-text-muted: #9ca3af;
+  --color-text-inverse: #ffffff;
+  --color-success: #58CC02;
+  --color-success-shadow: #3da101;
+  --color-error: #ef4444;
+  --color-warning: #f59e0b;
+  --color-info: #3b82f6;
+  --color-border: #e5e7eb;
+  --color-border-light: #f3f4f6;
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --color-transparent: transparent;
+  --color-overlay: rgba(0, 0, 0, 0.5);
+  --color-tab-bar-bg: #ffffff;
+  --color-tab-bar-active: #ce82ff;
+  --color-tab-bar-inactive: #9ca3af;
+  --color-progress-bg: #e5e7eb;
+  --color-progress-fill: #ce82ff;
+  --color-prep-background: #f0f0ff;
+  --color-prep-accent: #6366f1;
+  --color-prep-card: #ffffff;
+
+  /* Spacing */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 12px;
+  --spacing-lg: 16px;
+  --spacing-xl: 20px;
+  --spacing-xxl: 24px;
+  --spacing-xxxl: 32px;
+  --spacing-huge: 48px;
+  --spacing-massive: 64px;
+
+  /* Border Radius */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-xxl: 48px;
+  --radius-full: 9999px;
+
+  /* Font Size */
+  --font-xs: 11px;
+  --font-sm: 13px;
+  --font-md: 15px;
+  --font-lg: 17px;
+  --font-xl: 20px;
+  --font-xxl: 24px;
+  --font-xxxl: 32px;
+  --font-display: 40px;
+
+  /* Font Weight */
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+  --weight-heavy: 800;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-background: #0f0f1a;
+    --color-surface: #1a1a2e;
+    --color-surface-light: #222240;
+    --color-surface-shadow: #0a0a14;
+    --color-card: #1a1a2e;
+    --color-text: #f5f5f5;
+    --color-text-secondary: #9ca3af;
+    --color-text-muted: #6b7280;
+    --color-border: #2d2d44;
+    --color-border-light: #1f1f36;
+    --color-tab-bar-bg: #1a1a2e;
+    --color-progress-bg: #2d2d44;
+    --color-prep-background: #1a1a2e;
+    --color-prep-card: #222240;
+  }
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  font-size: var(--font-md);
+  font-weight: var(--weight-regular);
+  color: var(--color-text);
+  background-color: var(--color-background);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.component-preview {
+  max-width: 420px;
+  margin: var(--spacing-xxl) auto;
+  padding: var(--spacing-lg);
+}
+
+.component-title {
+  font-size: var(--font-xs);
+  font-weight: var(--weight-medium);
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: var(--spacing-md);
+}

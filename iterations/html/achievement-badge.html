@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Achievement Badge</title>
+  <link rel="stylesheet" href="theme.css">
+  <style>
+    .badges-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: var(--spacing-lg);
+      margin-bottom: var(--spacing-xxl);
+    }
+
+    .badge {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: var(--spacing-sm);
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .badge:active {
+      transform: scale(0.95);
+    }
+
+    .badge__icon-ring {
+      width: 72px;
+      height: 72px;
+      border-radius: var(--radius-full);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .badge__icon-ring--gold {
+      background: linear-gradient(135deg, #ffd700, #ffb700);
+      box-shadow: 0 4px 16px rgba(255, 215, 0, 0.3);
+    }
+
+    .badge__icon-ring--silver {
+      background: linear-gradient(135deg, #c0c0c0, #a8a8a8);
+      box-shadow: 0 4px 16px rgba(192, 192, 192, 0.3);
+    }
+
+    .badge__icon-ring--bronze {
+      background: linear-gradient(135deg, #cd7f32, #b87333);
+      box-shadow: 0 4px 16px rgba(205, 127, 50, 0.3);
+    }
+
+    .badge__icon-ring--purple {
+      background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+      box-shadow: 0 4px 16px rgba(206, 130, 255, 0.3);
+    }
+
+    .badge__icon-ring--locked {
+      background: var(--color-surface-light);
+      border: 2px dashed var(--color-border);
+      opacity: 0.5;
+    }
+
+    .badge__icon {
+      font-size: var(--font-xxxl);
+      line-height: 1;
+    }
+
+    .badge__icon-ring--locked .badge__icon {
+      filter: grayscale(100%);
+      opacity: 0.4;
+    }
+
+    .badge__name {
+      font-size: var(--font-xs);
+      font-weight: var(--weight-semibold);
+      color: var(--color-text);
+      line-height: 1.3;
+    }
+
+    .badge__date {
+      font-size: var(--font-xs);
+      color: var(--color-text-muted);
+    }
+
+    .badge--locked .badge__name {
+      color: var(--color-text-muted);
+    }
+
+    /* Badge detail card */
+    .badge-detail {
+      background: var(--color-card);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-xxl);
+      border: 1px solid var(--color-border-light);
+      text-align: center;
+    }
+
+    .badge-detail__icon {
+      width: 96px;
+      height: 96px;
+      border-radius: var(--radius-full);
+      background: linear-gradient(135deg, #ffd700, #ffb700);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: var(--font-display);
+      margin: 0 auto var(--spacing-lg);
+      box-shadow: 0 8px 24px rgba(255, 215, 0, 0.3);
+    }
+
+    .badge-detail__name {
+      font-size: var(--font-xl);
+      font-weight: var(--weight-bold);
+      color: var(--color-text);
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .badge-detail__description {
+      font-size: var(--font-sm);
+      color: var(--color-text-secondary);
+      margin-bottom: var(--spacing-md);
+      line-height: 1.5;
+    }
+
+    .badge-detail__date {
+      font-size: var(--font-xs);
+      color: var(--color-text-muted);
+    }
+  </style>
+</head>
+<body>
+  <div class="component-preview">
+    <p class="component-title">Achievement Badges</p>
+
+    <div class="badges-grid">
+      <div class="badge">
+        <div class="badge__icon-ring badge__icon-ring--gold">
+          <span class="badge__icon">📖</span>
+        </div>
+        <span class="badge__name">First Lesson</span>
+        <span class="badge__date">Earned</span>
+      </div>
+
+      <div class="badge">
+        <div class="badge__icon-ring badge__icon-ring--purple">
+          <span class="badge__icon">🏆</span>
+        </div>
+        <span class="badge__name">Quiz Master</span>
+        <span class="badge__date">Earned</span>
+      </div>
+
+      <div class="badge">
+        <div class="badge__icon-ring badge__icon-ring--bronze">
+          <span class="badge__icon">🔥</span>
+        </div>
+        <span class="badge__name">7-Day Streak</span>
+        <span class="badge__date">Earned</span>
+      </div>
+
+      <div class="badge">
+        <div class="badge__icon-ring badge__icon-ring--silver">
+          <span class="badge__icon">⚡</span>
+        </div>
+        <span class="badge__name">Speed Learner</span>
+        <span class="badge__date">Earned</span>
+      </div>
+
+      <div class="badge">
+        <div class="badge__icon-ring badge__icon-ring--gold">
+          <span class="badge__icon">🧠</span>
+        </div>
+        <span class="badge__name">AI Expert</span>
+        <span class="badge__date">Earned</span>
+      </div>
+
+      <div class="badge badge--locked">
+        <div class="badge__icon-ring badge__icon-ring--locked">
+          <span class="badge__icon">🔒</span>
+        </div>
+        <span class="badge__name">30-Day Streak</span>
+        <span class="badge__date">Locked</span>
+      </div>
+    </div>
+
+    <p class="component-title">Badge Detail</p>
+
+    <div class="badge-detail">
+      <div class="badge-detail__icon">🏆</div>
+      <h3 class="badge-detail__name">Quiz Master</h3>
+      <p class="badge-detail__description">Answered 10 quiz questions correctly in a row without any mistakes.</p>
+      <p class="badge-detail__date">Earned on March 8, 2026</p>
+    </div>
+  </div>
+</body>
+</html>

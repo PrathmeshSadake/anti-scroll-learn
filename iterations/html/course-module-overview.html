@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Course Module Overview</title>
+  <link rel="stylesheet" href="theme.css">
+  <style>
+    .module-overview {
+      background: var(--color-card);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-xxl);
+      border: 1px solid var(--color-border-light);
+    }
+
+    .module-overview__header {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--spacing-lg);
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .module-overview__icon {
+      width: 48px;
+      height: 48px;
+      border-radius: var(--radius-md);
+      background: var(--color-primary-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: var(--font-xxl);
+      flex-shrink: 0;
+    }
+
+    .module-overview__title-block {
+      flex: 1;
+    }
+
+    .module-overview__title {
+      font-size: var(--font-lg);
+      font-weight: var(--weight-bold);
+      color: var(--color-text);
+      margin-bottom: var(--spacing-xs);
+      line-height: 1.3;
+    }
+
+    .module-overview__meta {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-md);
+      flex-wrap: wrap;
+    }
+
+    .module-overview__type-badge {
+      display: inline-flex;
+      align-items: center;
+      font-size: var(--font-xs);
+      font-weight: var(--weight-semibold);
+      padding: var(--spacing-xs) var(--spacing-sm);
+      border-radius: var(--radius-full);
+      background: var(--color-primary-light);
+      color: var(--color-primary-dark);
+    }
+
+    .module-overview__time {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--spacing-xs);
+      font-size: var(--font-xs);
+      color: var(--color-text-muted);
+    }
+
+    .module-overview__cards-count {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--spacing-xs);
+      font-size: var(--font-xs);
+      color: var(--color-text-muted);
+    }
+
+    .module-overview__description {
+      font-size: var(--font-md);
+      color: var(--color-text-secondary);
+      line-height: 1.6;
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .module-overview__outcomes-label {
+      font-size: var(--font-xs);
+      font-weight: var(--weight-semibold);
+      color: var(--color-text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: var(--spacing-md);
+    }
+
+    .module-overview__outcomes {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-sm);
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .module-overview__outcome {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--spacing-sm);
+      font-size: var(--font-sm);
+      color: var(--color-text);
+      line-height: 1.5;
+    }
+
+    .module-overview__outcome-check {
+      color: var(--color-accent);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .module-overview__start-btn {
+      width: 100%;
+      padding: var(--spacing-lg);
+      background: var(--color-primary);
+      color: var(--color-text-inverse);
+      border: none;
+      border-radius: var(--radius-md);
+      font-size: var(--font-md);
+      font-weight: var(--weight-semibold);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-family: inherit;
+    }
+
+    .module-overview__start-btn:active {
+      transform: scale(0.98);
+      background: var(--color-primary-dark);
+    }
+  </style>
+</head>
+<body>
+  <div class="component-preview">
+    <p class="component-title">Course Module Overview</p>
+
+    <article class="module-overview">
+      <div class="module-overview__header">
+        <div class="module-overview__icon">🤖</div>
+        <div class="module-overview__title-block">
+          <h2 class="module-overview__title">What is Generative AI?</h2>
+          <div class="module-overview__meta">
+            <span class="module-overview__type-badge">📖 Lesson</span>
+            <span class="module-overview__time">⏱ ~8 min</span>
+            <span class="module-overview__cards-count">📇 7 cards</span>
+          </div>
+        </div>
+      </div>
+
+      <p class="module-overview__description">Understand the fundamental difference between traditional AI and generative AI, how it works at a high level, and why it matters.</p>
+
+      <p class="module-overview__outcomes-label">What you'll learn</p>
+      <div class="module-overview__outcomes">
+        <div class="module-overview__outcome">
+          <span class="module-overview__outcome-check">✓</span>
+          <span>Distinguish generative AI from traditional AI</span>
+        </div>
+        <div class="module-overview__outcome">
+          <span class="module-overview__outcome-check">✓</span>
+          <span>Explain how generative models create new content</span>
+        </div>
+        <div class="module-overview__outcome">
+          <span class="module-overview__outcome-check">✓</span>
+          <span>Identify real-world applications of generative AI</span>
+        </div>
+        <div class="module-overview__outcome">
+          <span class="module-overview__outcome-check">✓</span>
+          <span>Understand the training-to-generation pipeline</span>
+        </div>
+      </div>
+
+      <button class="module-overview__start-btn">Start Module →</button>
+    </article>
+  </div>
+</body>
+</html>

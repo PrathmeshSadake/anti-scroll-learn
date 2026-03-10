@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lesson Content Tabs</title>
+  <link rel="stylesheet" href="theme.css">
+  <style>
+    .tabs-container {
+      background: var(--color-card);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--color-border);
+      overflow: hidden;
+    }
+    .tabs-bar {
+      display: flex;
+      border-bottom: 1px solid var(--color-border);
+      background: var(--color-surface-light);
+    }
+    .tab-btn {
+      flex: 1;
+      padding: var(--spacing-md) var(--spacing-lg);
+      border: none;
+      background: none;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      font-size: var(--font-sm);
+      font-weight: var(--weight-semibold);
+      color: var(--color-text-muted);
+      position: relative;
+      transition: color 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--spacing-xs);
+    }
+    .tab-btn:hover {
+      color: var(--color-text);
+    }
+    .tab-btn--active {
+      color: var(--color-primary);
+    }
+    .tab-btn--active::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: var(--spacing-md);
+      right: var(--spacing-md);
+      height: 3px;
+      background: var(--color-primary);
+      border-radius: var(--radius-full) var(--radius-full) 0 0;
+    }
+    .tab-panel {
+      display: none;
+      padding: var(--spacing-xl);
+    }
+    .tab-panel--active {
+      display: block;
+    }
+
+    /* Content tab content */
+    .tab-content-block {
+      display: flex;
+      gap: var(--spacing-md);
+      margin-bottom: var(--spacing-lg);
+    }
+    .tab-content-block:last-child {
+      margin-bottom: 0;
+    }
+    .tab-content-block__icon {
+      width: 36px;
+      height: 36px;
+      border-radius: var(--radius-full);
+      background: var(--color-primary-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: var(--font-md);
+      flex-shrink: 0;
+    }
+    .tab-content-block__text h4 {
+      font-size: var(--font-md);
+      font-weight: var(--weight-bold);
+      color: var(--color-text);
+      margin-bottom: var(--spacing-xs);
+    }
+    .tab-content-block__text p {
+      font-size: var(--font-sm);
+      color: var(--color-text-secondary);
+      line-height: 1.6;
+    }
+
+    /* Quiz tab */
+    .tab-quiz__question {
+      font-size: var(--font-lg);
+      font-weight: var(--weight-bold);
+      color: var(--color-text);
+      margin-bottom: var(--spacing-lg);
+    }
+    .tab-quiz__option {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-md);
+      padding: var(--spacing-md);
+      border: 2px solid var(--color-border);
+      border-radius: var(--radius-md);
+      margin-bottom: var(--spacing-sm);
+      cursor: pointer;
+      font-size: var(--font-md);
+      color: var(--color-text);
+      transition: all 0.2s ease;
+    }
+    .tab-quiz__option:hover {
+      border-color: var(--color-primary-light);
+    }
+
+    /* Takeaway tab */
+    .tab-takeaway {
+      background: var(--color-surface-light);
+      border-radius: var(--radius-md);
+      padding: var(--spacing-xl);
+      border-left: 4px solid var(--color-primary);
+      display: flex;
+      gap: var(--spacing-md);
+    }
+    .tab-takeaway__icon {
+      font-size: var(--font-xxl);
+    }
+    .tab-takeaway__text {
+      font-size: var(--font-md);
+      color: var(--color-text);
+      line-height: 1.6;
+      font-weight: var(--weight-medium);
+    }
+  </style>
+</head>
+<body>
+  <div class="component-preview">
+    <p class="component-title">Content Tabs</p>
+    <div class="tabs-container">
+      <div class="tabs-bar" role="tablist">
+        <button class="tab-btn tab-btn--active" role="tab" aria-selected="true" onclick="switchTab(this, 'content')">📖 Content</button>
+        <button class="tab-btn" role="tab" aria-selected="false" onclick="switchTab(this, 'quiz')">🧠 Quiz</button>
+        <button class="tab-btn" role="tab" aria-selected="false" onclick="switchTab(this, 'takeaway')">💡 Takeaway</button>
+      </div>
+
+      <div class="tab-panel tab-panel--active" id="tab-content" role="tabpanel">
+        <div class="tab-content-block">
+          <div class="tab-content-block__icon">💬</div>
+          <div class="tab-content-block__text">
+            <h4>What are LLMs?</h4>
+            <p>Large Language Models (LLMs) are specialized AI models trained on vast amounts of text data.</p>
+          </div>
+        </div>
+        <div class="tab-content-block">
+          <div class="tab-content-block__icon">🔧</div>
+          <div class="tab-content-block__text">
+            <h4>Scale is Key</h4>
+            <p>LLMs achieve their capabilities through enormous scale—often billions or trillions of parameters.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="tab-quiz" role="tabpanel">
+        <p class="tab-quiz__question">What does a closure capture?</p>
+        <div class="tab-quiz__option">A. Global variables only</div>
+        <div class="tab-quiz__option">B. Variables from its outer scope</div>
+        <div class="tab-quiz__option">C. Only primitive values</div>
+        <div class="tab-quiz__option">D. The DOM elements</div>
+      </div>
+
+      <div class="tab-panel" id="tab-takeaway" role="tabpanel">
+        <div class="tab-takeaway">
+          <span class="tab-takeaway__icon">💡</span>
+          <p class="tab-takeaway__text">Closures let functions 'remember' their creation environment.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function switchTab(btn, tabId) {
+      document.querySelectorAll('.tab-btn').forEach(b => {
+        b.classList.remove('tab-btn--active');
+        b.setAttribute('aria-selected', 'false');
+      });
+      btn.classList.add('tab-btn--active');
+      btn.setAttribute('aria-selected', 'true');
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('tab-panel--active'));
+      document.getElementById('tab-' + tabId).classList.add('tab-panel--active');
+    }
+  </script>
+</body>
+</html>

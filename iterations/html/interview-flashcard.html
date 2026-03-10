@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interview Flashcard</title>
+  <link rel="stylesheet" href="theme.css">
+  <style>
+    .flashcard-container {
+      perspective: 1000px;
+    }
+
+    .flashcard {
+      position: relative;
+      width: 100%;
+      min-height: 320px;
+      cursor: pointer;
+      transform-style: preserve-3d;
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .flashcard.flipped {
+      transform: rotateY(180deg);
+    }
+
+    .flashcard-front,
+    .flashcard-back {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      min-height: 320px;
+      backface-visibility: hidden;
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-xl);
+      border: 1px solid var(--color-border);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    }
+
+    .flashcard-front {
+      background: var(--color-prep-card);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .flashcard-back {
+      background: var(--color-prep-background);
+      transform: rotateY(180deg);
+    }
+
+    .flashcard-top-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .flashcard-type-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--spacing-xs);
+      background: var(--color-prep-accent);
+      color: var(--color-text-inverse);
+      font-size: var(--font-xs);
+      font-weight: var(--weight-bold);
+      padding: var(--spacing-xs) var(--spacing-sm);
+      border-radius: var(--radius-full);
+      letter-spacing: 0.5px;
+    }
+
+    .flashcard-company {
+      font-size: var(--font-xs);
+      color: var(--color-text-muted);
+      font-weight: var(--weight-medium);
+    }
+
+    .flashcard-topic {
+      font-size: var(--font-sm);
+      color: var(--color-prep-accent);
+      font-weight: var(--weight-semibold);
+      margin-bottom: var(--spacing-md);
+    }
+
+    .flashcard-question {
+      font-size: var(--font-xl);
+      font-weight: var(--weight-bold);
+      color: var(--color-text);
+      line-height: 1.4;
+      flex-grow: 1;
+    }
+
+    .flashcard-hint {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--spacing-xs);
+      margin-top: var(--spacing-xl);
+      font-size: var(--font-xs);
+      color: var(--color-text-muted);
+    }
+
+    .flashcard-hint-icon {
+      font-size: var(--font-lg);
+    }
+
+    .flashcard-back-title {
+      font-size: var(--font-sm);
+      font-weight: var(--weight-bold);
+      color: var(--color-prep-accent);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .flashcard-bullets {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-md);
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .flashcard-bullet {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--spacing-sm);
+      font-size: var(--font-md);
+      color: var(--color-text);
+      line-height: 1.5;
+    }
+
+    .flashcard-bullet::before {
+      content: "→";
+      color: var(--color-prep-accent);
+      font-weight: var(--weight-bold);
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .flashcard-memory-tip {
+      background: var(--color-prep-card);
+      border-radius: var(--radius-md);
+      padding: var(--spacing-md);
+      display: flex;
+      align-items: flex-start;
+      gap: var(--spacing-sm);
+      margin-top: auto;
+    }
+
+    .flashcard-memory-icon {
+      font-size: var(--font-xl);
+      flex-shrink: 0;
+    }
+
+    .flashcard-memory-label {
+      font-size: var(--font-xs);
+      font-weight: var(--weight-bold);
+      color: var(--color-warning);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 2px;
+    }
+
+    .flashcard-memory-text {
+      font-size: var(--font-sm);
+      color: var(--color-text-secondary);
+      line-height: 1.4;
+    }
+
+    .flashcard-meta-row {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+      margin-top: var(--spacing-lg);
+    }
+
+    .flashcard-difficulty {
+      font-size: var(--font-xs);
+      font-weight: var(--weight-semibold);
+      padding: var(--spacing-xs) var(--spacing-sm);
+      border-radius: var(--radius-full);
+      background: rgba(245, 158, 11, 0.12);
+      color: var(--color-warning);
+    }
+
+    .flashcard-success {
+      font-size: var(--font-xs);
+      color: var(--color-text-muted);
+    }
+  </style>
+</head>
+<body>
+  <div class="component-preview">
+    <p class="component-title">Flippable Flashcard</p>
+
+    <div class="flashcard-container">
+      <div class="flashcard" onclick="this.classList.toggle('flipped')">
+        <div class="flashcard-front">
+          <div>
+            <div class="flashcard-top-row">
+              <span class="flashcard-type-badge">⚡ Flashcard</span>
+              <span class="flashcard-company">Meta · 2023</span>
+            </div>
+            <p class="flashcard-topic">Transformers Architecture</p>
+            <p class="flashcard-question">Explain the self-attention mechanism in transformers.</p>
+          </div>
+          <div>
+            <div class="flashcard-meta-row">
+              <span class="flashcard-difficulty">Intermediate</span>
+              <span class="flashcard-success">34% success rate</span>
+            </div>
+            <p class="flashcard-hint"><span class="flashcard-hint-icon">↻</span> Tap to flip</p>
+          </div>
+        </div>
+        <div class="flashcard-back">
+          <p class="flashcard-back-title">Key Points</p>
+          <ul class="flashcard-bullets">
+            <li class="flashcard-bullet">Query, Key, Value matrices are learned projections</li>
+            <li class="flashcard-bullet">Attention scores = softmax(QK^T / √d_k)</li>
+            <li class="flashcard-bullet">Multi-head attention runs parallel attention operations</li>
+          </ul>
+          <div class="flashcard-memory-tip">
+            <span class="flashcard-memory-icon">💡</span>
+            <div>
+              <p class="flashcard-memory-label">Memory Tip</p>
+              <p class="flashcard-memory-text">Think of attention as every word asking 'who in this sentence is most relevant to me?'</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

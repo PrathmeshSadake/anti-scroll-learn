@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flashcard Bullet Points</title>
+  <link rel="stylesheet" href="theme.css">
+  <style>
+    .bullets-showcase {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-xxl);
+    }
+
+    .section-label {
+      font-size: var(--font-xs);
+      font-weight: var(--weight-semibold);
+      color: var(--color-text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: var(--spacing-sm);
+    }
+
+    /* Default bullet list */
+    .bullet-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-md);
+      background: var(--color-prep-card);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-xl);
+      border: 1px solid var(--color-border);
+    }
+
+    .bullet-item {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--spacing-sm);
+      font-size: var(--font-md);
+      color: var(--color-text);
+      line-height: 1.6;
+    }
+
+    .bullet-icon {
+      color: var(--color-prep-accent);
+      font-weight: var(--weight-bold);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    /* Numbered variant */
+    .bullet-list.numbered .bullet-icon {
+      width: 24px;
+      height: 24px;
+      border-radius: var(--radius-full);
+      background: var(--color-prep-background);
+      color: var(--color-prep-accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: var(--font-xs);
+      font-weight: var(--weight-bold);
+    }
+
+    /* Card variant */
+    .bullet-card-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-sm);
+    }
+
+    .bullet-card {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--spacing-md);
+      padding: var(--spacing-md) var(--spacing-lg);
+      background: var(--color-prep-card);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--color-border);
+      transition: border-color 0.2s ease;
+    }
+
+    .bullet-card:hover {
+      border-color: var(--color-prep-accent);
+    }
+
+    .bullet-card-number {
+      width: 28px;
+      height: 28px;
+      border-radius: var(--radius-full);
+      background: var(--color-prep-accent);
+      color: var(--color-text-inverse);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: var(--font-xs);
+      font-weight: var(--weight-bold);
+      flex-shrink: 0;
+    }
+
+    .bullet-card-text {
+      font-size: var(--font-md);
+      color: var(--color-text);
+      line-height: 1.6;
+      padding-top: 3px;
+    }
+
+    /* Checklist variant */
+    .checklist {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-sm);
+      background: var(--color-prep-card);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-xl);
+      border: 1px solid var(--color-border);
+    }
+
+    .checklist-item {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--spacing-sm);
+      font-size: var(--font-md);
+      color: var(--color-text);
+      line-height: 1.5;
+      cursor: pointer;
+    }
+
+    .checklist-box {
+      width: 22px;
+      height: 22px;
+      border-radius: var(--radius-sm);
+      border: 2px solid var(--color-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: var(--font-xs);
+      flex-shrink: 0;
+      transition: all 0.2s ease;
+      margin-top: 1px;
+    }
+
+    .checklist-item.checked .checklist-box {
+      background: var(--color-prep-accent);
+      border-color: var(--color-prep-accent);
+      color: var(--color-text-inverse);
+    }
+
+    .checklist-item.checked .checklist-text {
+      color: var(--color-text-muted);
+      text-decoration: line-through;
+    }
+
+    /* In context */
+    .context-card {
+      background: var(--color-prep-background);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-xl);
+    }
+
+    .context-title {
+      font-size: var(--font-sm);
+      font-weight: var(--weight-bold);
+      color: var(--color-prep-accent);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .context-bullet-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-md);
+    }
+
+    .context-bullet {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--spacing-sm);
+      font-size: var(--font-md);
+      color: var(--color-text);
+      line-height: 1.6;
+    }
+
+    .context-bullet-arrow {
+      color: var(--color-prep-accent);
+      font-weight: var(--weight-bold);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+  </style>
+</head>
+<body>
+  <div class="component-preview">
+    <p class="component-title">Flashcard Bullet Points</p>
+
+    <div class="bullets-showcase">
+      <div>
+        <p class="section-label">Arrow Style</p>
+        <ul class="bullet-list">
+          <li class="bullet-item">
+            <span class="bullet-icon">→</span>
+            <span>Query, Key, Value matrices are learned projections</span>
+          </li>
+          <li class="bullet-item">
+            <span class="bullet-icon">→</span>
+            <span>Attention scores = softmax(QK<sup>T</sup> / √d_k)</span>
+          </li>
+          <li class="bullet-item">
+            <span class="bullet-icon">→</span>
+            <span>Multi-head attention runs parallel attention operations</span>
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <p class="section-label">Numbered</p>
+        <ul class="bullet-list numbered">
+          <li class="bullet-item">
+            <span class="bullet-icon">1</span>
+            <span>Query, Key, Value matrices are learned projections</span>
+          </li>
+          <li class="bullet-item">
+            <span class="bullet-icon">2</span>
+            <span>Attention scores = softmax(QK<sup>T</sup> / √d_k)</span>
+          </li>
+          <li class="bullet-item">
+            <span class="bullet-icon">3</span>
+            <span>Multi-head attention runs parallel attention operations</span>
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <p class="section-label">Card Style</p>
+        <div class="bullet-card-list">
+          <div class="bullet-card">
+            <span class="bullet-card-number">1</span>
+            <span class="bullet-card-text">Query, Key, Value matrices are learned projections</span>
+          </div>
+          <div class="bullet-card">
+            <span class="bullet-card-number">2</span>
+            <span class="bullet-card-text">Attention scores = softmax(QK<sup>T</sup> / √d_k)</span>
+          </div>
+          <div class="bullet-card">
+            <span class="bullet-card-number">3</span>
+            <span class="bullet-card-text">Multi-head attention runs parallel attention operations</span>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <p class="section-label">Checklist</p>
+        <ul class="checklist">
+          <li class="checklist-item checked" onclick="this.classList.toggle('checked')">
+            <span class="checklist-box">✓</span>
+            <span class="checklist-text">Query, Key, Value matrices are learned projections</span>
+          </li>
+          <li class="checklist-item checked" onclick="this.classList.toggle('checked')">
+            <span class="checklist-box">✓</span>
+            <span class="checklist-text">Attention scores = softmax(QK<sup>T</sup> / √d_k)</span>
+          </li>
+          <li class="checklist-item" onclick="this.classList.toggle('checked')">
+            <span class="checklist-box"></span>
+            <span class="checklist-text">Multi-head attention runs parallel attention operations</span>
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <p class="section-label">Flashcard Back Context</p>
+        <div class="context-card">
+          <p class="context-title">Key Points</p>
+          <ul class="context-bullet-list">
+            <li class="context-bullet">
+              <span class="context-bullet-arrow">→</span>
+              <span>Query, Key, Value matrices are learned projections</span>
+            </li>
+            <li class="context-bullet">
+              <span class="context-bullet-arrow">→</span>
+              <span>Attention scores = softmax(QK<sup>T</sup> / √d_k)</span>
+            </li>
+            <li class="context-bullet">
+              <span class="context-bullet-arrow">→</span>
+              <span>Multi-head attention runs parallel attention operations</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

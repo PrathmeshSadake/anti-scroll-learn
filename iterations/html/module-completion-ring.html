@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module Completion Ring</title>
+  <link rel="stylesheet" href="theme.css">
+  <style>
+    .rings-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--spacing-xxl);
+      justify-content: center;
+    }
+    .ring-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--spacing-md);
+    }
+    .completion-ring {
+      position: relative;
+      width: 100px;
+      height: 100px;
+    }
+    .completion-ring__svg {
+      transform: rotate(-90deg);
+      width: 100%;
+      height: 100%;
+    }
+    .completion-ring__bg {
+      fill: none;
+      stroke: var(--color-progress-bg);
+      stroke-width: 8;
+    }
+    .completion-ring__fill {
+      fill: none;
+      stroke-width: 8;
+      stroke-linecap: round;
+      transition: stroke-dashoffset 0.8s ease;
+    }
+    .completion-ring__fill--primary {
+      stroke: var(--color-primary);
+    }
+    .completion-ring__fill--success {
+      stroke: var(--color-success);
+    }
+    .completion-ring__fill--warning {
+      stroke: var(--color-warning);
+    }
+    .completion-ring__label {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+    }
+    .completion-ring__pct {
+      font-size: var(--font-xl);
+      font-weight: var(--weight-heavy);
+      color: var(--color-text);
+      display: block;
+    }
+    .ring-item__title {
+      font-size: var(--font-sm);
+      font-weight: var(--weight-semibold);
+      color: var(--color-text);
+      text-align: center;
+      max-width: 100px;
+    }
+    .ring-item__subtitle {
+      font-size: var(--font-xs);
+      color: var(--color-text-muted);
+    }
+
+    /* Large ring */
+    .completion-ring--large {
+      width: 140px;
+      height: 140px;
+    }
+    .completion-ring--large .completion-ring__pct {
+      font-size: var(--font-xxl);
+    }
+    .large-ring-section {
+      display: flex;
+      justify-content: center;
+      margin-top: var(--spacing-xl);
+    }
+    .demo-label {
+      font-size: var(--font-xs);
+      color: var(--color-text-muted);
+      font-weight: var(--weight-medium);
+      margin-bottom: var(--spacing-sm);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="component-preview">
+    <p class="component-title">Completion Ring</p>
+
+    <p class="demo-label">Module Progress</p>
+    <div class="rings-grid">
+      <!-- 33% -->
+      <div class="ring-item">
+        <div class="completion-ring">
+          <svg class="completion-ring__svg" viewBox="0 0 100 100">
+            <circle class="completion-ring__bg" cx="50" cy="50" r="42"/>
+            <circle class="completion-ring__fill completion-ring__fill--primary" cx="50" cy="50" r="42"
+              stroke-dasharray="263.9"
+              stroke-dashoffset="176.8"/>
+          </svg>
+          <div class="completion-ring__label">
+            <span class="completion-ring__pct">33%</span>
+          </div>
+        </div>
+        <span class="ring-item__title">Module 1</span>
+        <span class="ring-item__subtitle">1/3 done</span>
+      </div>
+
+      <!-- 0% -->
+      <div class="ring-item">
+        <div class="completion-ring">
+          <svg class="completion-ring__svg" viewBox="0 0 100 100">
+            <circle class="completion-ring__bg" cx="50" cy="50" r="42"/>
+            <circle class="completion-ring__fill completion-ring__fill--warning" cx="50" cy="50" r="42"
+              stroke-dasharray="263.9"
+              stroke-dashoffset="263.9"/>
+          </svg>
+          <div class="completion-ring__label">
+            <span class="completion-ring__pct">0%</span>
+          </div>
+        </div>
+        <span class="ring-item__title">Module 2</span>
+        <span class="ring-item__subtitle">0/2 done</span>
+      </div>
+
+      <!-- 100% -->
+      <div class="ring-item">
+        <div class="completion-ring">
+          <svg class="completion-ring__svg" viewBox="0 0 100 100">
+            <circle class="completion-ring__bg" cx="50" cy="50" r="42"/>
+            <circle class="completion-ring__fill completion-ring__fill--success" cx="50" cy="50" r="42"
+              stroke-dasharray="263.9"
+              stroke-dashoffset="0"/>
+          </svg>
+          <div class="completion-ring__label">
+            <span class="completion-ring__pct">✓</span>
+          </div>
+        </div>
+        <span class="ring-item__title">Complete</span>
+        <span class="ring-item__subtitle">3/3 done</span>
+      </div>
+    </div>
+
+    <div class="large-ring-section">
+      <div class="ring-item">
+        <div class="completion-ring completion-ring--large">
+          <svg class="completion-ring__svg" viewBox="0 0 100 100">
+            <circle class="completion-ring__bg" cx="50" cy="50" r="42"/>
+            <circle class="completion-ring__fill completion-ring__fill--primary" cx="50" cy="50" r="42"
+              stroke-dasharray="263.9"
+              stroke-dashoffset="105.6"/>
+          </svg>
+          <div class="completion-ring__label">
+            <span class="completion-ring__pct">60%</span>
+          </div>
+        </div>
+        <span class="ring-item__title">Overall Progress</span>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

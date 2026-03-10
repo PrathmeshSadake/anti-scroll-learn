@@ -86,6 +86,7 @@ Agents generating components for this repository **must** follow these instructi
    - `component-patterns.md`
    - `theme-tokens.md`
    - `typography.md`
+   - Do not use any emojis while creating components
    - You can find demo data in `src/data/` which contains demo data for lessons, modules, quizzes, and news.
 
 2. **Required Output Format**:

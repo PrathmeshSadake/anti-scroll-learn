@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Difficulty Tags</title>
+  <link rel="stylesheet" href="theme.css">
+  <style>
+    .tag-showcase {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-xxl);
+    }
+
+    .tag-section-label {
+      font-size: var(--font-xs);
+      font-weight: var(--weight-semibold);
+      color: var(--color-text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--spacing-sm);
+      align-items: center;
+    }
+
+    /* Base difficulty tag */
+    .difficulty-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--spacing-xs);
+      font-weight: var(--weight-semibold);
+      border-radius: var(--radius-full);
+      cursor: default;
+      transition: transform 0.15s ease;
+    }
+
+    .difficulty-tag:hover {
+      transform: scale(1.05);
+    }
+
+    .difficulty-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: var(--radius-full);
+    }
+
+    /* Easy - Green */
+    .difficulty-tag.easy {
+      background: rgba(88, 204, 2, 0.12);
+      color: var(--color-success);
+    }
+    .difficulty-tag.easy .difficulty-dot {
+      background: var(--color-success);
+    }
+
+    /* Intermediate - Yellow/Orange */
+    .difficulty-tag.intermediate {
+      background: rgba(245, 158, 11, 0.12);
+      color: var(--color-warning);
+    }
+    .difficulty-tag.intermediate .difficulty-dot {
+      background: var(--color-warning);
+    }
+
+    /* Advanced - Red */
+    .difficulty-tag.advanced {
+      background: rgba(239, 68, 68, 0.12);
+      color: var(--color-error);
+    }
+    .difficulty-tag.advanced .difficulty-dot {
+      background: var(--color-error);
+    }
+
+    /* Size: small */
+    .difficulty-tag.sm {
+      padding: 2px var(--spacing-sm);
+      font-size: var(--font-xs);
+    }
+    .difficulty-tag.sm .difficulty-dot {
+      width: 5px;
+      height: 5px;
+    }
+
+    /* Size: medium (default) */
+    .difficulty-tag.md {
+      padding: var(--spacing-xs) var(--spacing-md);
+      font-size: var(--font-sm);
+    }
+
+    /* Size: large */
+    .difficulty-tag.lg {
+      padding: var(--spacing-sm) var(--spacing-lg);
+      font-size: var(--font-md);
+    }
+    .difficulty-tag.lg .difficulty-dot {
+      width: 8px;
+      height: 8px;
+    }
+
+    /* Filled variant */
+    .difficulty-tag.filled.easy {
+      background: var(--color-success);
+      color: var(--color-text-inverse);
+    }
+    .difficulty-tag.filled.easy .difficulty-dot {
+      background: var(--color-text-inverse);
+    }
+
+    .difficulty-tag.filled.intermediate {
+      background: var(--color-warning);
+      color: var(--color-text-inverse);
+    }
+    .difficulty-tag.filled.intermediate .difficulty-dot {
+      background: var(--color-text-inverse);
+    }
+
+    .difficulty-tag.filled.advanced {
+      background: var(--color-error);
+      color: var(--color-text-inverse);
+    }
+    .difficulty-tag.filled.advanced .difficulty-dot {
+      background: var(--color-text-inverse);
+    }
+
+    /* Context card */
+    .context-card {
+      background: var(--color-prep-card);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-lg);
+      border: 1px solid var(--color-border);
+    }
+
+    .context-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: var(--spacing-md);
+    }
+
+    .context-topic {
+      font-size: var(--font-sm);
+      color: var(--color-text-secondary);
+    }
+
+    .context-question {
+      font-size: var(--font-md);
+      font-weight: var(--weight-semibold);
+      color: var(--color-text);
+      line-height: 1.5;
+    }
+
+    /* Distribution bar */
+    .distribution-card {
+      background: var(--color-prep-card);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-lg);
+      border: 1px solid var(--color-border);
+    }
+
+    .distribution-title {
+      font-size: var(--font-sm);
+      font-weight: var(--weight-semibold);
+      color: var(--color-text);
+      margin-bottom: var(--spacing-md);
+    }
+
+    .distribution-bar {
+      display: flex;
+      height: 8px;
+      border-radius: var(--radius-full);
+      overflow: hidden;
+      margin-bottom: var(--spacing-md);
+    }
+
+    .distribution-segment {
+      transition: width 0.3s ease;
+    }
+
+    .distribution-segment.easy-seg {
+      background: var(--color-success);
+      width: 40%;
+    }
+
+    .distribution-segment.intermediate-seg {
+      background: var(--color-warning);
+      width: 40%;
+    }
+
+    .distribution-segment.advanced-seg {
+      background: var(--color-error);
+      width: 20%;
+    }
+
+    .distribution-legend {
+      display: flex;
+      gap: var(--spacing-lg);
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-xs);
+      font-size: var(--font-xs);
+      color: var(--color-text-secondary);
+    }
+
+    .legend-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: var(--radius-full);
+    }
+
+    .legend-dot.easy-dot { background: var(--color-success); }
+    .legend-dot.intermediate-dot { background: var(--color-warning); }
+    .legend-dot.advanced-dot { background: var(--color-error); }
+  </style>
+</head>
+<body>
+  <div class="component-preview">
+    <p class="component-title">Difficulty Tags</p>
+
+    <div class="tag-showcase">
+      <div>
+        <p class="tag-section-label">Small</p>
+        <div class="tag-row">
+          <span class="difficulty-tag easy sm"><span class="difficulty-dot"></span> Easy</span>
+          <span class="difficulty-tag intermediate sm"><span class="difficulty-dot"></span> Intermediate</span>
+          <span class="difficulty-tag advanced sm"><span class="difficulty-dot"></span> Advanced</span>
+        </div>
+      </div>
+
+      <div>
+        <p class="tag-section-label">Medium (Default)</p>
+        <div class="tag-row">
+          <span class="difficulty-tag easy md"><span class="difficulty-dot"></span> Easy</span>
+          <span class="difficulty-tag intermediate md"><span class="difficulty-dot"></span> Intermediate</span>
+          <span class="difficulty-tag advanced md"><span class="difficulty-dot"></span> Advanced</span>
+        </div>
+      </div>
+
+      <div>
+        <p class="tag-section-label">Large</p>
+        <div class="tag-row">
+          <span class="difficulty-tag easy lg"><span class="difficulty-dot"></span> Easy</span>
+          <span class="difficulty-tag intermediate lg"><span class="difficulty-dot"></span> Intermediate</span>
+          <span class="difficulty-tag advanced lg"><span class="difficulty-dot"></span> Advanced</span>
+        </div>
+      </div>
+
+      <div>
+        <p class="tag-section-label">Filled Variant</p>
+        <div class="tag-row">
+          <span class="difficulty-tag easy md filled"><span class="difficulty-dot"></span> Easy</span>
+          <span class="difficulty-tag intermediate md filled"><span class="difficulty-dot"></span> Intermediate</span>
+          <span class="difficulty-tag advanced md filled"><span class="difficulty-dot"></span> Advanced</span>
+        </div>
+      </div>
+
+      <div>
+        <p class="tag-section-label">In Context</p>
+        <div class="context-card">
+          <div class="context-header">
+            <span class="context-topic">LLM Fundamentals</span>
+            <span class="difficulty-tag easy sm"><span class="difficulty-dot"></span> Easy</span>
+          </div>
+          <p class="context-question">What is the primary purpose of tokenization in large language models?</p>
+        </div>
+      </div>
+
+      <div>
+        <p class="tag-section-label">Difficulty Distribution</p>
+        <div class="distribution-card">
+          <p class="distribution-title">Question Difficulty Breakdown</p>
+          <div class="distribution-bar">
+            <div class="distribution-segment easy-seg"></div>
+            <div class="distribution-segment intermediate-seg"></div>
+            <div class="distribution-segment advanced-seg"></div>
+          </div>
+          <div class="distribution-legend">
+            <span class="legend-item"><span class="legend-dot easy-dot"></span> Easy (2)</span>
+            <span class="legend-item"><span class="legend-dot intermediate-dot"></span> Mid (2)</span>
+            <span class="legend-item"><span class="legend-dot advanced-dot"></span> Hard (1)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

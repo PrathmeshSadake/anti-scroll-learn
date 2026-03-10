@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz Summary</title>
+  <link rel="stylesheet" href="theme.css">
+  <style>
+    .quiz-summary {
+      background: var(--color-card);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--color-border);
+      overflow: hidden;
+    }
+
+    .quiz-summary__header {
+      padding: var(--spacing-xl) var(--spacing-xxl);
+      border-bottom: 1px solid var(--color-border-light);
+    }
+
+    .quiz-summary__title {
+      font-size: var(--font-lg);
+      font-weight: var(--weight-bold);
+      color: var(--color-text);
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .quiz-summary__subtitle {
+      font-size: var(--font-sm);
+      color: var(--color-text-secondary);
+    }
+
+    .quiz-summary__score-bar {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-md);
+      padding: var(--spacing-lg) var(--spacing-xxl);
+      background: var(--color-surface-light);
+    }
+
+    .quiz-summary__score-label {
+      font-size: var(--font-sm);
+      font-weight: var(--weight-medium);
+      color: var(--color-text-secondary);
+    }
+
+    .quiz-summary__score-track {
+      flex: 1;
+      height: 6px;
+      background: var(--color-progress-bg);
+      border-radius: var(--radius-full);
+      overflow: hidden;
+    }
+
+    .quiz-summary__score-fill {
+      height: 100%;
+      background: var(--color-success);
+      border-radius: var(--radius-full);
+    }
+
+    .quiz-summary__score-value {
+      font-size: var(--font-sm);
+      font-weight: var(--weight-bold);
+      color: var(--color-success);
+    }
+
+    .quiz-summary__list {
+      list-style: none;
+    }
+
+    .quiz-summary__item {
+      padding: var(--spacing-lg) var(--spacing-xxl);
+      border-bottom: 1px solid var(--color-border-light);
+      display: flex;
+      gap: var(--spacing-md);
+    }
+
+    .quiz-summary__item:last-child {
+      border-bottom: none;
+    }
+
+    .quiz-summary__item-indicator {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border-radius: var(--radius-full);
+      font-size: var(--font-sm);
+      font-weight: var(--weight-bold);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .quiz-summary__item--correct .quiz-summary__item-indicator {
+      background: rgba(88, 204, 2, 0.12);
+      color: var(--color-success);
+    }
+
+    .quiz-summary__item--incorrect .quiz-summary__item-indicator {
+      background: rgba(239, 68, 68, 0.12);
+      color: var(--color-error);
+    }
+
+    .quiz-summary__item-content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .quiz-summary__item-question {
+      font-size: var(--font-sm);
+      font-weight: var(--weight-semibold);
+      color: var(--color-text);
+      line-height: 1.4;
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .quiz-summary__item-answer {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--spacing-xs);
+      font-size: var(--font-xs);
+      line-height: 1.4;
+    }
+
+    .quiz-summary__item-answer-label {
+      font-weight: var(--weight-semibold);
+      flex-shrink: 0;
+    }
+
+    .quiz-summary__item--correct .quiz-summary__item-answer {
+      color: var(--color-success);
+    }
+
+    .quiz-summary__item--incorrect .quiz-summary__item-answer {
+      color: var(--color-error);
+    }
+
+    .quiz-summary__item-correct-answer {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--spacing-xs);
+      font-size: var(--font-xs);
+      color: var(--color-success);
+      margin-top: var(--spacing-xs);
+      line-height: 1.4;
+    }
+
+    .quiz-summary__item-correct-answer-label {
+      font-weight: var(--weight-semibold);
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="component-preview">
+    <p class="component-title">Quiz Summary</p>
+    <div class="quiz-summary">
+      <div class="quiz-summary__header">
+        <h2 class="quiz-summary__title">Quiz Review</h2>
+        <p class="quiz-summary__subtitle">Understanding Large Language Models</p>
+      </div>
+
+      <div class="quiz-summary__score-bar">
+        <span class="quiz-summary__score-label">Score</span>
+        <div class="quiz-summary__score-track">
+          <div class="quiz-summary__score-fill" style="width: 80%;"></div>
+        </div>
+        <span class="quiz-summary__score-value">4/5</span>
+      </div>
+
+      <ol class="quiz-summary__list">
+        <!-- Q1: Correct -->
+        <li class="quiz-summary__item quiz-summary__item--correct">
+          <div class="quiz-summary__item-indicator">✓</div>
+          <div class="quiz-summary__item-content">
+            <div class="quiz-summary__item-question">What is the primary function of an LLM at its core?</div>
+            <div class="quiz-summary__item-answer">
+              <span class="quiz-summary__item-answer-label">You:</span>
+              Predicting the next word in a sequence
+            </div>
+          </div>
+        </li>
+
+        <!-- Q2: Correct -->
+        <li class="quiz-summary__item quiz-summary__item--correct">
+          <div class="quiz-summary__item-indicator">✓</div>
+          <div class="quiz-summary__item-content">
+            <div class="quiz-summary__item-question">What is an AI 'hallucination'?</div>
+            <div class="quiz-summary__item-answer">
+              <span class="quiz-summary__item-answer-label">You:</span>
+              When the AI confidently presents false information as reality
+            </div>
+          </div>
+        </li>
+
+        <!-- Q3: Incorrect -->
+        <li class="quiz-summary__item quiz-summary__item--incorrect">
+          <div class="quiz-summary__item-indicator">✗</div>
+          <div class="quiz-summary__item-content">
+            <div class="quiz-summary__item-question">Which mechanism allows Transformers to understand the context between distant words?</div>
+            <div class="quiz-summary__item-answer">
+              <span class="quiz-summary__item-answer-label">You:</span>
+              Tokenization
+            </div>
+            <div class="quiz-summary__item-correct-answer">
+              <span class="quiz-summary__item-correct-answer-label">Correct:</span>
+              The Attention mechanism
+            </div>
+          </div>
+        </li>
+
+        <!-- Q4: Correct -->
+        <li class="quiz-summary__item quiz-summary__item--correct">
+          <div class="quiz-summary__item-indicator">✓</div>
+          <div class="quiz-summary__item-content">
+            <div class="quiz-summary__item-question">What does 'Zero-Shot' prompting mean?</div>
+            <div class="quiz-summary__item-answer">
+              <span class="quiz-summary__item-answer-label">You:</span>
+              Asking a model to perform a task without any examples
+            </div>
+          </div>
+        </li>
+
+        <!-- Q5: Correct -->
+        <li class="quiz-summary__item quiz-summary__item--correct">
+          <div class="quiz-summary__item-indicator">✓</div>
+          <div class="quiz-summary__item-content">
+            <div class="quiz-summary__item-question">Why might an LLM struggle to tell you how many 'R's are in 'Strawberry'?</div>
+            <div class="quiz-summary__item-answer">
+              <span class="quiz-summary__item-answer-label">You:</span>
+              It reads the word as a single 'token' rather than individual letters
+            </div>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </div>
+</body>
+</html>

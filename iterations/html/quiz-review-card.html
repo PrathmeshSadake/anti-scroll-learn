@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz Review Card</title>
+  <link rel="stylesheet" href="theme.css">
+  <style>
+    .review-showcase {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-xxl);
+    }
+
+    .review-card {
+      background: var(--color-card);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--color-border);
+      overflow: hidden;
+    }
+
+    .review-card__header {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-md);
+      padding: var(--spacing-lg) var(--spacing-xl);
+      border-bottom: 1px solid var(--color-border-light);
+    }
+
+    .review-card__number {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: var(--radius-full);
+      font-size: var(--font-sm);
+      font-weight: var(--weight-bold);
+      flex-shrink: 0;
+    }
+
+    .review-card--correct .review-card__number {
+      background: rgba(88, 204, 2, 0.12);
+      color: var(--color-success);
+    }
+
+    .review-card--incorrect .review-card__number {
+      background: rgba(239, 68, 68, 0.12);
+      color: var(--color-error);
+    }
+
+    .review-card__status {
+      font-size: var(--font-sm);
+      font-weight: var(--weight-bold);
+    }
+
+    .review-card--correct .review-card__status {
+      color: var(--color-success);
+    }
+
+    .review-card--incorrect .review-card__status {
+      color: var(--color-error);
+    }
+
+    .review-card__body {
+      padding: var(--spacing-xl);
+    }
+
+    .review-card__question {
+      font-size: var(--font-md);
+      font-weight: var(--weight-bold);
+      color: var(--color-text);
+      line-height: 1.5;
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .review-card__answers {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-md);
+    }
+
+    .review-card__answer {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--spacing-md);
+      padding: var(--spacing-md) var(--spacing-lg);
+      border-radius: var(--radius-md);
+      font-size: var(--font-sm);
+      line-height: 1.4;
+    }
+
+    .review-card__answer-icon {
+      flex-shrink: 0;
+      font-size: var(--font-md);
+      margin-top: 1px;
+    }
+
+    .review-card__answer-label {
+      font-weight: var(--weight-semibold);
+      flex-shrink: 0;
+      min-width: 80px;
+    }
+
+    .review-card__answer-text {
+      flex: 1;
+    }
+
+    .review-card__answer--user-correct {
+      background: rgba(88, 204, 2, 0.08);
+      border: 1px solid rgba(88, 204, 2, 0.2);
+      color: var(--color-text);
+    }
+
+    .review-card__answer--user-correct .review-card__answer-label {
+      color: var(--color-success);
+    }
+
+    .review-card__answer--user-incorrect {
+      background: rgba(239, 68, 68, 0.08);
+      border: 1px solid rgba(239, 68, 68, 0.2);
+      color: var(--color-text);
+    }
+
+    .review-card__answer--user-incorrect .review-card__answer-label {
+      color: var(--color-error);
+    }
+
+    .review-card__answer--correct-reveal {
+      background: rgba(88, 204, 2, 0.06);
+      border: 1px dashed rgba(88, 204, 2, 0.3);
+      color: var(--color-text);
+    }
+
+    .review-card__answer--correct-reveal .review-card__answer-label {
+      color: var(--color-success);
+    }
+
+    .review-card__nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: var(--spacing-lg) var(--spacing-xl);
+      border-top: 1px solid var(--color-border-light);
+    }
+
+    .review-card__nav-btn {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+      padding: var(--spacing-sm) var(--spacing-lg);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      background: var(--color-surface);
+      font-family: inherit;
+      font-size: var(--font-sm);
+      font-weight: var(--weight-semibold);
+      color: var(--color-text-secondary);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .review-card__nav-btn:hover {
+      border-color: var(--color-primary);
+      color: var(--color-primary);
+    }
+
+    .review-card__nav-indicator {
+      font-size: var(--font-sm);
+      color: var(--color-text-muted);
+      font-weight: var(--weight-medium);
+    }
+  </style>
+</head>
+<body>
+  <div class="component-preview">
+    <p class="component-title">Quiz Review Card</p>
+    <div class="review-showcase">
+      <!-- Correct answer review -->
+      <div class="review-card review-card--correct">
+        <div class="review-card__header">
+          <div class="review-card__number">✓</div>
+          <span class="review-card__status">Correct</span>
+        </div>
+        <div class="review-card__body">
+          <p class="review-card__question">What is the primary function of an LLM at its core?</p>
+          <div class="review-card__answers">
+            <div class="review-card__answer review-card__answer--user-correct">
+              <span class="review-card__answer-icon">✓</span>
+              <span class="review-card__answer-label">Your answer</span>
+              <span class="review-card__answer-text">Predicting the next word in a sequence</span>
+            </div>
+          </div>
+        </div>
+        <div class="review-card__nav">
+          <button class="review-card__nav-btn">← Prev</button>
+          <span class="review-card__nav-indicator">1 of 5</span>
+          <button class="review-card__nav-btn">Next →</button>
+        </div>
+      </div>
+
+      <!-- Incorrect answer review -->
+      <div class="review-card review-card--incorrect">
+        <div class="review-card__header">
+          <div class="review-card__number">✗</div>
+          <span class="review-card__status">Incorrect</span>
+        </div>
+        <div class="review-card__body">
+          <p class="review-card__question">Which mechanism allows Transformers to understand the context between distant words in a sentence?</p>
+          <div class="review-card__answers">
+            <div class="review-card__answer review-card__answer--user-incorrect">
+              <span class="review-card__answer-icon">✗</span>
+              <span class="review-card__answer-label">Your answer</span>
+              <span class="review-card__answer-text">Tokenization</span>
+            </div>
+            <div class="review-card__answer review-card__answer--correct-reveal">
+              <span class="review-card__answer-icon">✓</span>
+              <span class="review-card__answer-label">Correct</span>
+              <span class="review-card__answer-text">The Attention mechanism</span>
+            </div>
+          </div>
+        </div>
+        <div class="review-card__nav">
+          <button class="review-card__nav-btn">← Prev</button>
+          <span class="review-card__nav-indicator">3 of 5</span>
+          <button class="review-card__nav-btn">Next →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

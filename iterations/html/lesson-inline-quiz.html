@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lesson Inline Quiz</title>
+  <link rel="stylesheet" href="theme.css">
+  <style>
+    .inline-quiz {
+      background: var(--color-card);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-xl);
+      border: 1px solid var(--color-border);
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-lg);
+    }
+    .inline-quiz__header {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+    }
+    .inline-quiz__icon {
+      width: 36px;
+      height: 36px;
+      border-radius: var(--radius-full);
+      background: var(--color-primary-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: var(--font-lg);
+    }
+    .inline-quiz__label {
+      font-size: var(--font-sm);
+      font-weight: var(--weight-semibold);
+      color: var(--color-primary-dark);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .inline-quiz__question {
+      font-size: var(--font-lg);
+      font-weight: var(--weight-bold);
+      color: var(--color-text);
+      line-height: 1.4;
+    }
+    .inline-quiz__options {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-sm);
+    }
+    .quiz-option {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-md);
+      padding: var(--spacing-md) var(--spacing-lg);
+      border-radius: var(--radius-md);
+      border: 2px solid var(--color-border);
+      background: var(--color-surface);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-size: var(--font-md);
+      color: var(--color-text);
+      font-weight: var(--weight-medium);
+    }
+    .quiz-option:hover {
+      border-color: var(--color-primary-light);
+      background: var(--color-surface-light);
+    }
+    .quiz-option__letter {
+      width: 28px;
+      height: 28px;
+      border-radius: var(--radius-full);
+      background: var(--color-surface-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: var(--font-sm);
+      font-weight: var(--weight-bold);
+      color: var(--color-text-muted);
+      flex-shrink: 0;
+    }
+    .quiz-option--correct {
+      border-color: var(--color-success);
+      background: #dcfce7;
+    }
+    .quiz-option--correct .quiz-option__letter {
+      background: var(--color-success);
+      color: var(--color-text-inverse);
+    }
+    .quiz-option--incorrect {
+      border-color: var(--color-error);
+      background: #fee2e2;
+    }
+    .quiz-option--incorrect .quiz-option__letter {
+      background: var(--color-error);
+      color: var(--color-text-inverse);
+    }
+    .quiz-option--disabled {
+      opacity: 0.6;
+      pointer-events: none;
+    }
+    .quizzes-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-xl);
+    }
+  </style>
+</head>
+<body>
+  <div class="component-preview">
+    <p class="component-title">Inline Quiz</p>
+    <div class="quizzes-list">
+      <!-- Unanswered quiz -->
+      <div class="inline-quiz" id="quiz1">
+        <div class="inline-quiz__header">
+          <div class="inline-quiz__icon">🧠</div>
+          <span class="inline-quiz__label">Quick Check</span>
+        </div>
+        <p class="inline-quiz__question">What does a closure capture?</p>
+        <div class="inline-quiz__options">
+          <button class="quiz-option" data-correct="false" onclick="handleQuiz(this, 'quiz1')">
+            <span class="quiz-option__letter">A</span> Global variables only
+          </button>
+          <button class="quiz-option" data-correct="true" onclick="handleQuiz(this, 'quiz1')">
+            <span class="quiz-option__letter">B</span> Variables from its outer scope
+          </button>
+          <button class="quiz-option" data-correct="false" onclick="handleQuiz(this, 'quiz1')">
+            <span class="quiz-option__letter">C</span> Only primitive values
+          </button>
+          <button class="quiz-option" data-correct="false" onclick="handleQuiz(this, 'quiz1')">
+            <span class="quiz-option__letter">D</span> The DOM elements
+          </button>
+        </div>
+      </div>
+
+      <!-- Answered quiz (correct shown) -->
+      <div class="inline-quiz" id="quiz2">
+        <div class="inline-quiz__header">
+          <div class="inline-quiz__icon">🧠</div>
+          <span class="inline-quiz__label">Quick Check</span>
+        </div>
+        <p class="inline-quiz__question">What is the output of [x*2 for x in range(3)]?</p>
+        <div class="inline-quiz__options">
+          <button class="quiz-option quiz-option--disabled"><span class="quiz-option__letter">A</span> [0, 1, 2]</button>
+          <button class="quiz-option quiz-option--disabled"><span class="quiz-option__letter">B</span> [2, 4, 6]</button>
+          <button class="quiz-option quiz-option--correct"><span class="quiz-option__letter">C</span> [0, 2, 4]</button>
+          <button class="quiz-option quiz-option--disabled"><span class="quiz-option__letter">D</span> [1, 2, 3]</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function handleQuiz(btn, quizId) {
+      const quiz = document.getElementById(quizId);
+      const options = quiz.querySelectorAll('.quiz-option');
+      const isCorrect = btn.getAttribute('data-correct') === 'true';
+
+      options.forEach(opt => {
+        if (opt.getAttribute('data-correct') === 'true') {
+          opt.classList.add('quiz-option--correct');
+        } else if (opt === btn && !isCorrect) {
+          opt.classList.add('quiz-option--incorrect');
+        } else {
+          opt.classList.add('quiz-option--disabled');
+        }
+        opt.style.pointerEvents = 'none';
+      });
+    }
+  </script>
+</body>
+</html>

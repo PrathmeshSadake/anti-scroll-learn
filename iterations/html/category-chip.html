@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Category Chip</title>
+  <link rel="stylesheet" href="theme.css">
+  <style>
+    .chips-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--spacing-sm);
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+      padding: var(--spacing-sm) var(--spacing-lg);
+      border-radius: var(--radius-full);
+      font-size: var(--font-sm);
+      font-weight: var(--weight-medium);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border: 1.5px solid var(--color-border);
+      background: var(--color-surface);
+      color: var(--color-text-secondary);
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+    }
+
+    .chip:active {
+      transform: scale(0.96);
+    }
+
+    .chip.active {
+      background: var(--color-primary);
+      border-color: var(--color-primary);
+      color: var(--color-text-inverse);
+    }
+
+    .chip__count {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 20px;
+      height: 20px;
+      border-radius: var(--radius-full);
+      font-size: var(--font-xs);
+      font-weight: var(--weight-bold);
+      padding: 0 var(--spacing-xs);
+    }
+
+    .chip .chip__count {
+      background: var(--color-surface-light);
+      color: var(--color-text-muted);
+    }
+
+    .chip.active .chip__count {
+      background: rgba(255, 255, 255, 0.25);
+      color: var(--color-text-inverse);
+    }
+
+    .chip__icon {
+      font-size: var(--font-md);
+      line-height: 1;
+    }
+
+    .section-label {
+      font-size: var(--font-xs);
+      font-weight: var(--weight-semibold);
+      color: var(--color-text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: var(--spacing-md);
+    }
+
+    .chips-group + .chips-group {
+      margin-top: var(--spacing-xxl);
+    }
+  </style>
+</head>
+<body>
+  <div class="component-preview">
+    <p class="component-title">Category Chips</p>
+
+    <div class="chips-group">
+      <p class="section-label">Course Categories</p>
+      <div class="chips-container" id="categories">
+        <button class="chip active" onclick="toggleChip(this)">
+          <span class="chip__icon">📚</span>
+          <span>All</span>
+          <span class="chip__count">12</span>
+        </button>
+        <button class="chip" onclick="toggleChip(this)">
+          <span class="chip__icon">🧠</span>
+          <span>AI & ML</span>
+          <span class="chip__count">4</span>
+        </button>
+        <button class="chip" onclick="toggleChip(this)">
+          <span class="chip__icon">💻</span>
+          <span>Programming</span>
+          <span class="chip__count">5</span>
+        </button>
+        <button class="chip" onclick="toggleChip(this)">
+          <span class="chip__icon">🎨</span>
+          <span>Design</span>
+          <span class="chip__count">3</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="chips-group">
+      <p class="section-label">Difficulty</p>
+      <div class="chips-container">
+        <button class="chip active" onclick="toggleChip(this)">
+          <span>Beginner</span>
+        </button>
+        <button class="chip" onclick="toggleChip(this)">
+          <span>Intermediate</span>
+        </button>
+        <button class="chip" onclick="toggleChip(this)">
+          <span>Advanced</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="chips-group">
+      <p class="section-label">Card Types</p>
+      <div class="chips-container">
+        <button class="chip" onclick="toggleChip(this)">
+          <span class="chip__icon">⚡</span>
+          <span>Hook</span>
+        </button>
+        <button class="chip active" onclick="toggleChip(this)">
+          <span class="chip__icon">💡</span>
+          <span>Concept</span>
+        </button>
+        <button class="chip active" onclick="toggleChip(this)">
+          <span class="chip__icon">✅</span>
+          <span>Check</span>
+        </button>
+        <button class="chip" onclick="toggleChip(this)">
+          <span class="chip__icon">🌍</span>
+          <span>Real World</span>
+        </button>
+        <button class="chip" onclick="toggleChip(this)">
+          <span class="chip__icon">🎮</span>
+          <span>Interactive</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function toggleChip(el) {
+      el.classList.toggle('active');
+    }
+  </script>
+</body>
+</html>

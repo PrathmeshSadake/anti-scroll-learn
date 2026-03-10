@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>News Category Filter</title>
+  <link rel="stylesheet" href="theme.css">
+  <style>
+    .filter-section {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-lg);
+    }
+    .filter-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .filter-header__title {
+      font-size: var(--font-lg);
+      font-weight: var(--weight-bold);
+      color: var(--color-text);
+    }
+    .filter-header__count {
+      font-size: var(--font-xs);
+      color: var(--color-text-muted);
+    }
+    .filter-scroll {
+      display: flex;
+      gap: var(--spacing-sm);
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      margin: 0 calc(-1 * var(--spacing-lg));
+      padding: 0 var(--spacing-lg);
+      padding-bottom: var(--spacing-xs);
+    }
+    .filter-scroll::-webkit-scrollbar {
+      display: none;
+    }
+    .filter-chip {
+      flex-shrink: 0;
+      scroll-snap-align: start;
+      display: inline-flex;
+      align-items: center;
+      gap: var(--spacing-xs);
+      padding: var(--spacing-sm) var(--spacing-lg);
+      border-radius: var(--radius-full);
+      font-size: var(--font-sm);
+      font-weight: var(--weight-semibold);
+      border: 1.5px solid var(--color-border);
+      background: var(--color-card);
+      color: var(--color-text-secondary);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+    .filter-chip:hover {
+      border-color: var(--color-primary-light);
+      color: var(--color-primary);
+    }
+    .filter-chip:active {
+      transform: scale(0.96);
+    }
+    .filter-chip--active {
+      background: var(--color-primary);
+      color: var(--color-text-inverse);
+      border-color: var(--color-primary);
+    }
+    .filter-chip--active:hover {
+      background: var(--color-primary-dark);
+      border-color: var(--color-primary-dark);
+      color: var(--color-text-inverse);
+    }
+    .filter-chip__icon {
+      font-size: var(--font-sm);
+    }
+    .filter-chip__count {
+      font-size: var(--font-xs);
+      font-weight: var(--weight-regular);
+      opacity: 0.7;
+    }
+
+    /* Filtered results preview */
+    .filter-results {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-sm);
+    }
+    .filter-result-item {
+      display: flex;
+      gap: var(--spacing-md);
+      padding: var(--spacing-md);
+      background: var(--color-card);
+      border-radius: var(--radius-md);
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+    }
+    .filter-result-item__thumb {
+      width: 72px;
+      height: 72px;
+      border-radius: var(--radius-sm);
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+    .filter-result-item__content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-width: 0;
+    }
+    .filter-result-item__title {
+      font-size: var(--font-sm);
+      font-weight: var(--weight-semibold);
+      color: var(--color-text);
+      line-height: 1.3;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      margin-bottom: var(--spacing-xs);
+    }
+    .filter-result-item__meta {
+      font-size: var(--font-xs);
+      color: var(--color-text-muted);
+    }
+  </style>
+</head>
+<body>
+  <div class="component-preview">
+    <p class="component-title">News Category Filter</p>
+    <div class="filter-section">
+      <div class="filter-header">
+        <h2 class="filter-header__title">Categories</h2>
+        <span class="filter-header__count">5 categories</span>
+      </div>
+      <div class="filter-scroll">
+        <button class="filter-chip filter-chip--active" onclick="selectFilter(this)">
+          <span class="filter-chip__icon">🌐</span>
+          All
+          <span class="filter-chip__count">(5)</span>
+        </button>
+        <button class="filter-chip" onclick="selectFilter(this)">
+          <span class="filter-chip__icon">⚖️</span>
+          Regulation
+          <span class="filter-chip__count">(1)</span>
+        </button>
+        <button class="filter-chip" onclick="selectFilter(this)">
+          <span class="filter-chip__icon">🔬</span>
+          Research
+          <span class="filter-chip__count">(1)</span>
+        </button>
+        <button class="filter-chip" onclick="selectFilter(this)">
+          <span class="filter-chip__icon">🏭</span>
+          Industry
+          <span class="filter-chip__count">(1)</span>
+        </button>
+        <button class="filter-chip" onclick="selectFilter(this)">
+          <span class="filter-chip__icon">🏢</span>
+          Enterprise
+          <span class="filter-chip__count">(1)</span>
+        </button>
+        <button class="filter-chip" onclick="selectFilter(this)">
+          <span class="filter-chip__icon">💻</span>
+          Development
+          <span class="filter-chip__count">(1)</span>
+        </button>
+      </div>
+
+      <div class="filter-results">
+        <article class="filter-result-item">
+          <img class="filter-result-item__thumb" src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=800" alt="Thumbnail">
+          <div class="filter-result-item__content">
+            <h3 class="filter-result-item__title">Govt bans Jugnu & 4 other OTT platforms over obscene content</h3>
+            <span class="filter-result-item__meta">The Verge · 12:05 pm</span>
+          </div>
+        </article>
+        <article class="filter-result-item">
+          <img class="filter-result-item__thumb" src="https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=800" alt="Thumbnail">
+          <div class="filter-result-item__content">
+            <h3 class="filter-result-item__title">Google's Gemini 1.5 Pro sets a new benchmark for multimodal AI processing</h3>
+            <span class="filter-result-item__meta">TechCrunch · 09:30 am</span>
+          </div>
+        </article>
+        <article class="filter-result-item">
+          <img class="filter-result-item__thumb" src="https://images.unsplash.com/photo-1698651848520-2216ea34488b?q=80&w=800" alt="Thumbnail">
+          <div class="filter-result-item__content">
+            <h3 class="filter-result-item__title">Anthropic introduces Claude 3 Opus, matching GPT-4 capabilities</h3>
+            <span class="filter-result-item__meta">Wired · 08:15 am</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+  <script>
+    function selectFilter(btn) {
+      document.querySelectorAll('.filter-chip').forEach(function(chip) {
+        chip.classList.remove('filter-chip--active');
+      });
+      btn.classList.add('filter-chip--active');
+    }
+  </script>
+</body>
+</html>

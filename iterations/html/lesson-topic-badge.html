@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lesson Topic Badge</title>
+  <link rel="stylesheet" href="theme.css">
+  <style>
+    .badge-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--spacing-sm);
+    }
+    .topic-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--spacing-xs);
+      padding: var(--spacing-xs) var(--spacing-md);
+      border-radius: var(--radius-full);
+      font-size: var(--font-sm);
+      font-weight: var(--weight-semibold);
+      letter-spacing: 0.3px;
+      white-space: nowrap;
+    }
+    .topic-badge__icon {
+      font-size: var(--font-sm);
+    }
+    .topic-badge--javascript { background: #fef3c7; color: #92400e; }
+    .topic-badge--python { background: #d1fae5; color: #065f46; }
+    .topic-badge--css { background: #dbeafe; color: #1e40af; }
+    .topic-badge--react { background: #cffafe; color: #155e75; }
+    .topic-badge--typescript { background: #e0e7ff; color: #3730a3; }
+    .topic-badge--html { background: #fee2e2; color: #991b1b; }
+    .topic-badge--node { background: #dcfce7; color: #166534; }
+    .topic-badge--ai { background: #f3e8ff; color: #6b21a8; }
+    .topic-badge--git { background: #fce7f3; color: #9d174d; }
+    .topic-badge--sql { background: #fff7ed; color: #9a3412; }
+
+    .badge-section {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-lg);
+    }
+    .badge-section__label {
+      font-size: var(--font-sm);
+      color: var(--color-text-muted);
+      font-weight: var(--weight-medium);
+    }
+  </style>
+</head>
+<body>
+  <div class="component-preview">
+    <p class="component-title">Topic Badges</p>
+    <div class="badge-section">
+      <div>
+        <p class="badge-section__label">Small Badges</p>
+        <div class="badge-grid" style="margin-top: var(--spacing-sm);">
+          <span class="topic-badge topic-badge--javascript"><span class="topic-badge__icon">⚡</span> JavaScript</span>
+          <span class="topic-badge topic-badge--python"><span class="topic-badge__icon">🐍</span> Python</span>
+          <span class="topic-badge topic-badge--css"><span class="topic-badge__icon">🎨</span> CSS</span>
+          <span class="topic-badge topic-badge--react"><span class="topic-badge__icon">⚛️</span> React</span>
+          <span class="topic-badge topic-badge--typescript"><span class="topic-badge__icon">🔷</span> TypeScript</span>
+          <span class="topic-badge topic-badge--html"><span class="topic-badge__icon">🌐</span> HTML</span>
+          <span class="topic-badge topic-badge--node"><span class="topic-badge__icon">🟢</span> Node.js</span>
+          <span class="topic-badge topic-badge--ai"><span class="topic-badge__icon">🤖</span> AI / ML</span>
+          <span class="topic-badge topic-badge--git"><span class="topic-badge__icon">🔀</span> Git</span>
+          <span class="topic-badge topic-badge--sql"><span class="topic-badge__icon">🗄️</span> SQL</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

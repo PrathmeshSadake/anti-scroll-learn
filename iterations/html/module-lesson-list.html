@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module Lesson List</title>
+  <link rel="stylesheet" href="theme.css">
+  <style>
+    .module-lessons {
+      background: var(--color-card);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--color-border);
+      overflow: hidden;
+    }
+    .module-lessons__header {
+      padding: var(--spacing-lg) var(--spacing-xl);
+      border-bottom: 1px solid var(--color-border);
+    }
+    .module-lessons__title {
+      font-size: var(--font-md);
+      font-weight: var(--weight-bold);
+      color: var(--color-text);
+    }
+    .module-lessons__count {
+      font-size: var(--font-sm);
+      color: var(--color-text-muted);
+      font-weight: var(--weight-medium);
+      margin-top: 2px;
+    }
+    .lesson-row {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-md);
+      padding: var(--spacing-lg) var(--spacing-xl);
+      border-bottom: 1px solid var(--color-border-light);
+      cursor: pointer;
+      transition: background 0.15s ease;
+    }
+    .lesson-row:last-child {
+      border-bottom: none;
+    }
+    .lesson-row:hover {
+      background: var(--color-surface-light);
+    }
+    .lesson-row__check {
+      width: 28px;
+      height: 28px;
+      border-radius: var(--radius-full);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: var(--font-xs);
+      flex-shrink: 0;
+    }
+    .lesson-row__check--done {
+      background: var(--color-success);
+      color: var(--color-text-inverse);
+    }
+    .lesson-row__check--pending {
+      border: 2px solid var(--color-border);
+      background: var(--color-surface);
+    }
+    .lesson-row__info {
+      flex: 1;
+      min-width: 0;
+    }
+    .lesson-row__title {
+      font-size: var(--font-md);
+      font-weight: var(--weight-semibold);
+      color: var(--color-text);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .lesson-row__type {
+      font-size: var(--font-xs);
+      color: var(--color-text-muted);
+      font-weight: var(--weight-medium);
+      margin-top: 2px;
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-xs);
+    }
+    .lesson-row__chevron {
+      color: var(--color-text-muted);
+      font-size: var(--font-md);
+    }
+    .lists-container {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-xl);
+    }
+  </style>
+</head>
+<body>
+  <div class="component-preview">
+    <p class="component-title">Module Lesson List</p>
+    <div class="lists-container">
+      <!-- Module 1 -->
+      <div class="module-lessons">
+        <div class="module-lessons__header">
+          <h3 class="module-lessons__title">Module 1: Foundations of AI</h3>
+          <p class="module-lessons__count">3 items · 1 completed</p>
+        </div>
+        <div class="lesson-row">
+          <div class="lesson-row__check lesson-row__check--done">✓</div>
+          <div class="lesson-row__info">
+            <p class="lesson-row__title">1. What is AI?</p>
+            <span class="lesson-row__type">📖 Lesson</span>
+          </div>
+          <span class="lesson-row__chevron">›</span>
+        </div>
+        <div class="lesson-row">
+          <div class="lesson-row__check lesson-row__check--pending"></div>
+          <div class="lesson-row__info">
+            <p class="lesson-row__title">2. Types of AI</p>
+            <span class="lesson-row__type">📖 Lesson</span>
+          </div>
+          <span class="lesson-row__chevron">›</span>
+        </div>
+        <div class="lesson-row">
+          <div class="lesson-row__check lesson-row__check--pending"></div>
+          <div class="lesson-row__info">
+            <p class="lesson-row__title">3. Fundamentals Quiz</p>
+            <span class="lesson-row__type">🧠 Quiz</span>
+          </div>
+          <span class="lesson-row__chevron">›</span>
+        </div>
+      </div>
+
+      <!-- Module 2 -->
+      <div class="module-lessons">
+        <div class="module-lessons__header">
+          <h3 class="module-lessons__title">Module 2: ML vs Deep Learning</h3>
+          <p class="module-lessons__count">2 items · 0 completed</p>
+        </div>
+        <div class="lesson-row">
+          <div class="lesson-row__check lesson-row__check--pending"></div>
+          <div class="lesson-row__info">
+            <p class="lesson-row__title">1. Machine Learning Basics</p>
+            <span class="lesson-row__type">📖 Lesson</span>
+          </div>
+          <span class="lesson-row__chevron">›</span>
+        </div>
+        <div class="lesson-row">
+          <div class="lesson-row__check lesson-row__check--pending"></div>
+          <div class="lesson-row__info">
+            <p class="lesson-row__title">2. The Deep Learning Revolution</p>
+            <span class="lesson-row__type">📖 Lesson</span>
+          </div>
+          <span class="lesson-row__chevron">›</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

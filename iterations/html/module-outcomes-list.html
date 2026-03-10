@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module Outcomes List</title>
+  <link rel="stylesheet" href="theme.css">
+  <style>
+    .outcomes-card {
+      background: var(--color-card);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-xl);
+      border: 1px solid var(--color-border);
+    }
+    .outcomes-card__header {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+      margin-bottom: var(--spacing-lg);
+    }
+    .outcomes-card__icon {
+      font-size: var(--font-xl);
+    }
+    .outcomes-card__title {
+      font-size: var(--font-lg);
+      font-weight: var(--weight-bold);
+      color: var(--color-text);
+    }
+    .outcomes-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-md);
+    }
+    .outcome-item {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--spacing-md);
+    }
+    .outcome-item__check {
+      width: 24px;
+      height: 24px;
+      border-radius: var(--radius-full);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 12px;
+      margin-top: 2px;
+    }
+    .outcome-item__check--done {
+      background: var(--color-success);
+      color: var(--color-text-inverse);
+    }
+    .outcome-item__check--pending {
+      border: 2px solid var(--color-border);
+      background: var(--color-surface);
+    }
+    .outcome-item__text {
+      font-size: var(--font-md);
+      color: var(--color-text);
+      line-height: 1.5;
+      font-weight: var(--weight-medium);
+    }
+    .outcome-item--done .outcome-item__text {
+      color: var(--color-text-secondary);
+    }
+    .outcomes-cards {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-xl);
+    }
+  </style>
+</head>
+<body>
+  <div class="component-preview">
+    <p class="component-title">Learning Outcomes</p>
+    <div class="outcomes-cards">
+      <!-- Module 1 outcomes -->
+      <div class="outcomes-card">
+        <div class="outcomes-card__header">
+          <span class="outcomes-card__icon">🎯</span>
+          <h3 class="outcomes-card__title">Module 1: Learning Outcomes</h3>
+        </div>
+        <div class="outcomes-list" role="list">
+          <div class="outcome-item outcome-item--done" role="listitem">
+            <div class="outcome-item__check outcome-item__check--done">✓</div>
+            <p class="outcome-item__text">Define Artificial Intelligence and its core concepts</p>
+          </div>
+          <div class="outcome-item" role="listitem">
+            <div class="outcome-item__check outcome-item__check--pending"></div>
+            <p class="outcome-item__text">Distinguish between Narrow AI, General AI, and Super Intelligent AI</p>
+          </div>
+          <div class="outcome-item" role="listitem">
+            <div class="outcome-item__check outcome-item__check--pending"></div>
+            <p class="outcome-item__text">Understand the historical milestones in AI development</p>
+          </div>
+          <div class="outcome-item" role="listitem">
+            <div class="outcome-item__check outcome-item__check--pending"></div>
+            <p class="outcome-item__text">Pass the fundamentals quiz with at least 80% score</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Module 2 outcomes -->
+      <div class="outcomes-card">
+        <div class="outcomes-card__header">
+          <span class="outcomes-card__icon">🎯</span>
+          <h3 class="outcomes-card__title">Module 2: Learning Outcomes</h3>
+        </div>
+        <div class="outcomes-list" role="list">
+          <div class="outcome-item" role="listitem">
+            <div class="outcome-item__check outcome-item__check--pending"></div>
+            <p class="outcome-item__text">Explain how machine learning algorithms learn from data</p>
+          </div>
+          <div class="outcome-item" role="listitem">
+            <div class="outcome-item__check outcome-item__check--pending"></div>
+            <p class="outcome-item__text">Describe the structure and function of neural networks</p>
+          </div>
+          <div class="outcome-item" role="listitem">
+            <div class="outcome-item__check outcome-item__check--pending"></div>
+            <p class="outcome-item__text">Compare ML and deep learning approaches for common tasks</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

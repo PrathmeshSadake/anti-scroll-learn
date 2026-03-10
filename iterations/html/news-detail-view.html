@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>News Detail View</title>
+  <link rel="stylesheet" href="theme.css">
+  <style>
+    .detail-view {
+      background: var(--color-card);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    }
+    .detail-view__nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: var(--spacing-md) var(--spacing-lg);
+      background: var(--color-card);
+      border-bottom: 1px solid var(--color-border-light);
+    }
+    .detail-view__back {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-xs);
+      font-size: var(--font-sm);
+      font-weight: var(--weight-semibold);
+      color: var(--color-primary);
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: var(--spacing-xs);
+    }
+    .detail-view__back-arrow {
+      font-size: var(--font-lg);
+    }
+    .detail-view__actions {
+      display: flex;
+      gap: var(--spacing-md);
+    }
+    .detail-view__action-btn {
+      background: none;
+      border: none;
+      font-size: var(--font-lg);
+      color: var(--color-text-secondary);
+      cursor: pointer;
+      padding: var(--spacing-xs);
+      border-radius: var(--radius-full);
+      transition: background 0.15s ease;
+    }
+    .detail-view__action-btn:hover {
+      background: var(--color-surface-light);
+    }
+    .detail-view__hero {
+      position: relative;
+      width: 100%;
+      height: 240px;
+      overflow: hidden;
+    }
+    .detail-view__hero-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .detail-view__hero-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 80px;
+      background: linear-gradient(to top, var(--color-card), transparent);
+    }
+    .detail-view__content {
+      padding: var(--spacing-lg) var(--spacing-xl);
+    }
+    .detail-view__badge {
+      display: inline-block;
+      padding: var(--spacing-xs) var(--spacing-sm);
+      border-radius: var(--radius-full);
+      font-size: var(--font-xs);
+      font-weight: var(--weight-bold);
+      color: var(--color-text-inverse);
+      background: var(--color-error);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: var(--spacing-md);
+    }
+    .detail-view__title {
+      font-size: var(--font-xxl);
+      font-weight: var(--weight-heavy);
+      color: var(--color-text);
+      line-height: 1.25;
+      margin-bottom: var(--spacing-lg);
+    }
+    .detail-view__author-row {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-md);
+      margin-bottom: var(--spacing-xl);
+      padding-bottom: var(--spacing-lg);
+      border-bottom: 1px solid var(--color-border-light);
+    }
+    .detail-view__avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-full);
+      background: var(--color-primary-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: var(--font-md);
+      font-weight: var(--weight-bold);
+      color: var(--color-primary-dark);
+      flex-shrink: 0;
+    }
+    .detail-view__author-info {
+      flex: 1;
+    }
+    .detail-view__author-name {
+      font-size: var(--font-sm);
+      font-weight: var(--weight-semibold);
+      color: var(--color-text);
+    }
+    .detail-view__author-meta {
+      font-size: var(--font-xs);
+      color: var(--color-text-muted);
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-xs);
+    }
+    .detail-view__dot {
+      width: 3px;
+      height: 3px;
+      border-radius: var(--radius-full);
+      background: var(--color-text-muted);
+    }
+    .detail-view__body {
+      font-size: var(--font-md);
+      font-weight: var(--weight-regular);
+      color: var(--color-text);
+      line-height: 1.75;
+    }
+    .detail-view__body p {
+      margin-bottom: var(--spacing-lg);
+    }
+    .detail-view__tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--spacing-sm);
+      margin-top: var(--spacing-xl);
+      padding-top: var(--spacing-lg);
+      border-top: 1px solid var(--color-border-light);
+    }
+    .detail-view__tag {
+      padding: var(--spacing-xs) var(--spacing-md);
+      border-radius: var(--radius-full);
+      font-size: var(--font-xs);
+      font-weight: var(--weight-medium);
+      color: var(--color-text-secondary);
+      background: var(--color-surface-light);
+      border: 1px solid var(--color-border-light);
+    }
+  </style>
+</head>
+<body>
+  <div class="component-preview">
+    <p class="component-title">News Detail View</p>
+    <article class="detail-view">
+      <nav class="detail-view__nav">
+        <button class="detail-view__back">
+          <span class="detail-view__back-arrow">←</span>
+          Back
+        </button>
+        <div class="detail-view__actions">
+          <button class="detail-view__action-btn" aria-label="Bookmark">🔖</button>
+          <button class="detail-view__action-btn" aria-label="Share">↗</button>
+        </div>
+      </nav>
+      <div class="detail-view__hero">
+        <img class="detail-view__hero-image" src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=800" alt="Article hero image">
+        <div class="detail-view__hero-overlay"></div>
+      </div>
+      <div class="detail-view__content">
+        <span class="detail-view__badge">Regulation</span>
+        <h1 class="detail-view__title">Govt bans Jugnu & 4 other OTT platforms over obscene content</h1>
+        <div class="detail-view__author-row">
+          <div class="detail-view__avatar">PS</div>
+          <div class="detail-view__author-info">
+            <div class="detail-view__author-name">Pragya Swastik</div>
+            <div class="detail-view__author-meta">
+              <span>The Verge</span>
+              <span class="detail-view__dot"></span>
+              <time>12:05 pm on 27 Feb 2026</time>
+            </div>
+          </div>
+        </div>
+        <div class="detail-view__body">
+          <p>The Ministry of Information and Broadcasting has issued an order banning five OTT platforms, including Jugnu, for streaming obscene and vulgar content that violates the Information Technology (Intermediary Guidelines and Digital Media Ethics Code) Rules, 2021.</p>
+          <p>The decision comes after several complaints were filed by users and civil society organizations highlighting the availability of content that goes against Indian cultural values and existing broadcasting standards.</p>
+          <p>Industry experts say this move could have far-reaching implications for content regulation in the digital streaming space, as the government continues to tighten oversight of online media platforms operating in India.</p>
+        </div>
+        <div class="detail-view__tags">
+          <span class="detail-view__tag">#OTT</span>
+          <span class="detail-view__tag">#Regulation</span>
+          <span class="detail-view__tag">#DigitalMedia</span>
+          <span class="detail-view__tag">#India</span>
+        </div>
+      </div>
+    </article>
+  </div>
+</body>
+</html>
