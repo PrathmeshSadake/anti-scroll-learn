@@ -86,6 +86,7 @@ Agents generating components for this repository **must** follow these instructi
    - `component-patterns.md`
    - `theme-tokens.md`
    - `typography.md`
+   - You can find demo data in `src/data/` which contains demo data for lessons, modules, quizzes, and news.
 
 2. **Required Output Format**:
    - **HTML (Default)**: Generate components as HTML by default. Create them in `iterations/html/<component name>` instead of using a `tsx` directory.
